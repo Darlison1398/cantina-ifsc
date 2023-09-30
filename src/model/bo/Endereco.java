@@ -1,6 +1,9 @@
 
 package model.bo;
 
+import Dao.BairroDAO;
+import Dao.CidadeDAO;
+
 public class Endereco {
 
     private int id;
@@ -80,6 +83,34 @@ public class Endereco {
             this.status = 'A';
         }
     }
+    
+    
+    /**** implementei  ***/
+    
+    
+    
+        public void setCidade(int cidadeId) {
+        // Suponha que você tenha um método em CidadeDAO para obter uma cidade por ID
+        this.cidade = CidadeDAO.obterCidadePorId(cidadeId);
+    }
+
+    // Método para configurar o Bairro com base no ID
+    public void setBairro(int bairroId) {
+        // Suponha que você tenha um método em BairroDAO para obter um bairro por ID
+        this.bairro = BairroDAO.obterBairroPorId(bairroId);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+/*****/
+    
     
     
 

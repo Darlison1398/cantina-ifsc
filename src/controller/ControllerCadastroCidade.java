@@ -9,6 +9,8 @@ import model.bo.Bairro;
 import model.bo.Cidade;
 import view.BuscaCidade;
 import view.CadastroCidade;
+import controller.ControllerCadastroCidade;
+
 
 public class ControllerCadastroCidade implements ActionListener {
 
@@ -34,6 +36,7 @@ public class ControllerCadastroCidade implements ActionListener {
         if (e.getSource() == this.cadastroCidade.getjButtonNovo()) {
             utilities.Utilities.ativa(false, this.cadastroCidade.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroCidade.getjPanelDados());
+            this.cadastroCidade.getjTextFieldId().setEditable(false);
 
         } else if (e.getSource() == this.cadastroCidade.getjButtonSair()) {
             this.cadastroCidade.dispose();
@@ -43,37 +46,59 @@ public class ControllerCadastroCidade implements ActionListener {
             utilities.Utilities.ativa(true, this.cadastroCidade.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroCidade.getjPanelDados());
 
+            
+       
+            
+            
+            
+            
         } else if (e.getSource() == this.cadastroCidade.getjButtonSalvar()) {
+           
             Cidade cidade = new Cidade();
-            cidade.setId(Dao.ClasseDados.cidades.size()+1);
             cidade.setDescricao(this.cadastroCidade.getjTextFieldDescricao().getText());
             cidade.setUf((String) this.cadastroCidade.getjComboBoxUf().getSelectedItem());
-            Dao.ClasseDados.cidades.add(cidade);
             
-            
+            if(this.cadastroCidade.getjTextFieldId().getText().equalsIgnoreCase("")){
+                service.CidadeService.adicionar(cidade);
+            } else {
+                // CÓDIGO do alterar
+                cidade.setId(Integer.parseInt(this.cadastroCidade.getjTextFieldId().getText()));
+                service.CidadeService.atualizar(cidade);
+            }              
             utilities.Utilities.ativa(true, cadastroCidade.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, cadastroCidade.getjPanelDados());
 
+            
+            
+            
+            
+            
         } else if(e.getSource() == this.cadastroCidade.getjButtonConsultar()){
+            codigoCidade = 0;
+     
             BuscaCidade buscaCidade = new BuscaCidade(null, true);
             ControllerBuscaCidade controllerBuscaCidade = new ControllerBuscaCidade(buscaCidade);
             //Inserir o controller da busca de bairros
             buscaCidade.setVisible(true);
             
             if(codigoCidade !=0){
+                
                 Cidade cidade = new Cidade();
-                cidade = Dao.ClasseDados.cidades.get(codigoCidade-1);
+                //cidade = Dao.ClasseDados.cidades.get(codigoCidade-1); 
+                cidade = service.CidadeService.carregar(codigoCidade);
                 
                 utilities.Utilities.ativa(false, cadastroCidade.getjPanelBotoes());
                 utilities.Utilities.limpaComponentes(true, cadastroCidade.getjPanelDados());
                 
                 this.cadastroCidade.getjTextFieldId().setText(cidade.getId()+"");
                 this.cadastroCidade.getjTextFieldDescricao().setText(cidade.getDescricao());
+                //this.cadastroCidade.getjComboBoxUf().setText(cidade.getUf());
                 this.cadastroCidade.getjTextFieldId().setEditable(false);
             
             }
 
         }
     }
+    
 
 }

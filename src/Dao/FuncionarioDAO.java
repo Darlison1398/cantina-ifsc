@@ -10,7 +10,7 @@ import model.bo.Funcionario;
 public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
 
     @Override
-    public void Create(Funcionario objeto) {
+    public void create(Funcionario objeto) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "INSERT INTO funcionario (nome, fone1, fone2, email, status, rg, cpf, usuario, senha, endereco_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm = null;
@@ -39,33 +39,33 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
             }    
             
         } 
-     
-        
     }
 
     @Override
-    public List<Funcionario> Retrieve() {
+    public List<Funcionario> retrieve() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Funcionario Retrieve(int parPK) {
+    public Funcionario retrieve(int parPK) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Funcionario Retrieve(String pasString) {
+    public List<Funcionario> retrieve(String pasString) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void Update(Funcionario objeto) {
+    public void update(Funcionario objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void Delete(Funcionario objeto) {
+    public void delete(Funcionario objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+ 
     
 }

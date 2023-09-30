@@ -657,7 +657,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_jFCepActionPerformed
 
     private void jBCompletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCompletarActionPerformed
-        // TODO add your handling code here:
+        // botão do cep
     }//GEN-LAST:event_jBCompletarActionPerformed
 
    

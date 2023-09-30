@@ -11,7 +11,7 @@ import model.bo.Cliente;
 public class ClienteDAO implements InterfaceDAO<Cliente> {
 
     @Override
-    public void Create(Cliente objeto) {
+    public void create(Cliente objeto) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "INSERT INTO cliente (nome, fone1, fone2, email, status, rg, cpf, matricula, datanascimento, complementoEndereco) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm = null;
@@ -40,34 +40,30 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
             }    
             
         } 
-        
-        
-        
-        
     }
 
     @Override
-    public List<Cliente> Retrieve() {
+    public List<Cliente> retrieve() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Cliente Retrieve(int parPK) {
+    public Cliente retrieve(int parPK) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Cliente Retrieve(String pasString) {
+    public List<Cliente> retrieve(String pasString) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void Update(Cliente objeto) {
+    public void update(Cliente objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void Delete(Cliente objeto) {
+    public void delete(Cliente objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

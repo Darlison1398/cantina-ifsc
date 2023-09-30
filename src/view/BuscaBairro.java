@@ -2,6 +2,7 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -48,6 +49,16 @@ public class BuscaBairro extends javax.swing.JDialog {
     public JTable getjTableDados() {
         return jTableDados;
     }
+
+    public JComboBox<String> getjComboBoxFiltro() {
+        return jComboBoxFiltro;
+    }
+
+    public void setjComboBoxFiltro(JComboBox<String> jComboBoxFiltro) {
+        this.jComboBoxFiltro = jComboBoxFiltro;
+    }
+    
+    
     
     
 
@@ -55,6 +66,7 @@ public class BuscaBairro extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanelFundo = new javax.swing.JPanel();
         jPanelTitulo = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
@@ -64,9 +76,12 @@ public class BuscaBairro extends javax.swing.JDialog {
         jPanelFiltro = new javax.swing.JPanel();
         jTextFieldFiltrar = new javax.swing.JTextField();
         jButtonFiltrar = new javax.swing.JButton();
+        jComboBoxFiltro = new javax.swing.JComboBox<>();
         jPanelDados2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDados = new javax.swing.JTable();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BuscaBairro");
@@ -172,13 +187,18 @@ public class BuscaBairro extends javax.swing.JDialog {
             }
         });
 
+        jComboBoxFiltro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ID", "DESCRICAO" }));
+
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);
         jPanelFiltroLayout.setHorizontalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -189,7 +209,8 @@ public class BuscaBairro extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -312,6 +333,7 @@ public class BuscaBairro extends javax.swing.JDialog {
     private javax.swing.JButton jButtonCarregar;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JComboBox<String> jComboBoxFiltro;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDados2;
@@ -320,6 +342,7 @@ public class BuscaBairro extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDados;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldFiltrar;
     // End of variables declaration//GEN-END:variables
 }

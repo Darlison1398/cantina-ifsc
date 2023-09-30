@@ -2,6 +2,7 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -114,6 +115,16 @@ public class BuscaCliente extends javax.swing.JDialog {
         this.jTextFieldFiltrar = jTextFieldFiltrar;
     }
 
+    public JComboBox<String> getjComboBoxFiltro() {
+        return jComboBoxFiltro;
+    }
+
+    public void setjComboBoxFiltro(JComboBox<String> jComboBoxFiltro) {
+        this.jComboBoxFiltro = jComboBoxFiltro;
+    }
+    
+    
+
     
  
     @SuppressWarnings("unchecked")
@@ -129,6 +140,7 @@ public class BuscaCliente extends javax.swing.JDialog {
         jPanelFiltro = new javax.swing.JPanel();
         jTextFieldFiltrar = new javax.swing.JTextField();
         jButtonFiltrar = new javax.swing.JButton();
+        jComboBoxFiltro = new javax.swing.JComboBox<>();
         jPanelDados2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDados = new javax.swing.JTable();
@@ -223,12 +235,17 @@ public class BuscaCliente extends javax.swing.JDialog {
         jButtonFiltrar.setText("Filtrar");
         jButtonFiltrar.setBorder(null);
 
+        jComboBoxFiltro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "NOME" }));
+
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);
         jPanelFiltroLayout.setHorizontalGroup(
             jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltroLayout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,7 +257,8 @@ public class BuscaCliente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -369,6 +387,7 @@ public class BuscaCliente extends javax.swing.JDialog {
     private javax.swing.JButton jButtonCarregar;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JComboBox<String> jComboBoxFiltro;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDados2;

@@ -2,6 +2,8 @@
 package controller;
 
 import Dao.ClasseDados;
+import static controller.ControllerCadastroBairro.codigo;
+import static controller.ControllerCadastroCidade.codigoCidade;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -15,7 +17,7 @@ import model.bo.Endereco;
 import view.BuscaBairro;
 import view.BuscaCidade;
 import view.BuscaEndereco;
-import view.BuscaEndereco2;
+//import view.BuscaEndereco2;
 import view.CadastroBairro;
 import view.CadastroCidade;
 import view.CadastroEndereco;
@@ -25,7 +27,7 @@ public class ControllerCadastroEndereco implements ActionListener {
     
     CadastroEndereco cadastroEndereco;
     
-    public static int codigoCidade, codigoBairro, codigo;
+    public static int codigoCidade, codigoBairro, codigoEndereco;
     public static int idCidade, idBairro;
     
     public ControllerCadastroEndereco(CadastroEndereco cadastroEndereco) {
@@ -49,58 +51,7 @@ public class ControllerCadastroEndereco implements ActionListener {
         utilities.Utilities.ativa(true, this.cadastroEndereco.getjPanelBotoes());
         utilities.Utilities.limpaComponentes(false, this.cadastroEndereco.getjPanelDados());
     }
-    
-    WindowListener disposeListener = new WindowAdapter() {
-        
-        public void windowClosed(WindowEvent e){
-            if (codigo != 0){
-                Endereco endereco = new Endereco();
-                endereco = Dao.ClasseDados.enderecos.get(codigo-1);
-                utilities.Utilities.ativa(false, cadastroEndereco.getjPanelBotoes());
-                utilities.Utilities.limpaComponentes(true, cadastroEndereco.getjPanelDados());
-                
-                cadastroEndereco.getjTId().setText(endereco.getId() + "");
-                cadastroEndereco.getjFCep().setText(endereco.getCep());
-                cadastroEndereco.getjTLogradouro().setText(endereco.getLogradouro());
-                cadastroEndereco.getjTDescricaoBairro().setText(endereco.getBairro().getDescricao()); // esse é a parte da descrição da cidade
-                cadastroEndereco.getjTDescricaoCidade().setText(endereco.getCidade().getDescricao()); // descrição do bairro
-                
-                cadastroEndereco.getjTId().setEnabled(false);           
-            }
-        }
-    };
-    
-        WindowListener disposeListenerBairro = new WindowAdapter() {
 
-        @Override
-        public void windowClosed(WindowEvent e) {
-            if(codigoBairro!= -2){
-                Bairro bairro = new Bairro();
-                bairro=Dao.ClasseDados.bairros.get(codigoBairro); // tirei o -1
-                utilities.Utilities.ativa(false, cadastroEndereco.getjPanelBotoes());
-                idBairro=bairro.getId()-1;
-                
-                cadastroEndereco.getjTDescricaoBairro().setText(bairro.getDescricao());
-                
-            }
-        }
-    };
-    WindowListener disposeListenerCidade = new WindowAdapter() {
-         @Override
-         public void windowClosed(WindowEvent e){
-            if(codigoCidade!= -2){
-                Cidade cidade = new Cidade();
-                cidade=Dao.ClasseDados.cidades.get(codigoCidade); // tirei o -1
-                utilities.Utilities.ativa(false, cadastroEndereco.getjPanelBotoes());
-                idCidade=cidade.getId()-1;
-                
-                cadastroEndereco.getjTDescricaoCidade().setText(cidade.getDescricao());
-            }
-         }
-    };
-    
-    
-  
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -116,58 +67,62 @@ public class ControllerCadastroEndereco implements ActionListener {
             utilities.Utilities.ativa(true, this.cadastroEndereco.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroEndereco.getjPanelDados());
             
+      
         } else if (e.getSource() == this.cadastroEndereco.getjButtonSalvar()) {
             
             Endereco endereco = new Endereco();
-            endereco.setId(Dao.ClasseDados.enderecos.size()+1);
-            endereco.setCep(this.cadastroEndereco.getjLabelCep().getText());
+            endereco.setCep(this.cadastroEndereco.getjFCep().getText());
             endereco.setLogradouro(this.cadastroEndereco.getjTLogradouro().getText());
             endereco.setStatus(this.cadastroEndereco.getjCheckBoxStatus().isSelected());
-            endereco.setCidade(Dao.ClasseDados.cidades.get(idCidade));
-            endereco.setBairro(Dao.ClasseDados.bairros.get(idBairro));
-            
-            //Dao.ClasseDados.enderecos.add(endereco);
-            
-            //Status Cidade e bairro
-            
-            // invocando a view.Resposta
-            Resposta resposta = new Resposta(null, true);
-            ControllerResposta controllerResposta = new ControllerResposta(resposta);
+            endereco.setBairro(service.BairroService.carregar(idBairro));
+            endereco.setCidade(service.CidadeService.carregar(idCidade));
+
             
             utilities.Utilities.ativa(true, cadastroEndereco.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, cadastroEndereco.getjPanelDados());
             
             
             if(this.cadastroEndereco.getjLabelId().getText().equalsIgnoreCase("")){
-                Dao.ClasseDados.enderecos.add(endereco);
-                controllerResposta.codigoFB=3;
-                controllerResposta.cadastroClasse();
                 
+                
+                service.EnderecoService.adicionar(endereco);
                 
             }else{
-                int index = Integer.parseInt(this.cadastroEndereco.getjLabelId().getText())-1;
-                Dao.ClasseDados.enderecos.get(index).setLogradouro(this.cadastroEndereco.getjLabelLogradouro().getText());
-                Dao.ClasseDados.enderecos.get(index).setCep(this.cadastroEndereco.getjFCep().getText());
-                Dao.ClasseDados.enderecos.get(index).setBairro(Dao.ClasseDados.bairros.get(idBairro));
-                Dao.ClasseDados.enderecos.get(index).setCidade(Dao.ClasseDados.cidades.get(idCidade));
-                controllerResposta.codigoFB=3;
-                controllerResposta.atualizacaoClasse();
-            }
-            
-            //resposta.setVisible(true);
-            
-            //utilities.Utilities.ativa(true, cadastroEndereco.getjPanelBotoes());
-            //utilities.Utilities.limpaComponentes(false, cadastroEndereco.getjPanelDados());
-            
-        } else if (e.getSource() == this.cadastroEndereco.getjButtonConsultar()) {
-            //BuscaEndereco buscaEndereco = new BuscaEndereco(null, true);
-            //ControllerBuscaEndereco controllerBuscaEndereco = new ControllerBuscaEndereco(buscaEndereco);
-            BuscaEndereco2 buscaEndereco2 = new BuscaEndereco2(null, true);
-            ControllerBuscaEndereco2 controllerBuscaEndereco2 = new ControllerBuscaEndereco2(buscaEndereco2);
-            buscaEndereco2.addWindowListener(disposeListener);
-            buscaEndereco2.setVisible(true);
-            
                 
+                endereco.setId(Integer.parseInt(this.cadastroEndereco.getjTId().getText()));
+                service.EnderecoService.atualizar(endereco); 
+            }
+         
+        } else if (e.getSource() == this.cadastroEndereco.getjButtonConsultar()) {
+            codigoEndereco = 0;
+            
+            BuscaEndereco buscaEndereco = new BuscaEndereco(null, true);
+            ControllerBuscaEndereco controllerBuscaEndereco = new ControllerBuscaEndereco(buscaEndereco);
+            buscaEndereco.setVisible(true);
+            
+            if (codigoEndereco != 0){
+                Endereco endereco = new Endereco();
+                endereco = service.EnderecoService.carregar(codigoEndereco);
+                
+                utilities.Utilities.ativa(false, cadastroEndereco.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(true, cadastroEndereco.getjPanelDados());
+                
+                this.cadastroEndereco.getjTId().setText(endereco.getId() + "");
+                this.cadastroEndereco.getjFCep().setText(endereco.getCep());
+                this.cadastroEndereco.getjTLogradouro().setText(endereco.getLogradouro());
+                //this.cadastroEndereco.getjCheckBoxStatus().setSelected(endereco.getStatchar status = endereco.getStatus();
+                
+                char status = endereco.getStatus();
+                boolean isAtivo = (status == 'A'); // Converte 'A' para true e 'I' para false
+                this.cadastroEndereco.getjCheckBoxStatus().setSelected(isAtivo);
+           
+                
+                this.cadastroEndereco.getjTCodigoCidade().setText(endereco.getCidade().getDescricao());
+                this.cadastroEndereco.getjTBairro().setText(endereco.getBairro().getDescricao());
+                
+                
+            }
+           
             
         } else if (e.getSource() == this.cadastroEndereco.getjButtonAdicionarBairro()) {
             CadastroBairro cadastroBairro = new CadastroBairro();
@@ -181,24 +136,52 @@ public class ControllerCadastroEndereco implements ActionListener {
         } 
         
         else if (e.getSource() == this.cadastroEndereco.getjButtonBuscaBairro()) {
-            codigoBairro=0;
+            
+            codigo = 0; 
             BuscaBairro buscaBairro = new BuscaBairro(null, true);
             ControllerBuscaBairro controllerBuscaBairro = new ControllerBuscaBairro(buscaBairro);
-            buscaBairro.addWindowListener(disposeListenerBairro);
-            buscaBairro.setVisible(true); 
+            buscaBairro.setVisible(true);
+            
+            if(codigo !=0){
+                Bairro bairro = new Bairro();
+                bairro = service.BairroService.carregar(codigo);
+                
+                utilities.Utilities.ativa(false, cadastroEndereco.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(true, cadastroEndereco.getjPanelDados());
+                
+                this.cadastroEndereco.getjTBairro().setText(bairro.getId()+ "");
+                this.cadastroEndereco.getjTDescricaoBairro().setText(bairro.getDescricao());
+                this.cadastroEndereco.getjTId().setEditable(false);
+               
+               
+            
+            }
+            
+            //System.out.println("Buscando dados do bairro: "   + codigo);
+            
+                 
             
         } else if (e.getSource() == this.cadastroEndereco.getjButtonBuscaCidade()) {
             codigoCidade = 0;
+     
             BuscaCidade buscaCidade = new BuscaCidade(null, true);
             ControllerBuscaCidade controllerBuscaCidade = new ControllerBuscaCidade(buscaCidade);
-            buscaCidade.addWindowListener(disposeListenerBairro);
             buscaCidade.setVisible(true);
             
+            if(codigoCidade !=0){
+                
+                Cidade cidade = new Cidade();
+                cidade = service.CidadeService.carregar(codigoCidade);
+                
+                utilities.Utilities.ativa(false, cadastroEndereco.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(true, cadastroEndereco.getjPanelDados());
+                
+                this.cadastroEndereco.getjTCodigoCidade().setText(cidade.getId()+"");
+                this.cadastroEndereco.getjTDescricaoCidade().setText(cidade.getDescricao());
+                //this.cadastroCidade.getjComboBoxUf().setText(cidade.getUf());
+                this.cadastroEndereco.getjTId().setEditable(false);
             
-            /*buscaCidade.getjButtonCarregar().addActionListener(this);
-            Cidade city = new Cidade();    
-            
-            if (buscaCidade.getjTableDados() == city.)*/
+            }
            
             
             

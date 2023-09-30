@@ -133,14 +133,14 @@ public class ClasseDados {
         carteirinhas.add(carteirinha2);
         carteirinhas.add(carteirinha3);
         
-        //Produtos
+        /*Produtos
         Produto produto1 = new Produto(1, "Risolho", "123456987", 'A');
         Produto produto2 = new Produto(2, "Coxinha", "123456998", 'A');
         Produto produto3 = new Produto(3, "Misto", "123456998", 'A');
         
         produtos.add(produto1);
         produtos.add(produto2);
-        produtos.add(produto3);
+        produtos.add(produto3);*/
         
         //Compras
         Compra compra1 = new Compra(1, 05, DateTimeFormatter.ISO_LOCAL_DATE, 0, 'S', 'A', "", fornecedor1);

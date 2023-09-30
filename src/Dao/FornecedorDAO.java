@@ -11,7 +11,8 @@ import model.bo.Fornecedor;
 public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
 
     @Override
-    public void Create(Fornecedor objeto) {
+    public void create(Fornecedor objeto) {
+        
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "INSERT INTO fornecedor (nome, fone1, fone2, email, status, cnpj, matricula, inscricaoestadual, endereco_id, razaosocial) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm = null;
@@ -40,34 +41,32 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
             }    
             
         } 
-          
-        
-        
     }
 
     @Override
-    public List<Fornecedor> Retrieve() {
+    public List<Fornecedor> retrieve() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Fornecedor Retrieve(int parPK) {
+    public Fornecedor retrieve(int parPK) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Fornecedor Retrieve(String pasString) {
+    public List<Fornecedor> retrieve(String pasString) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void Update(Fornecedor objeto) {
+    public void update(Fornecedor objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void Delete(Fornecedor objeto) {
+    public void delete(Fornecedor objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     
 }

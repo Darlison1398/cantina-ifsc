@@ -2,16 +2,21 @@
 package model.bo;
 
 public class Produto {
+    
+    /*
+    Eu mudei a propriedade do status de char para boolean
+    */
 
     private int id;
     private String descricao;
     private String codigoBarra;
-    private char status;
+    //private char status;
+    private boolean status;
 
     public Produto() {
     }
 
-    public Produto(int id, String descricao, String codigoBarra, char status) {
+    public Produto(int id, String descricao, String codigoBarra, boolean status) {
         this.id = id;
         this.descricao = descricao;
         this.codigoBarra = codigoBarra;
@@ -30,7 +35,7 @@ public class Produto {
         return codigoBarra;
     }
 
-    public char getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -46,18 +51,19 @@ public class Produto {
         this.codigoBarra = codigoBarra;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(boolean status) {
         this.status = status;    
     }
     
-    public void setStatus(boolean status){
+    /*public void setStatus(boolean status){
         if(status == true){
             this.status = 'I';
         } else{
             this.status = 'A';
         }
     
-    }
+    }*/
+    
     
     
 
@@ -70,10 +76,6 @@ public class Produto {
                 + this.getCodigoBarra() 
                 + ", " + this.getStatus();
 
-    }
-
-    public void getCodigoBarra(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

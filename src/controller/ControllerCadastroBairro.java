@@ -34,9 +34,9 @@ public class ControllerCadastroBairro implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.cadastroBairro.getjButtonNovo()) {
+            
             utilities.Utilities.ativa(false, this.cadastroBairro.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroBairro.getjPanelDados());
-            //Deseligando o ID no braço, provisório
             this.cadastroBairro.getjTextFieldId().setEditable(false);
             
 
@@ -47,22 +47,32 @@ public class ControllerCadastroBairro implements ActionListener {
             utilities.Utilities.ativa(true, this.cadastroBairro.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroBairro.getjPanelDados());
 
+            
+            
+            
+            
         } else if (e.getSource() == this.cadastroBairro.getjButtonSalvar()) {
             
             Bairro bairro = new Bairro();
-            bairro.setId(Dao.ClasseDados.bairros.size()+1);
             bairro.setDescricao(this.cadastroBairro.getjTextFieldDescricao().getText());
             if(this.cadastroBairro.getjTextFieldId().getText().equalsIgnoreCase("")){
-                Dao.ClasseDados.bairros.add(bairro);
-            }else{
                 
-            
-            }
-        
-            
+                ///// agora já está adicionando os dados no bancos
+                service.BairroService.adicionar(bairro);
+                
+            }else{
+                // CÓDIGO do alterar
+                bairro.setId(Integer.parseInt(this.cadastroBairro.getjTextFieldId().getText()));
+                service.BairroService.atualizar(bairro);   
+            } 
             utilities.Utilities.ativa(true, cadastroBairro.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, cadastroBairro.getjPanelDados());
 
+            
+            
+            
+            
+            
         } else if (e.getSource() == this.cadastroBairro.getjButtonConsultar()) {
             codigo = 0;
             
@@ -74,7 +84,9 @@ public class ControllerCadastroBairro implements ActionListener {
             
             if(codigo !=0){
                 Bairro bairro = new Bairro();
-                bairro = Dao.ClasseDados.bairros.get(codigo-1);
+                //bairro = Dao.ClasseDados.bairros.get(codigo-1);
+                
+                bairro = service.BairroService.carregar(codigo);
                 
                 utilities.Utilities.ativa(false, cadastroBairro.getjPanelBotoes());
                 utilities.Utilities.limpaComponentes(true, cadastroBairro.getjPanelDados());

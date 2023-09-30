@@ -2,18 +2,26 @@
 package Dao;
 
 //import com.sun.jdi.connect.spi.Connection;
+import java.sql.ResultSet;
 import model.bo.Bairro;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
 public class BairroDAO implements InterfaceDAO<Bairro> {
 
+    public static Bairro obterBairroPorId(int bairroId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
-    public void Create(Bairro objeto) {
+    public void create(Bairro objeto) {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "INSERT INTO bairro (descricao) values(?)";
         PreparedStatement pstm = null;
@@ -45,35 +53,146 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
             
         } 
         
-    }
-
-    @Override
-    public List<Bairro> Retrieve() {
-        return null;
-    }
-
-    @Override
-    public Bairro Retrieve(int parPK) {
-        return null;
         
     }
 
     @Override
-    public Bairro Retrieve(String pasString) {
-        return null;
+    public List<Bairro> retrieve() {
+        
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM mydb.bairro";
+        PreparedStatement pstm = null;
+        ResultSet rst = null;
+        
+        // a lista tem que ser criada fora do while
+        List<Bairro> listaBairro = new ArrayList<>();
+        
+        try{
+             pstm = conexao.prepareStatement(sqlExecutar);
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {
+                 Bairro bairro = new Bairro();
+                 bairro.setId(rst.getInt("id"));
+                 bairro.setDescricao(rst.getString("descricao"));
+                 listaBairro.add(bairro);
+                 
+             }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaBairro;
+        }
+        
+        
     }
 
     @Override
-    public void Update(Bairro objeto) {
-
+    public Bairro retrieve(int parPK) {
+        
+         
+        Connection conexao = ConnectionFactory.getConnection();
+        //String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM mydb.bairro";
+        String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM mydb.bairro WHERE bairro.id = ?"; 
+        PreparedStatement pstm = null;
+        ResultSet rst = null;
+        
+        Bairro bairro = new Bairro();
+        
+        
+        try{
+             pstm = conexao.prepareStatement(sqlExecutar);
+             pstm.setInt(1, parPK);
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {   
+                 bairro.setId(rst.getInt("id"));
+                 bairro.setDescricao(rst.getString("descricao"));
+             }
+            
+             
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return bairro;
+        }
+        
     }
 
     @Override
-    public void Delete(Bairro objeto) {
-
+    public List<Bairro> retrieve(String pasString) {
+        
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "SELECT bairro.id,bairro.descricao FROM bairro WHERE descricao like ?";
+        PreparedStatement pstm = null;
+        ResultSet rst = null;  
+        List<Bairro> listaBairro = new ArrayList<>();
+        
+        
+         try{
+             pstm = conexao.prepareStatement(sqlExecutar);
+             pstm.setString(1, "%" + pasString + "%");
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {   
+                 Bairro bairro = new Bairro();
+                 bairro.setId(rst.getInt("id"));
+                 bairro.setDescricao(rst.getString("Descricao"));
+                 listaBairro.add(bairro);
+             }
+            
+             
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaBairro;
+        }
+        
     }
-
-
-
     
+    
+
+    @Override
+    public void update(Bairro objeto) {
+        
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "UPDATE bairro SET bairro.descricao = ? WHERE bairro.id = ?";
+
+        PreparedStatement pstm = null;
+        
+        try {
+            
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, objeto.getDescricao());
+            pstm.setInt(2, objeto.getId());
+            pstm.execute();
+            
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        } finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
+    }
+
+    @Override
+    public void delete(Bairro objeto) {
+
+    }
+   
 }
