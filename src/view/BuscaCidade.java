@@ -171,7 +171,7 @@ public class BuscaCidade extends javax.swing.JDialog {
         jButtonFiltrar.setMinimumSize(new java.awt.Dimension(99, 26));
 
         jComboBoxFiltroCidade.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBoxFiltroCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "DESCRIÇÃO" }));
+        jComboBoxFiltroCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ID", "DESCRIÇÃO" }));
 
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);

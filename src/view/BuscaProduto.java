@@ -176,7 +176,7 @@ public class BuscaProduto extends javax.swing.JDialog {
         });
 
         jComboBoxFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBoxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "DESCRIÇÃO" }));
+        jComboBoxFiltrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ID", "DESCRIÇÃO" }));
 
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);

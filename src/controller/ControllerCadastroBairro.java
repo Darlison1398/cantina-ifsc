@@ -73,6 +73,9 @@ public class ControllerCadastroBairro implements ActionListener {
             
             
             
+            
+            
+            
         } else if (e.getSource() == this.cadastroBairro.getjButtonConsultar()) {
             codigo = 0;
             

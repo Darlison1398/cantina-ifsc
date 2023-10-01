@@ -124,9 +124,50 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
     }
 
     @Override
-    public List<Cidade> retrieve(String pasString) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Cidade> retrieve(String parString) {
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade WHERE descricao like ?";
+        PreparedStatement pstm = null;
+        ResultSet rst = null;  
+        List<Cidade> listaCidade = new ArrayList<>();
+        
+        
+         try{
+            // pstm = conexao.prepareStatement(sqlExecutar);
+             pstm = conexao.prepareStatement(sqlExecutar);
+             pstm.setString(1, "%" + parString + "%");
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {   
+                 Cidade cidade = new Cidade();
+                 cidade.setId(rst.getInt("id"));
+                 cidade.setDescricao(rst.getString("descricao"));
+                 cidade.setUf(rst.getString("uf"));
+                 listaCidade.add(cidade);
+             }
+            
+             
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaCidade;
+        }    
+        
+        
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     @Override
     public void update(Cidade objeto) {

@@ -236,7 +236,7 @@ public class BuscaCliente extends javax.swing.JDialog {
         jButtonFiltrar.setBorder(null);
 
         jComboBoxFiltro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "NOME" }));
+        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ID", "NOME" }));
 
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);

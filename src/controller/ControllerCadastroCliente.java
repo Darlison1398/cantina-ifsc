@@ -1,6 +1,7 @@
 
 package controller;
 
+//import Dao.EnderecoDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -8,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import model.bo.Cliente;
 import model.bo.Endereco;
+import service.EnderecoService;
 import view.BuscaCliente;
 import view.BuscaEndereco;
 import view.CadastroCliente;
@@ -36,7 +38,7 @@ public class ControllerCadastroCliente implements ActionListener {
     }
     
     
-     WindowListener disposeListener = new WindowAdapter() {
+    /* WindowListener disposeListener = new WindowAdapter() {
 
         @Override
         public void windowClosed(WindowEvent e) {
@@ -98,23 +100,30 @@ public class ControllerCadastroCliente implements ActionListener {
 
         }
 
-    };
+    };*/
     
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.cadastroCliente.getjButtonNovo()) {
+            
             utilities.Utilities.ativa(false, this.cadastroCliente.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroCliente.getjPanelDados());
+            this.cadastroCliente.getjTextFieldID().setEditable(false);
             
-            cadastroCliente.getjTextFieldID().setEnabled(false);
+            
+            /*cadastroCliente.getjTextFieldID().setEnabled(false);
             cadastroCliente.getjTextFieldLogradouro().setEnabled(false);
 
             cadastroCliente.getjCheckBoxStatus().setEnabled(false);
             cadastroCliente.getjTextFieldCidade().setEnabled(false);
-            cadastroCliente.getjTextFieldBairro().setEnabled(false);
+            cadastroCliente.getjTextFieldBairro().setEnabled(false);*/
 
 
+            
+    
+            
+            
         } else if (e.getSource() == this.cadastroCliente.getjButtonSair()) {
             this.cadastroCliente.dispose();
 
@@ -128,63 +137,85 @@ public class ControllerCadastroCliente implements ActionListener {
             
             cliente.setId(Dao.ClasseDados.clientes.size()+1);
             cliente.setNome(this.cadastroCliente.getjTextFieldNome().getText());
-            //cliente.setCpf(this.cadastroCliente.getjFormattedTextFieldCPF().getText());
+            cliente.setCpf(this.cadastroCliente.getjFormattedTextFieldCPF().getText());
             cliente.setRg(this.cadastroCliente.getjFormattedTextFieldRg().getText());
             cliente.setMatricula(this.cadastroCliente.getjTextFieldMatricula().getText());
             cliente.setFone1(this.cadastroCliente.getjFormattedTextFieldFone1().getText());
             cliente.setFone2(this.cadastroCliente.getjFormattedTextFieldFone2().getText());
             cliente.setEmail(this.cadastroCliente.getjTextFieldEmail().getText());
             cliente.setComplementoEndereco(this.cadastroCliente.getjTextFieldComplementoEndereco().getText());
-            cliente.setEndereco(Dao.ClasseDados.enderecos.get(idEndereco));
-            Resposta resposta =new Resposta(null, true);
-            ControllerResposta controllerResposta= new ControllerResposta(resposta);
-
-            //resposta.setVisible( true);
-            utilities.Utilities.ativa(true, cadastroCliente.getjPanelBotoes());
-            utilities.Utilities.limpaComponentes(false, cadastroCliente.getjPanelDados());
+           
+            
+            
+            /*  IMPORTANTE  !!!  */
+            //cliente.setEndereco(Dao.ClasseDados.enderecos.get(idEndereco));
+            
+            /*  Pra pegar o endereço da parte Endereço e setar no cliente */
+            cliente.setEndereco(EnderecoService.carregar(idEndereco));
             
             if(this.cadastroCliente.getjTextFieldID().getText().equalsIgnoreCase("")){
-                // TESTANDO
-                //Cliente cliente = new Cliente();
+                service.ClienteService.adicionar(cliente);
+             
+            }else {
                 
-                // FIM TESTE
-                Dao.ClasseDados.clientes.add(cliente);
-                controllerResposta.codigoFB=6;
-                controllerResposta.cadastroClasse();
-                //utilities.Utilities.ativa(true, cadastroCliente.getjPanelBotoes());
-               //utilities.Utilities.limpaComponentes(false, cadastroCliente.getjPanelDados());
-            }else{
-                int index = Integer.parseInt(this.cadastroCliente.getjTextFieldID().getText())-1;
-                
-                Dao.ClasseDados.clientes.get(index).setNome(this.cadastroCliente.getjTextFieldNome().getText());
-                //Dao.ClasseDados.clientes.get(index).setCpf(this.cadastroCliente.getjFormattedTextFieldCPF().getText());
-                Dao.ClasseDados.clientes.get(index).setRg(this.cadastroCliente.getjFormattedTextFieldRg().getText());
-                Dao.ClasseDados.clientes.get(index).setMatricula(this.cadastroCliente.getjTextFieldMatricula().getText());
-                Dao.ClasseDados.clientes.get(index).setFone1(this.cadastroCliente.getjFormattedTextFieldFone1().getText());
-                Dao.ClasseDados.clientes.get(index).setFone2(this.cadastroCliente.getjFormattedTextFieldFone2().getText());
-                Dao.ClasseDados.clientes.get(index).setEmail(this.cadastroCliente.getjTextFieldEmail().getText());
-                Dao.ClasseDados.clientes.get(index).setComplementoEndereco(this.cadastroCliente.getjTextFieldComplementoEndereco().getText());
-                Dao.ClasseDados.clientes.get(index).setEndereco(Dao.ClasseDados.enderecos.get(idEndereco));
-                controllerResposta.codigoFB=6;
-                controllerResposta.atualizacaoClasse();
-                //utilities.Utilities.ativa(true, cadastroCliente.getjPanelBotoes()); // qualquer coisa, tirar
-                //utilities.Utilities.limpaComponentes(false, cadastroCliente.getjPanelDados());  // qualquer coisa, tirar 
+                cliente.setId(Integer.parseInt(this.cadastroCliente.getjTextFieldID().getText()));
+                service.ClienteService.atualizar(cliente);
+
             }
             
-            //resposta.setVisible( true);  
-            //utilities.Utilities.ativa(true, cadastroCliente.getjPanelBotoes());
-            //utilities.Utilities.limpaComponentes(false, cadastroCliente.getjPanelDados());         
+            utilities.Utilities.ativa(true, cadastroCliente.getjPanelBotoes());
+            utilities.Utilities.limpaComponentes(false, cadastroCliente.getjPanelDados());
+           
+            
+            
+            
+                     
             
         } else if (e.getSource() == this.cadastroCliente.getjButtonConsultar()) {
+            codigoCliente = 0;
             BuscaCliente buscaCliente = new BuscaCliente(null, true);
             ControllerBuscaCliente controllerBuscaCliente = new ControllerBuscaCliente(buscaCliente);
-            buscaCliente.addWindowListener(disposeListener);
             buscaCliente.setVisible(true);
+            
+            if (codigoCliente != 0) {
+                
+                Cliente cliente = new Cliente();
+                
+                service.ClienteService.carregar(codigoCliente);
+                
+                utilities.Utilities.ativa(true, cadastroCliente.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(false, cadastroCliente.getjPanelDados());
+           
+                this.cadastroCliente.getjTextFieldID().setText(cliente.getId() + "");
+                this.cadastroCliente.getjTextFieldNome().setText(cliente.getNome());
+                this.cadastroCliente.getjTextFieldEmail().setText(cliente.getEmail());
+                this.cadastroCliente.getjTextFieldLogradouro().setText(cliente.getComplementoEndereco());
+                this.cadastroCliente.getjTextFieldMatricula().setText(cliente.getMatricula());
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+            
+            
 
         } else if (e.getSource() == this.cadastroCliente.getjButtonPesquisarCep()) {
             BuscaEndereco buscaEndereco = new BuscaEndereco(null, true);
             ControllerBuscaEndereco controllerBuscaEndereco = new ControllerBuscaEndereco(buscaEndereco);
-            buscaEndereco.addWindowListener(disposeListenerEndereco);
+           // buscaEndereco.addWindowListener(disposeListenerEndereco);
             buscaEndereco.setVisible(true);
             
         } else if (e.getSource() == this.cadastroCliente.getjButtonAdicionarCep()) {

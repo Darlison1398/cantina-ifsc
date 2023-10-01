@@ -241,7 +241,7 @@ public class BuscaFornecedor extends javax.swing.JDialog {
         });
 
         jComboBoxFiltro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "DESCRIÇÃO" }));
+        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ID", "DESCRIÇÃO" }));
 
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);

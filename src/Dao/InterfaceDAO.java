@@ -11,7 +11,7 @@ public interface InterfaceDAO<T> {
     public abstract List<T> retrieve(); 
     //public abstract List<T> Retrieve(); 
     public abstract T retrieve(int parPK);
-    public abstract List<T> retrieve (String pasString);
+    public abstract List<T> retrieve (String parString);
     public abstract void update (T objeto);
     public abstract void delete(T objeto);  
     

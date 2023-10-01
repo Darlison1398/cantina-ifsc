@@ -97,7 +97,7 @@ public class Endereco {
     // Método para configurar o Bairro com base no ID
     public void setBairro(int bairroId) {
         // Suponha que você tenha um método em BairroDAO para obter um bairro por ID
-        this.bairro = BairroDAO.obterBairroPorId(bairroId);
+        //this.bairro = BairroDAO.obterBairroPorId(bairroId);
     }
     
     

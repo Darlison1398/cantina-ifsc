@@ -16,9 +16,6 @@ import java.util.logging.Logger;
 
 public class BairroDAO implements InterfaceDAO<Bairro> {
 
-    public static Bairro obterBairroPorId(int bairroId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public void create(Bairro objeto) {
@@ -129,10 +126,13 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
     }
 
     @Override
-    public List<Bairro> retrieve(String pasString) {
+    public List<Bairro> retrieve(String parString) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT bairro.id,bairro.descricao FROM bairro WHERE descricao like ?";
+        
+        /*   OLHAR AQUI COMO EXEMPLO */
+        //String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM bairro WHERE descricao like ? AND id = ?";
+        String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM bairro WHERE descricao like ?";
         PreparedStatement pstm = null;
         ResultSet rst = null;  
         List<Bairro> listaBairro = new ArrayList<>();
@@ -140,14 +140,15 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
         
          try{
              pstm = conexao.prepareStatement(sqlExecutar);
-             pstm.setString(1, "%" + pasString + "%");
+             pstm.setString(1, "%" + parString + "%");
+             //pstm.setInt(2, parId);
              rst = pstm.executeQuery();
              
              
              while(rst.next()) {   
                  Bairro bairro = new Bairro();
                  bairro.setId(rst.getInt("id"));
-                 bairro.setDescricao(rst.getString("Descricao"));
+                 bairro.setDescricao(rst.getString("descricao"));
                  listaBairro.add(bairro);
              }
             

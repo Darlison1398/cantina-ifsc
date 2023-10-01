@@ -121,8 +121,57 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
     }
 
     @Override
-    public List<Produto> retrieve(String pasString) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Produto> retrieve(String parString) {
+                
+        Connection conexao = ConnectionFactory.getConnection();
+        
+        //String sqlExecutar = "SELECT produto.id, produto.descricao FROM bairro WHERE descricao like ?";
+        
+        String sqlExecutar = "SELECT produto.id, produto.descricao, produto.codigobarras, produto.status FROM produto WHERE descricao LIKE ?";
+        PreparedStatement pstm = null;
+        ResultSet rst = null;  
+        List<Produto> listaProduto = new ArrayList<>();
+        
+        
+         try{
+             pstm = conexao.prepareStatement(sqlExecutar);
+             pstm.setString(1, "%" + parString + "%");
+             //pstm.setInt(2, parId);
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {   
+                 Produto produto = new Produto();
+                 produto.setId(rst.getInt("id"));
+                 produto.setDescricao(rst.getString("descricao"));        
+                 produto.setCodigoBarra(rst.getString("codigoBarras"));
+                 produto.setStatus(true);
+                 listaProduto.add(produto);
+             }
+            
+             
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaProduto;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     @Override

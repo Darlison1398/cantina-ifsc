@@ -34,37 +34,47 @@ public class ControllerBuscaBairro implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.buscaBairro.getjButtonFiltrar()){
             
-            if(this.buscaBairro.getjTextFieldFiltrar().getText().trim().equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(null, "Atenção!\nOpção de filtro vazia...");
-                this.buscaBairro.getjTextFieldFiltrar().requestFocus();
-            } else {
-                           
-                List<Bairro> listaBairros = new ArrayList<Bairro>();
-            
-                if(this.buscaBairro.getjComboBoxFiltro().getSelectedIndex() == 0) {
-                     listaBairros.add(BairroService.carregar(Integer.parseInt(this.buscaBairro.getjTextFieldFiltrar().getText())));
-                } else if (this.buscaBairro.getjComboBoxFiltro().getSelectedIndex() == 1) {
-                     listaBairros = BairroService.carregar(this.buscaBairro.getjTextFieldFiltrar().getText().trim());
-                }
-       
-                listaBairros = BairroService.carregar();
-     
-                //Criando um objeto do tipo TableModel
-                DefaultTableModel tabela =(DefaultTableModel) this.buscaBairro.getjTableDados().getModel();
-   
-                tabela.setRowCount(0); // impede duplicação.
-                for (Bairro bairroAtual : listaBairros) {
-                      tabela.addRow(new Object[]{bairroAtual.getId(),
-                                                 bairroAtual.getDescricao()});      
-                  }
-        
-            }
-            
-            
-            
+            List<Bairro> listaBairros;
 
+            int selectedIndex = this.buscaBairro.getjComboBoxFiltro().getSelectedIndex();
+
+            if (selectedIndex == 0) {
+            // Filtro por todos os dados
+               listaBairros = BairroService.carregar();
+           } else if (selectedIndex == 1) {
+            // Filtro por ID
+               String input = this.buscaBairro.getjTextFieldFiltrar().getText().trim();
+           if (!input.isEmpty()) {
+               int id = Integer.parseInt(input);
+               listaBairros = new ArrayList<>();
+               listaBairros.add(BairroService.carregar(id));
+           } else {
+               // Informar ao usuário que o campo está vazio
+               JOptionPane.showMessageDialog(null, "Informe o ID para filtrar.");
+               return;
+               }
+          } else if (selectedIndex == 2) {
+               // Filtro por descrição
+               String descricao = this.buscaBairro.getjTextFieldFiltrar().getText().trim();
+               listaBairros = BairroService.carregar(descricao);
+          } else {
+               // Se não for nenhuma das opções acima, não fazer nada ou mostrar mensagem de erro
+               JOptionPane.showMessageDialog(null, "Selecione uma opção válida.");
+               return;
+          }
+
+          // Atualizar a tabela com os resultados
+           DefaultTableModel tabela = (DefaultTableModel) this.buscaBairro.getjTableDados().getModel();
+           tabela.setRowCount(0); // Limpar a tabela antes de adicionar os dados
+
+           for (Bairro bairroAtual : listaBairros) {
+                tabela.addRow(new Object[]{bairroAtual.getId(), bairroAtual.getDescricao()});
+            }
+                
+                
             
-            
+           
+           
             
         }else if(e.getSource() == this.buscaBairro.getjButtonCarregar()){
             
