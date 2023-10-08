@@ -11,12 +11,15 @@ public class Funcionario extends Pessoa {
     public Funcionario() {
     }
 
-    public Funcionario(String cpf, String rg, String usuario, String senha) {
+    public Funcionario(int id, String nome, String fone1, String fone2, String email, boolean status, String complementoEndereco, Endereco endereco) {
+        super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
         this.cpf = cpf;
         this.rg = rg;
         this.usuario = usuario;
         this.senha = senha;
     }
+
+    
 
     public String getCpf() {
         return cpf;

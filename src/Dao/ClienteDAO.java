@@ -15,7 +15,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     @Override
     public void create(Cliente objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO cliente (nome, fone1, fone2, email, status, rg, cpf, matricula, datanascimento, complementoEndereco) "
+        String sqlExecutar = "INSERT INTO cliente (nome, fone1, fone2, email, status, rg, cpf, matricula, datanascimento, endereco_id, complementoEndereco) "
                             + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm = null;
         
@@ -23,16 +23,18 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
         try {
             
             pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setString(1, objeto.getNome() 
-                               + objeto.getFone1() 
-                               + objeto.getFone2() 
-                               + objeto.getEmail() 
-                               + objeto.getStatus() 
-                               + objeto.getRg() 
-                               + objeto.getCpf() 
-                               + objeto.getMatricula() 
-                               + objeto.getDataNascimento() 
-                               + objeto.getComplementoEndereco());
+            pstm.setString(1, objeto.getNome());
+            pstm.setString(2, objeto.getFone1());
+            pstm.setString(3, objeto.getFone2());
+            pstm.setString(4, objeto.getEmail());
+            pstm.setBoolean(5, true);
+            pstm.setString(6, objeto.getRg());
+            pstm.setString(7, objeto.getCpf());
+            pstm.setString(8, objeto.getMatricula());
+            pstm.setString(9, objeto.getDataNascimento());
+            pstm.setString(10, objeto.getComplementoEndereco());
+            //pstm.setInt(11, objeto.getEndereco());
+            pstm.setInt(12, objeto.getId());
             pstm.execute();
             
             
@@ -57,8 +59,8 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     @Override
     public List<Cliente> retrieve() {
                 
-        Connection conexao = ConnectionFactory.getConnection();
-       String sqlExecutar = "SELECT cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, cliente.complementoEndereco "
+       Connection conexao = ConnectionFactory.getConnection();
+       String sqlExecutar = "SELECT cliente.id, cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, cliente.endereco_id, cliente.complementoEndereco "
                             + "FROM mydb.cliente";
         PreparedStatement pstm = null;
         ResultSet rst = null;
@@ -80,9 +82,11 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
                  cliente.setEmail(rst.getString("email"));
                  cliente.setCpf(rst.getString("cpf"));
                  cliente.setRg(rst.getString("rg"));
+                 //cliente.setStatus(rst.getBoolean("status"));
+                 cliente.setStatus(true);
                  cliente.setMatricula(rst.getString("matricula"));
                  cliente.setDataNascimento(rst.getString("datanascimento"));
-                 //cliente.setComplementoEndereco(rst.getInt("endereco_id"));
+                 cliente.setComplementoEndereco(rst.getString("endereco_id"));
                
                  listaCliente.add(cliente);
                  
@@ -106,7 +110,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     public Cliente retrieve(int parPK) {
                  
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, cliente.complementoEndereco "
+        String sqlExecutar = "SELECT cliente.id, cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, cliente.endereco_id, cliente.complementoEndereco "
                             + "FROM mydb.cliente WHERE cliente.id = ?";
         PreparedStatement pstm = null;
         ResultSet rst = null;
@@ -122,15 +126,17 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
              
              while(rst.next()) {   
                  cliente.setId(rst.getInt("id"));
-                 cliente.setNome(rst.getString("descricao"));
+                 cliente.setNome(rst.getString("nome"));
                  cliente.setFone1(rst.getString("fone1"));
                  cliente.setFone2(rst.getString("fone2"));
                  cliente.setEmail(rst.getString("email"));
                  cliente.setCpf(rst.getString("cpf"));
                  cliente.setRg(rst.getString("rg"));
+                 //cliente.setStatus(rst.getBoolean("status"));
+                 cliente.setStatus(true);
                  cliente.setMatricula(rst.getString("matricula"));
                  cliente.setDataNascimento(rst.getString("datanascimento"));
-                 //cliente.setComplementoEndereco(rst.getInt("endereco_id"));
+                 cliente.setComplementoEndereco(rst.getString("endereco_id"));
                          
              }
             
@@ -152,8 +158,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     public List<Cliente> retrieve(String parString) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        //String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM bairro WHERE descricao like ?";
-        String sqlExecutar = "SELECT cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, cliente.complementoEndereco "
+        String sqlExecutar = "SELECT cliente.id, cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, cliente.endereco_id, cliente.complementoEndereco "
                             + "FROM cliente WHERE nome LIKE ?";
         PreparedStatement pstm = null;
         ResultSet rst = null;  
@@ -171,16 +176,17 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
                  
                  Cliente cliente = new Cliente();
                  cliente.setId(rst.getInt("id"));
-                 cliente.setNome(rst.getString("descricao"));
+                 cliente.setNome(rst.getString("nome"));
                  cliente.setFone1(rst.getString("fone1"));
                  cliente.setFone2(rst.getString("fone2"));
                  cliente.setEmail(rst.getString("email"));
-                 //cliente.setStatus(rst.getString("status"));
+                 //cliente.setStatus(rst.getBoolean("status"));
+                 cliente.setStatus(true);
                  cliente.setCpf(rst.getString("cpf"));
                  cliente.setRg(rst.getString("rg"));
                  cliente.setMatricula(rst.getString("matricula"));
                  cliente.setDataNascimento(rst.getString("datanascimento"));
-                 cliente.setComplementoEndereco(rst.getString(""));
+                 cliente.setComplementoEndereco(rst.getString("endereco_id"));
                  //cliente.setEndereco(rst.getInt(""));
                  
                  listaCliente.add(cliente);
@@ -203,8 +209,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     @Override
     public void update(Cliente objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-       // String sqlExecutar = "UPDATE bairro SET bairro.descricao = ? WHERE bairro.id = ?";
-        String sqlExecutar = "UPDATE cliente SET cliente.nome = ?, cliente.fone1 = ?, cliente.fone2 = ?, cliente.email = ?, cliente.status = ?, cliente.rg = ?, cliente.cpf = ?, cliente.matricula = ?, cliente.datanascimento = ?, cliente.complementoEndereco = ? "
+        String sqlExecutar = "UPDATE cliente SET cliente.nome = ?, cliente.fone1 = ?, cliente.fone2 = ?, cliente.email = ?, cliente.status = ?, cliente.rg = ?, cliente.cpf = ?, cliente.matricula = ?, cliente.datanascimento = ?, cliente.endereco_id = ?, cliente.complementoEndereco = ? "
                             + " WHERE cliente.id = ?";
 
         PreparedStatement pstm = null;
@@ -218,9 +223,11 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
             pstm.setString(4, objeto.getEmail());
             pstm.setString(5, objeto.getCpf());
             pstm.setString(6, objeto.getRg());
-            pstm.setString(7, objeto.getMatricula());
-            pstm.setString(8, objeto.getDataNascimento());
-            pstm.setString(9, objeto.getComplementoEndereco());
+            pstm.setBoolean(7, objeto.getStatus());
+            pstm.setString(8, objeto.getMatricula());
+            pstm.setString(9, objeto.getDataNascimento());
+            pstm.setString(10, objeto.getComplementoEndereco());
+            //pstm.setInt(11, objeto.getEndereco());
             
             
             pstm.setInt(10, objeto.getId());

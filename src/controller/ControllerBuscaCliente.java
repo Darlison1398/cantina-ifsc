@@ -30,14 +30,7 @@ public class ControllerBuscaCliente implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.buscaCliente.getjButtonFiltrar()) {
-            
-            /*ClasseDados.getInstance();
-            
-            DefaultTableModel tabela = (DefaultTableModel) this.buscaCliente.getjTableDados().getModel();
-            for (Cliente cliente : clientes) {
-                tabela.addRow(new Object[]{cliente.getId(),cliente.getCpf(),cliente.getNome()});
-            }*/
-                        
+        
             List<Cliente> listaClientes;
 
             int selectedIndex = this.buscaCliente.getjComboBoxFiltro().getSelectedIndex();
@@ -45,6 +38,7 @@ public class ControllerBuscaCliente implements ActionListener {
             if (selectedIndex == 0) {
             // Filtro por todos os dados
                listaClientes = ClienteService.carregar();
+               
            } else if (selectedIndex == 1) {
             // Filtro por ID
                String input = this.buscaCliente.getjTextFieldFiltrar().getText().trim();
@@ -83,7 +77,8 @@ public class ControllerBuscaCliente implements ActionListener {
                                            clienteAtual.getDataNascimento(),
                                            clienteAtual.getStatus(),
                                            clienteAtual.getEndereco(),
-                                           clienteAtual.getClass()
+                                           clienteAtual.getComplementoEndereco(),
+                                       
                 
                 });
             }
@@ -92,10 +87,14 @@ public class ControllerBuscaCliente implements ActionListener {
             
             
         } else if (e.getSource() == this.buscaCliente.getjButtonCarregar()) {
-            ControllerCadastroCliente.codigoCliente =(int) this.buscaCliente.getjTableDados().getValueAt(this.buscaCliente.getjTableDados().getSelectedRow(), 0);
+            
+            ControllerCadastroCliente.codigoCliente =(int) this.buscaCliente.
+            getjTableDados().getValueAt(this.buscaCliente.getjTableDados().getSelectedRow(), 0);
             this.buscaCliente.dispose();
-            ControllerCadastroCarteirinha.codigoCarteirinha = (int) this.buscaCliente.getjTableDados().getValueAt(this.buscaCliente.getjTableDados().getSelectedRow(), 0);
-            this.buscaCliente.dispose();
+            
+            
+            //ControllerCadastroCarteirinha.codigoCarteirinha = (int) this.buscaCliente.getjTableDados().getValueAt(this.buscaCliente.getjTableDados().getSelectedRow(), 0);
+            //this.buscaCliente.dispose();
             
 
         } else if (e.getSource() == this.buscaCliente.getjButtonSair()) {

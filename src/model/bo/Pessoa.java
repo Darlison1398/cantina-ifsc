@@ -8,7 +8,7 @@ public abstract class Pessoa {
     private String fone1;
     private String fone2;
     private String email;
-    private char status;
+    private boolean status;
     private String complementoEndereco;
     
     private Endereco endereco;
@@ -18,7 +18,7 @@ public abstract class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
+    public Pessoa(int id, String nome, String fone1, String fone2, String email, boolean status, String complementoEndereco, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.fone1 = fone1;
@@ -59,7 +59,7 @@ public abstract class Pessoa {
         return email;
     }
 
-    public char getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -87,10 +87,14 @@ public abstract class Pessoa {
         this.email = email;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
+    
 
+
+    
+    
     public void setComplementoEndereco(String complementoEndereco) {
         this.complementoEndereco = complementoEndereco;
     }

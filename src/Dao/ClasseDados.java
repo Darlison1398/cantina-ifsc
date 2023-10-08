@@ -94,6 +94,7 @@ public class ClasseDados {
         enderecos.add(endereco3);
         
         //Clientes
+        /*
         Cliente cliente1 = new Cliente("123-456-969-08", "8.659.985", "202318A", "13/10/98", 1, "Darlison", "48 00000 - 6002","null",
                 "mdcAdi123@gmail.com",'A', "Morro do gato", endereco1);
         
@@ -140,7 +141,7 @@ public class ClasseDados {
         
         produtos.add(produto1);
         produtos.add(produto2);
-        produtos.add(produto3);*/
+        produtos.add(produto3);
         
         //Compras
         Compra compra1 = new Compra(1, 05, DateTimeFormatter.ISO_LOCAL_DATE, 0, 'S', 'A', "", fornecedor1);
@@ -158,7 +159,7 @@ public class ClasseDados {
         
         vendas.add(venda1);
         vendas.add(venda2);
-        vendas.add(venda3);
+        vendas.add(venda3);*/
         
         //Contas
         

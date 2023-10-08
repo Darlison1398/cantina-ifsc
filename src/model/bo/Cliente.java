@@ -11,14 +11,16 @@ public class Cliente extends Pessoa {
     public Cliente() {
     }
 
-    public Cliente(String cpf, String rg, String matricula, String dataNascimento, int id, String nome, String fone1, String fone2, String email, char status, String complementoEndereco, Endereco endereco) {
-        super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
-        this.cpf = cpf;
-        this.rg = rg;
-        this.matricula = matricula;
-        this.dataNascimento = dataNascimento;
-    }
+    public Cliente(int id, String nome, String fone1, String fone2, String email, boolean status, String complementoEndereco, Endereco endereco, String cpf, String rg, String matricula, String dataNascimento) {
+       super(id, nome, fone1, fone2, email, status, complementoEndereco, endereco);
+       this.cpf = cpf;
+       this.rg = rg;
+       this.matricula = matricula;
+       this.dataNascimento = dataNascimento;
+}
 
+    
+    
     public String getCpf() {
         return cpf;
     }
