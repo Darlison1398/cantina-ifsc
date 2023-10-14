@@ -198,7 +198,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabelDescricao.setText("Descrição");
 
         jCheckBoxStatus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jCheckBoxStatus.setText("Inativo");
+        jCheckBoxStatus.setText("Ativo");
 
         jLabelCodigoBarras.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelCodigoBarras.setText("Cod. Barras");

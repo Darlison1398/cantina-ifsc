@@ -39,62 +39,6 @@ public class ControllerCadastroFornecedor implements ActionListener {
         utilities.Utilities.limpaComponentes(false, this.cadastroFornecedor.getjPanelDados());
     }
 
-    WindowListener disposeListener = new WindowAdapter() {
-
-        @Override
-        public void windowClosed(WindowEvent e) {
-
-            if (codigoFornecedor != 0) {
-                Fornecedor fornecedor = new Fornecedor();
-                fornecedor = Dao.ClasseDados.fornecedores.get(codigoFornecedor -1);
-                utilities.Utilities.ativa(false, cadastroFornecedor.getjPanelBotoes());
-                utilities.Utilities.limpaComponentes(true, cadastroFornecedor.getjPanelDados());
-
-                cadastroFornecedor.getjLabelId().setText(fornecedor.getId() + "");
-                cadastroFornecedor.getjTNomeFantasia().setText(fornecedor.getNome());
-                cadastroFornecedor.getjFCnpj().setText(fornecedor.getCnpj());
-                cadastroFornecedor.getjFFone1().setText(fornecedor.getFone1());
-                cadastroFornecedor.getjFFone2().setText(fornecedor.getFone2());
-                cadastroFornecedor.getjTEmail().setText(fornecedor.getEmail());
-                cadastroFornecedor.getjTInscricaoEstadual().setText(fornecedor.getInscricaoEstadual());
-
-                
-                cadastroFornecedor.getjFCep().setText(fornecedor.getEndereco().getCep());
-                cadastroFornecedor.getjTLogradouro().setText(fornecedor.getEndereco().getLogradouro());
-                cadastroFornecedor.getjTCidade().setText(fornecedor.getEndereco().getCidade().getDescricao());
-                cadastroFornecedor.getjTBairro().setText(fornecedor.getEndereco().getBairro().getDescricao());
-                cadastroFornecedor.getjTComplementoEndereco().setText(fornecedor.getEndereco().getLogradouro());
-
-                cadastroFornecedor.getjLabelId().setEnabled(false);
-                //cadastroFornecedor.getUf.setEnabled(false);
-                cadastroFornecedor.getjLabelCidade().setEnabled(false);
-                cadastroFornecedor.getjLabelBairro().setEnabled(false);
-                cadastroFornecedor.getjLabelLograouro().setEnabled(false);
-            }
-        }
-
-    };
-    WindowListener disposeListenerEndereco = new WindowAdapter() {
-
-        @Override
-        public void windowClosed(WindowEvent e) {
-            if (codigoEndereco != 0) {
-                Endereco endereco = new Endereco();
-                endereco = Dao.ClasseDados.enderecos.get(codigoEndereco - 1);
-                idEndereco=endereco.getId()-1;
-                utilities.Utilities.ativa(false, cadastroFornecedor.getjPanelBotoes());
-                
-
-                cadastroFornecedor.getjFCep().setText(endereco.getCep());
-                cadastroFornecedor.getjTLogradouro().setText(endereco.getLogradouro());
-                cadastroFornecedor.getjTCidade().setText(endereco.getCidade().getDescricao());
-                cadastroFornecedor.getjTBairro().setText(endereco.getBairro().getDescricao());
-
-            }
-
-        }
-
-    };
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -102,11 +46,9 @@ public class ControllerCadastroFornecedor implements ActionListener {
             utilities.Utilities.ativa(false, this.cadastroFornecedor.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroFornecedor.getjPanelDados());
             
-            cadastroFornecedor.getjLabelId().setEnabled(false);
-            //cadastroFornecedor.getUf.setEnabled(false);
-            cadastroFornecedor.getjLabelCidade().setEnabled(false);
-            cadastroFornecedor.getjLabelBairro().setEnabled(false);
-            cadastroFornecedor.getjLabelLograouro().setEnabled(false);
+            cadastroFornecedor.getjTId().setEnabled(false);
+            cadastroFornecedor.getjTCidade().setEnabled(false);
+            cadastroFornecedor.getjTBairro().setEnabled(false);
 
         } else if (e.getSource() == this.cadastroFornecedor.getjButtonSair()) {
             this.cadastroFornecedor.dispose();
@@ -114,6 +56,12 @@ public class ControllerCadastroFornecedor implements ActionListener {
         } else if (e.getSource() == this.cadastroFornecedor.getjButtonCancelar()) {
             utilities.Utilities.ativa(true, this.cadastroFornecedor.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroFornecedor.getjPanelDados());
+            
+            
+            
+            
+            
+            
 
         } else if (e.getSource() == this.cadastroFornecedor.getjButtonSalvar()) {
             
@@ -135,41 +83,64 @@ public class ControllerCadastroFornecedor implements ActionListener {
             utilities.Utilities.ativa(true, this.cadastroFornecedor.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroFornecedor.getjPanelDados());
             
-            if(this.cadastroFornecedor.getjLabelId().getText().equalsIgnoreCase("")){
-                Dao.ClasseDados.fornecedores.add(fornecedor);
-                controllerResposta.codigoFB=8;
-                controllerResposta.cadastroClasse();
+            if(this.cadastroFornecedor.getjTId().getText().equalsIgnoreCase("")){
+                service.FornecedorService.adicionar(fornecedor);
             }else{
-                int index=Integer.parseInt(this.cadastroFornecedor.getjTId().getText())-1;
-                
-                Dao.ClasseDados.fornecedores.get(index).setNome(this.cadastroFornecedor.getjTNomeFantasia().getText());
-                Dao.ClasseDados.fornecedores.get(index).setInscricaoEstadual(this.cadastroFornecedor.getjTInscricaoEstadual().getText());
-                Dao.ClasseDados.fornecedores.get(index).setEmail(this.cadastroFornecedor.getjTEmail().getText());
-                Dao.ClasseDados.fornecedores.get(index).setCnpj(this.cadastroFornecedor.getjFCnpj().getText());
-                Dao.ClasseDados.fornecedores.get(index).setFone1(this.cadastroFornecedor.getjFFone1().getText());
-                Dao.ClasseDados.fornecedores.get(index).setFone2(this.cadastroFornecedor.getjFFone2().getText());
-                Dao.ClasseDados.fornecedores.get(index).setEndereco(Dao.ClasseDados.enderecos.get(idEndereco));
-                Dao.ClasseDados.fornecedores.get(index).setComplementoEndereco(this.cadastroFornecedor.getjTComplementoEndereco().getText());
-                
-                controllerResposta.codigoFB=8;
-                controllerResposta.atualizacaoClasse();
+                fornecedor.setId(Integer.parseInt(this.cadastroFornecedor.getjTId().getText()));
+                service.FornecedorService.atualizar(fornecedor);
             }
-            Dao.ClasseDados.fornecedores.add(fornecedor);
-            resposta.setVisible(true);
+            
             utilities.Utilities.ativa(true, cadastroFornecedor.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, cadastroFornecedor.getjPanelDados());
 
             
+            
+            
+            
+            
+            
+            
         } else if (e.getSource() == this.cadastroFornecedor.getjButtonConsultar()) {
+            codigoFornecedor = 0;
             BuscaFornecedor buscaFornecedor= new BuscaFornecedor(null, true);
             ControllerBuscaFornecedor controllerBuscaFornecedor = new ControllerBuscaFornecedor(buscaFornecedor);
-            buscaFornecedor.addWindowListener(disposeListener);
             buscaFornecedor.setVisible(true);
+            
+            if (codigoFornecedor != 0) {
+                
+                Fornecedor fornecedor = new Fornecedor();
+                fornecedor = service.FornecedorService.carregar(codigoFornecedor);
+                
+                utilities.Utilities.ativa(false, cadastroFornecedor.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(true, cadastroFornecedor.getjPanelDados());
+                
+                this.cadastroFornecedor.getjTId().setText(fornecedor.getId() + "");
+                this.cadastroFornecedor.getjTNomeFantasia().setText(fornecedor.getNome());
+                this.cadastroFornecedor.getjTEmail().setText(fornecedor.getEmail());
+                this.cadastroFornecedor.getjFFone1().setText(fornecedor.getFone1());
+                this.cadastroFornecedor.getjFFone2().setText(fornecedor.getFone2());
+                this.cadastroFornecedor.getjTInscricaoEstadual().setText(fornecedor.getInscricaoEstadual());
+                this.cadastroFornecedor.getjTRazaoSocial().setText(fornecedor.getRazaoSocial());
+                this.cadastroFornecedor.getjFCnpj().setText(fornecedor.getCnpj());
+                this.cadastroFornecedor.getjTComplementoEndereco().setText(fornecedor.getComplementoEndereco());
+                this.cadastroFornecedor.getjCheckBoxInativo().setSelected(true);
+                
+                
+             
+                
+            }
+            
+            
+            
+            
+            
+            
+            
 
         } else if (e.getSource() == this.cadastroFornecedor.getjButtonPesquisarCep()){
             BuscaEndereco buscaEndereco = new BuscaEndereco(null, true);
             ControllerBuscaEndereco controllerBuscaEndereco = new ControllerBuscaEndereco(buscaEndereco);
-            buscaEndereco.addWindowListener(disposeListenerEndereco);
+           // buscaEndereco.addWindowListener(disposeListenerEndereco);
             buscaEndereco.setVisible(true);
             
         } else if(e.getSource() == this.cadastroFornecedor.getjButtonAdcionarCep()){

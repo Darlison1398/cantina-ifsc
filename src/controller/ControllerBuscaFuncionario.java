@@ -6,9 +6,13 @@ import static Dao.ClasseDados.fornecedores;
 import static Dao.ClasseDados.funcionarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Fornecedor;
 import model.bo.Funcionario;
+import service.FuncionarioService;
 import view.BuscaFuncionario;
 
 public class ControllerBuscaFuncionario implements ActionListener{
@@ -31,24 +35,66 @@ public class ControllerBuscaFuncionario implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.buscaFuncionario.getjButtonFiltrar()){
             
-            /*Dao.ClasseDados.getInstance();
-            
-            DefaultTableModel tabela = (DefaultTableModel) this.buscaFuncionario.getjTableDados().getModel();
-            for (Funcionario funcionarioAtual : funcionarios) {
+        
+            List<Funcionario> listaFuncionario;
+
+            int selectedIndex = this.buscaFuncionario.getjComboBoxFiltrar().getSelectedIndex();
+
+            if (selectedIndex == 0) {
+            // Filtro por todos os dados
+               listaFuncionario = FuncionarioService.carregar();
+               
+           } else if (selectedIndex == 1) {
+            // Filtro por ID
+               String input = this.buscaFuncionario.getjTextFieldFiltrar().getText().trim();
+           if (!input.isEmpty()) {
+               int id = Integer.parseInt(input);
+               listaFuncionario = new ArrayList<>();
+               listaFuncionario.add(FuncionarioService.carregar(id));
+           } else {
+               // Informar ao usuário que o campo está vazio
+               JOptionPane.showMessageDialog(null, "Informe o ID para filtrar.");
+               return;
+               }
+          } else if (selectedIndex == 2) {
+               // Filtro por descrição
+               String descricao = this.buscaFuncionario.getjTextFieldFiltrar().getText().trim();
+               listaFuncionario = FuncionarioService.carregar(descricao);
+          } else {
+               // Se não for nenhuma das opções acima, não fazer nada ou mostrar mensagem de erro
+               JOptionPane.showMessageDialog(null, "Selecione uma opção válida.");
+               return;
+          }
+
+          // Atualizar a tabela com os resultados
+           DefaultTableModel tabela = (DefaultTableModel) this.buscaFuncionario.getjTableDados().getModel();
+           tabela.setRowCount(0); // Limpar a tabela antes de adicionar os dados
+
+           for (Funcionario funcionarioAtual : listaFuncionario) {
+                tabela.addRow(new Object[]{funcionarioAtual.getId(), 
+                                           funcionarioAtual.getNome(),
+                                           funcionarioAtual.getFone1(),
+                                           funcionarioAtual.getFone2(),
+                                           funcionarioAtual.getEmail(),
+                                           funcionarioAtual.getCpf(),
+                                           funcionarioAtual.getRg(),
+                                           funcionarioAtual.getUsuario(),
+                                           funcionarioAtual.getSenha(),
+                                           funcionarioAtual.getStatus(),
+                                           funcionarioAtual.getEndereco(),
+                                           funcionarioAtual.getComplementoEndereco(),
+                                       
                 
-                tabela.addRow(new Object[]{funcionarioAtual.getId(),funcionarioAtual.getNome(),funcionarioAtual.getCpf()});
-            }*/
-            
-            ClasseDados.getInstance();
-            
-            DefaultTableModel tabela = (DefaultTableModel) this.buscaFuncionario.getjTableDados().getModel();
-            int contador = tabela.getRowCount();
-            for (int i = contador; i > 0; i--) {
-                tabela.removeRow(i);
+                });
             }
-            for (Funcionario funcionarioAtual : funcionarios) {
-                tabela.addRow(new Object[]{funcionarioAtual.getId(),funcionarioAtual.getCpf(),funcionarioAtual.getNome()});
-            }
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             

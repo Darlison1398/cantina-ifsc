@@ -317,7 +317,12 @@ public class CadastroEndereco extends javax.swing.JFrame {
 
         jCheckBoxStatus.setBackground(new java.awt.Color(235, 235, 235));
         jCheckBoxStatus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jCheckBoxStatus.setText("Inativo");
+        jCheckBoxStatus.setText("Ativo");
+        jCheckBoxStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxStatusActionPerformed(evt);
+            }
+        });
 
         jLabelCidade.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelCidade.setText("Cidade");
@@ -659,6 +664,10 @@ public class CadastroEndereco extends javax.swing.JFrame {
     private void jBCompletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCompletarActionPerformed
         // botão do cep
     }//GEN-LAST:event_jBCompletarActionPerformed
+
+    private void jCheckBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxStatusActionPerformed
 
    
     public static void main(String args[]) {

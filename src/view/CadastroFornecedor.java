@@ -405,7 +405,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jLabelNomeFantasia.setText("Nome Fantasia");
 
         jCheckBoxInativo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jCheckBoxInativo.setText("Inativo");
+        jCheckBoxInativo.setText("Ativo");
 
         jLabelInscricaoEstadual.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelInscricaoEstadual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

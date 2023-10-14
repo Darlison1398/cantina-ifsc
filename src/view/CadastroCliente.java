@@ -305,7 +305,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jCheckBoxStatus.setBackground(new java.awt.Color(235, 235, 235));
         jCheckBoxStatus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jCheckBoxStatus.setText("Inativo");
+        jCheckBoxStatus.setText("Ativo");
         jCheckBoxStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxStatusActionPerformed(evt);
@@ -328,7 +328,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jLabelFone1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelFone1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFone1.setText("Fone");
+        jLabelFone1.setText("Fone 1");
         jLabelFone1.setMaximumSize(new java.awt.Dimension(13, 16));
         jLabelFone1.setMinimumSize(new java.awt.Dimension(13, 16));
 
@@ -340,7 +340,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jFormattedTextFieldFone1.setMinimumSize(new java.awt.Dimension(70, 22));
 
         jLabelFone2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelFone2.setText("Fone");
+        jLabelFone2.setText("Fone 2");
         jLabelFone2.setMaximumSize(new java.awt.Dimension(13, 16));
         jLabelFone2.setMinimumSize(new java.awt.Dimension(13, 16));
 

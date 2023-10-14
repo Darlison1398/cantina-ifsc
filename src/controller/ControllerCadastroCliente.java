@@ -118,6 +118,7 @@ public class ControllerCadastroCliente implements ActionListener {
                 this.cadastroCliente.getjFormattedTextFieldFone1().setText(cliente.getFone1());
                 this.cadastroCliente.getjFormattedTextFieldFone2().setText(cliente.getFone2());
                 this.cadastroCliente.getjCheckBoxStatus().setSelected(true);
+                this.cadastroCliente.getjFormattedTextFieldDataNascimento().setText(cliente.getDataNascimento());
                 //this.cadastroCliente.getjFormattedTextFieldCEP().setText(cliente.getEndereco());
                 this.cadastroCliente.getjFormattedTextFieldCPF().setText(cliente.getCpf());
                 this.cadastroCliente.getjFormattedTextFieldRg().setText(cliente.getRg());

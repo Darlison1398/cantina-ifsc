@@ -125,7 +125,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  endereco.setLogradouro(rst.getString("cep"));
                  endereco.setStatus(rst.getBoolean("status"));
                  endereco.setBairro(rst.getInt("bairro_id"));
-                 endereco.setCidade(rst.getInt(("bairro_id")));
+                 endereco.setCidade(rst.getInt(("cidade_id")));
                  
              }
             
@@ -143,7 +143,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
     }
 
     @Override
-    public List<Endereco> retrieve(String pasString) {
+    public List<Endereco> retrieve(String parString) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
