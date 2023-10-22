@@ -21,6 +21,7 @@ public class ControllerBuscaProduto implements ActionListener {
         this.buscaProduto.getjButtonFiltrar().addActionListener(this);
         this.buscaProduto.getjButtonCarregar().addActionListener(this);
         this.buscaProduto.getjButtonSair().addActionListener(this);
+        this.buscaProduto.getjButtonApagar().addActionListener(this);
 
         utilities.Utilities.ativa(true, this.buscaProduto.getjPanelBotoes());
     }
@@ -81,6 +82,18 @@ public class ControllerBuscaProduto implements ActionListener {
         } else if (e.getSource() == this.buscaProduto.getjButtonSair()) {
             this.buscaProduto.dispose();
 
+        } else if (e.getSource() == this.buscaProduto.getjButtonApagar()) {
+            int selectedRow = this.buscaProduto.getjTableDados().getSelectedRow();
+            if (selectedRow != -1) { // Verifica se algum item está selecionado
+                int produtoId = (int) this.buscaProduto.getjTableDados().getValueAt(selectedRow, 0);
+                Produto produto = ProdutoService.carregar(produtoId);
+                if (produto != null) {
+                    DefaultTableModel tabela = (DefaultTableModel) this.buscaProduto.getjTableDados().getModel();
+                    ProdutoService.remover(produto); // Chama o serviço para excluir o bairro
+                    tabela.removeRow(selectedRow);
+                }
+            }
+            
         }
     }
 

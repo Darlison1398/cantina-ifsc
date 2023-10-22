@@ -12,9 +12,41 @@ import model.bo.Cidade;
 
 public class CidadeDAO implements InterfaceDAO<Cidade> {
 
+    
     public static Cidade obterCidadePorId(int cidadeId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    Connection conexao = ConnectionFactory.getConnection();
+    String sqlExecutar = "SELECT * FROM cidade WHERE id = ?";
+    PreparedStatement pstm = null;
+    ResultSet rst = null;
+    Cidade cidade = null;
+
+    try {
+        pstm = conexao.prepareStatement(sqlExecutar);
+        pstm.setInt(1, cidadeId);
+        rst = pstm.executeQuery();
+
+        if (rst.next()) {
+            cidade = new Cidade();
+            cidade.setId(rst.getInt("id"));
+            cidade.setDescricao(rst.getString("descricao"));
+            // Defina outros atributos da cidade conforme necessário.
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        ConnectionFactory.closeConnection(conexao, pstm, rst);
     }
+
+    return cidade;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     @Override
     public void create(Cidade objeto) {
@@ -197,8 +229,25 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
 
     @Override
     public void delete(Cidade objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "DELETE FROM mydb.cidade WHERE cidade.id = ?";
+        PreparedStatement pstm = null;
+
+        try {
+              pstm = conexao.prepareStatement(sqlExecutar);
+              pstm.setInt(1, objeto.getId());
+              pstm.execute();
+       } catch (SQLException ex) {
+              ex.printStackTrace();
+       } finally {
+              ConnectionFactory.closeConnection(conexao, pstm);
+       }
+
     }
+        
+        
+        
+    
 
     
     

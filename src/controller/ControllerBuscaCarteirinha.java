@@ -20,6 +20,7 @@ public class ControllerBuscaCarteirinha implements ActionListener{
         this.buscaCarteirinha.getjButtonFiltrar().addActionListener(this);
         this.buscaCarteirinha.getjButtonCarregar().addActionListener(this);
         this.buscaCarteirinha.getjButtonSair().addActionListener(this);
+        this.buscaCarteirinha.getjButtonApagar().addActionListener(this);
         
         utilities.Utilities.ativa(true, this.buscaCarteirinha.getjPanelBotoes());
         
@@ -43,6 +44,8 @@ public class ControllerBuscaCarteirinha implements ActionListener{
         
         }else if(e.getSource() == this.buscaCarteirinha.getjButtonSair()){
             this.buscaCarteirinha.dispose();
+            
+        } else if (e.getSource() == this.buscaCarteirinha.getjButtonApagar()) {
             
         }
     }

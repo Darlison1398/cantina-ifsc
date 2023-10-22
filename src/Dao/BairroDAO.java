@@ -15,6 +15,43 @@ import java.util.logging.Logger;
 
 
 public class BairroDAO implements InterfaceDAO<Bairro> {
+    
+    public static Bairro obterBairroPorId(int bairroId) {
+    Connection conexao = ConnectionFactory.getConnection();
+    String sqlExecutar = "SELECT * FROM bairro WHERE id = ?";
+    PreparedStatement pstm = null;
+    ResultSet rst = null;
+    Bairro bairro = null;
+
+    try {
+        pstm = conexao.prepareStatement(sqlExecutar);
+        pstm.setInt(1, bairroId);
+        rst = pstm.executeQuery();
+
+        if (rst.next()) {
+            bairro = new Bairro();
+            bairro.setId(rst.getInt("id"));
+            bairro.setDescricao(rst.getString("descricao"));
+            // Defina outros atributos da cidade conforme necessário.
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        ConnectionFactory.closeConnection(conexao, pstm, rst);
+    }
+
+    return bairro;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
     @Override
@@ -94,7 +131,6 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
         
          
         Connection conexao = ConnectionFactory.getConnection();
-        //String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM mydb.bairro";
         String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM mydb.bairro WHERE bairro.id = ?"; 
         PreparedStatement pstm = null;
         ResultSet rst = null;
@@ -193,6 +229,19 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
 
     @Override
     public void delete(Bairro objeto) {
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "DELETE FROM mydb.bairro WHERE bairro.id = ?";
+        PreparedStatement pstm = null;
+
+        try {
+              pstm = conexao.prepareStatement(sqlExecutar);
+              pstm.setInt(1, objeto.getId());
+              pstm.execute();
+       } catch (SQLException ex) {
+              ex.printStackTrace();
+       } finally {
+              ConnectionFactory.closeConnection(conexao, pstm);
+       }
 
     }
    

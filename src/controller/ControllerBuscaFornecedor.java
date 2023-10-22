@@ -22,6 +22,7 @@ public class ControllerBuscaFornecedor implements ActionListener {
         this.buscaFornecedor.getjButtonFiltrar().addActionListener(this);
         this.buscaFornecedor.getjButtonCarregar().addActionListener(this);
         this.buscaFornecedor.getjButtonSair().addActionListener(this);
+        this.buscaFornecedor.getjButtonApagar().addActionListener(this);
         
         utilities.Utilities.ativa(true, this.buscaFornecedor.getjPanelBotoes());
     }
@@ -100,6 +101,19 @@ public class ControllerBuscaFornecedor implements ActionListener {
             
         }else if(e.getSource() == this.buscaFornecedor.getjButtonSair()){
             this.buscaFornecedor.dispose();
+            
+        } else if (e.getSource() == this.buscaFornecedor.getjButtonApagar()) {
+            int selectedRow = this.buscaFornecedor.getjTableDados().getSelectedRow();
+            if (selectedRow != -1) { // Verifica se algum item está selecionado
+                int fornecedorId = (int) this.buscaFornecedor.getjTableDados().getValueAt(selectedRow, 0);
+                Fornecedor fornecedor = FornecedorService.carregar(fornecedorId);
+                if (fornecedor != null) {
+                    DefaultTableModel tabela = (DefaultTableModel) this.buscaFornecedor.getjTableDados().getModel();
+                    FornecedorService.remover(fornecedor); // Chama o serviço para excluir o bairro
+                    tabela.removeRow(selectedRow);
+                }
+            }
+            
         }
         
     }

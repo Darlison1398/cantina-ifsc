@@ -131,11 +131,11 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
     }
 
     public JFormattedTextField getjFormattedTextFieldCPF() {
-        return jFormattedTextFieldCPF;
+        return jFTCPF;
     }
 
     public void setjFormattedTextFieldCPF(JFormattedTextField jFormattedTextFieldCPF) {
-        this.jFormattedTextFieldCPF = jFormattedTextFieldCPF;
+        this.jFTCPF = jFormattedTextFieldCPF;
     }
 
     public JFormattedTextField getjFormattedTextFieldDataCancelamento() {
@@ -178,6 +178,15 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
         return jPanelDados;
     }
 
+    public JFormattedTextField getjFTCPF() {
+        return jFTCPF;
+    }
+
+    public void setjFTCPF(JFormattedTextField jFTCPF) {
+        this.jFTCPF = jFTCPF;
+    }
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -186,7 +195,7 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
         jPanelDados = new javax.swing.JPanel();
         jLabelId = new javax.swing.JLabel();
         jTextFieldID = new javax.swing.JTextField();
-        jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
+        jFTCPF = new javax.swing.JFormattedTextField();
         jLabelCPF = new javax.swing.JLabel();
         jButtonPesquisarCPF = new javax.swing.JButton();
         jButtonAdicionarCPF = new javax.swing.JButton();
@@ -231,13 +240,13 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
         jTextFieldID.setEnabled(false);
 
         try {
-            jFormattedTextFieldCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###. ###. ###- ##")));
+            jFTCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###. ###. ###- ##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldCPF.addActionListener(new java.awt.event.ActionListener() {
+        jFTCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldCPFActionPerformed(evt);
+                jFTCPFActionPerformed(evt);
             }
         });
 
@@ -319,7 +328,7 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jFormattedTextFieldDataGeracao, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPesquisarCPF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -349,7 +358,7 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
                         .addComponent(jButtonPesquisarCPF))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jFTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -555,9 +564,9 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
-    private void jFormattedTextFieldCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFActionPerformed
+    private void jFTCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTCPFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldCPFActionPerformed
+    }//GEN-LAST:event_jFTCPFActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
@@ -619,7 +628,7 @@ public class CadastroCarteirinha extends javax.swing.JFrame {
     private javax.swing.JButton jButtonPesquisarCPF;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
+    private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataCancelamento;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataGeracao;
     private javax.swing.JLabel jLabelCPF;

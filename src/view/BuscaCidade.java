@@ -54,6 +54,16 @@ public class BuscaCidade extends javax.swing.JDialog {
     public void setjComboBoxFiltroCidade(JComboBox<String> jComboBoxFiltroCidade) {
         this.jComboBoxFiltroCidade = jComboBoxFiltroCidade;
     }
+
+    public JButton getjButtonApagar() {
+        return jButtonApagar;
+    }
+
+    public void setjButtonApagar(JButton jButtonApagar) {
+        this.jButtonApagar = jButtonApagar;
+    }
+    
+    
     
     
     
@@ -68,6 +78,7 @@ public class BuscaCidade extends javax.swing.JDialog {
         jPanelBotoes = new javax.swing.JPanel();
         jButtonCarregar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jButtonApagar = new javax.swing.JButton();
         jPanelFiltro = new javax.swing.JPanel();
         jTextFieldFiltrar = new javax.swing.JTextField();
         jButtonFiltrar = new javax.swing.JButton();
@@ -137,6 +148,18 @@ public class BuscaCidade extends javax.swing.JDialog {
         jButtonSair.setMaximumSize(new java.awt.Dimension(99, 26));
         jButtonSair.setMinimumSize(new java.awt.Dimension(99, 26));
 
+        jButtonApagar.setBackground(new java.awt.Color(255, 51, 0));
+        jButtonApagar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonApagar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeDelete.png"))); // NOI18N
+        jButtonApagar.setText("Apagar");
+        jButtonApagar.setActionCommand("0");
+        jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonApagarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
         jPanelBotoesLayout.setHorizontalGroup(
@@ -144,6 +167,8 @@ public class BuscaCidade extends javax.swing.JDialog {
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonCarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163)
+                .addComponent(jButtonApagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -154,7 +179,8 @@ public class BuscaCidade extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonApagar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -291,6 +317,10 @@ public class BuscaCidade extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCarregarActionPerformed
 
+    private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonApagarActionPerformed
+
     
     public static void main(String args[]) {
        
@@ -309,6 +339,7 @@ public class BuscaCidade extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonApagar;
     private javax.swing.JButton jButtonCarregar;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonSair;

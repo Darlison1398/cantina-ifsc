@@ -25,6 +25,7 @@ public class ControllerBuscaFuncionario implements ActionListener{
         this.buscaFuncionario.getjButtonFiltrar().addActionListener(this);
         this.buscaFuncionario.getjButtonCarregar().addActionListener(this);
         this.buscaFuncionario.getjButtonSair().addActionListener(this);
+        this.buscaFuncionario.getjButtonApagar().addActionListener(this);
         
         //utilities.Utilities.ativa(true, this.buscaFuncionario.getjPanelBotoes());
     }
@@ -106,6 +107,19 @@ public class ControllerBuscaFuncionario implements ActionListener{
             
         }else if(e.getSource() == this.buscaFuncionario.getjButtonSair()){
             this.buscaFuncionario.dispose();
+            
+        } else if (e.getSource() == this.buscaFuncionario.getjButtonApagar()) {
+            int selectedRow = this.buscaFuncionario.getjTableDados().getSelectedRow();
+            if (selectedRow != -1) { // Verifica se algum item está selecionado
+                int funcionarioId = (int) this.buscaFuncionario.getjTableDados().getValueAt(selectedRow, 0);
+                Funcionario funcionario = FuncionarioService.carregar(funcionarioId);
+                if (funcionario != null) {
+                    DefaultTableModel tabela = (DefaultTableModel) this.buscaFuncionario.getjTableDados().getModel();
+                    FuncionarioService.remover(funcionario); // Chama o serviço para excluir o bairro
+                    tabela.removeRow(selectedRow);
+                }
+            }
+            
         }
     }
     

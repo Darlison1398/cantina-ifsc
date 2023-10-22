@@ -6,8 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Endereco;
+import service.EnderecoService;
 import view.BuscaEndereco;
 
 public class ControllerBuscaEndereco implements ActionListener{
@@ -20,6 +22,7 @@ public class ControllerBuscaEndereco implements ActionListener{
         this.buscaEndereco.getjButtonFiltrar().addActionListener(this);
         this.buscaEndereco.getjButtonCarregar().addActionListener(this);
         this.buscaEndereco.getjButtonSair().addActionListener(this);
+        this.buscaEndereco.getjButtonApagar().addActionListener(this);
         
         //utilities.Utilities.ativa(true, this.buscaEndereco.getjPanelBotoes());
         
@@ -32,22 +35,54 @@ public class ControllerBuscaEndereco implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.buscaEndereco.getjButtonFiltrar()){
-            List<Endereco> listaEnderecos = new ArrayList<Endereco>();
-            listaEnderecos = service.EnderecoService.carregar();
-            //System.out.println(listaEnderecos);
-      
+        
+                        
+            List<Endereco> listaEnderecos;
+
+            int selectedIndex = this.buscaEndereco.getjComboBoxFiltro().getSelectedIndex();
+
+            if (selectedIndex == 0) {
+            // Filtro por todos os dados
+               listaEnderecos = EnderecoService.carregar();
+           } else if (selectedIndex == 1) {
+            // Filtro por ID
+               String input = this.buscaEndereco.getjTextFieldFiltrar().getText().trim();
+           if (!input.isEmpty()) {
+               int id = Integer.parseInt(input);
+               listaEnderecos = new ArrayList<>();
+               listaEnderecos.add(EnderecoService.carregar(id));
+           } else {
+               // Informar ao usuário que o campo está vazio
+               JOptionPane.showMessageDialog(null, "Informe o ID para filtrar.");
+               return;
+               }
+          } else if (selectedIndex == 2) {
+               // Filtro por descrição
+               String descricao = this.buscaEndereco.getjTextFieldFiltrar().getText().trim();
+               listaEnderecos = EnderecoService.carregar(descricao);
+          } else {
+               // Se não for nenhuma das opções acima, não fazer nada ou mostrar mensagem de erro
+               JOptionPane.showMessageDialog(null, "Selecione uma opção válida.");
+               return;
+          }
+                  
             DefaultTableModel tabela =(DefaultTableModel) this.buscaEndereco.getjTableDados().getModel();
+            tabela.setRowCount(0);
             for (Endereco enderecoAtual : listaEnderecos) {
                 tabela.addRow(new Object[]{enderecoAtual.getId(),
                                            enderecoAtual.getCep(),
                                            enderecoAtual.getLogradouro(),
-                                           enderecoAtual.getCidade().getId(),
+                                           /*enderecoAtual.getCidade().getId(),
                                            enderecoAtual.getCidade().getDescricao(),
                                            enderecoAtual.getBairro().getId(),
-                                           enderecoAtual.getBairro().getDescricao()});
+                                           enderecoAtual.getBairro().getDescricao()*/});
                 
             }
             
+            
+            
+            
+          
          
             
             
@@ -65,6 +100,20 @@ public class ControllerBuscaEndereco implements ActionListener{
         
         }else if(e.getSource() == this.buscaEndereco.getjButtonSair()){
             this.buscaEndereco.dispose();
+            
+            
+        } else if( e.getSource() == this.buscaEndereco.getjButtonApagar()) {
+            int selectedRow = this.buscaEndereco.getjTableDados().getSelectedRow();
+            if (selectedRow != -1) { // Verifica se algum item está selecionado
+                int enderecoId = (int) this.buscaEndereco.getjTableDados().getValueAt(selectedRow, 0);
+                Endereco endereco = EnderecoService.carregar(enderecoId);
+                if (endereco != null) {
+                    DefaultTableModel tabela = (DefaultTableModel) this.buscaEndereco.getjTableDados().getModel();
+                    EnderecoService.remover(endereco); // Chama o serviço para excluir o bairro
+                    tabela.removeRow(selectedRow);
+                }
+            }
+            
         }
     }
     

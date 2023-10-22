@@ -24,6 +24,7 @@ public class ControllerBuscaCidade implements ActionListener {
         this.buscaCidade.getjButtonFiltrar().addActionListener(this);
         this.buscaCidade.getjButtonCarregar().addActionListener(this);
         this.buscaCidade.getjButtonSair().addActionListener(this);
+        this.buscaCidade.getjButtonApagar().addActionListener(this);
 
         utilities.Utilities.ativa(true, this.buscaCidade.getjPanelBotoes());
 
@@ -106,6 +107,19 @@ public class ControllerBuscaCidade implements ActionListener {
        
         }else if(e.getSource() == this.buscaCidade.getjButtonSair()){
             this.buscaCidade.dispose();
+            
+        } else if (e.getSource() == this.buscaCidade.getjButtonApagar()) {
+            int selectedRow = this.buscaCidade.getjTableDados().getSelectedRow();
+            if (selectedRow != -1) { // Verifica se algum item está selecionado
+                int cidadeId = (int) this.buscaCidade.getjTableDados().getValueAt(selectedRow, 0);
+                Cidade cidade = CidadeService.carregar(cidadeId);
+                if (cidade != null) {
+                    DefaultTableModel tabela = (DefaultTableModel) this.buscaCidade.getjTableDados().getModel();
+                    CidadeService.remover(cidade); // Chama o serviço para excluir o bairro
+                    tabela.removeRow(selectedRow);
+                }
+            }
+            
         }
     }
 

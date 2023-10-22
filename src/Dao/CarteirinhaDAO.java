@@ -16,16 +16,17 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha> {
     public void create(Carteirinha objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO carteirinha (codigocarteirinha, datageracao, datacancelamento, cliente_id) values(?, ?, ?, ?)";
+        String sqlExecutar = "INSERT INTO carteirinha (codigocarteirinha, datageracao, datacancelamento, cliente_id, cpf_cliente) values(?, ?, ?, ?, ?)";
         PreparedStatement pstm = null;
         
         
         try {
             
             pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setString(1, objeto.getCodigoBarra());
-            pstm.setString(2, objeto.getDataGeracao());
-            pstm.setString(3, objeto.getDataCancelamento());
+           // pstm.setInt(1, objeto.);
+            pstm.setString(2, objeto.getCodigoBarra());
+            pstm.setString(3, objeto.getDataGeracao());
+            pstm.setString(4, objeto.getDataCancelamento());
             pstm.execute();
             
             
@@ -100,7 +101,20 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha> {
 
     @Override
     public void delete(Carteirinha objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "DELETE FROM mydb.carteirinha WHERE carteirinha.id = ?";
+        PreparedStatement pstm = null;
+
+        try {
+              pstm = conexao.prepareStatement(sqlExecutar);
+              pstm.setInt(1, objeto.getId());
+              pstm.execute();
+       } catch (SQLException ex) {
+              ex.printStackTrace();
+       } finally {
+              ConnectionFactory.closeConnection(conexao, pstm);
+       }
+
     }
 
 }

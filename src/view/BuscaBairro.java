@@ -57,6 +57,15 @@ public class BuscaBairro extends javax.swing.JDialog {
     public void setjComboBoxFiltro(JComboBox<String> jComboBoxFiltro) {
         this.jComboBoxFiltro = jComboBoxFiltro;
     }
+
+    public JButton getjBtnApagar() {
+        return jBtnApagar;
+    }
+
+    public void setjBtnApagar(JButton jBtnApagar) {
+        this.jBtnApagar = jBtnApagar;
+    }
+    
     
     
     
@@ -73,6 +82,7 @@ public class BuscaBairro extends javax.swing.JDialog {
         jPanelBotoes = new javax.swing.JPanel();
         jButtonCarregar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jBtnApagar = new javax.swing.JButton();
         jPanelFiltro = new javax.swing.JPanel();
         jTextFieldFiltrar = new javax.swing.JTextField();
         jButtonFiltrar = new javax.swing.JButton();
@@ -149,6 +159,18 @@ public class BuscaBairro extends javax.swing.JDialog {
             }
         });
 
+        jBtnApagar.setBackground(new java.awt.Color(255, 51, 0));
+        jBtnApagar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jBtnApagar.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeDelete.png"))); // NOI18N
+        jBtnApagar.setText("Apagar");
+        jBtnApagar.setActionCommand("0");
+        jBtnApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnApagarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
         jPanelBotoesLayout.setHorizontalGroup(
@@ -156,6 +178,8 @@ public class BuscaBairro extends javax.swing.JDialog {
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonCarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150)
+                .addComponent(jBtnApagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -166,7 +190,8 @@ public class BuscaBairro extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnApagar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -313,6 +338,10 @@ public class BuscaBairro extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
+    private void jBtnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnApagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnApagarActionPerformed
+
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -330,6 +359,7 @@ public class BuscaBairro extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnApagar;
     private javax.swing.JButton jButtonCarregar;
     private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonSair;

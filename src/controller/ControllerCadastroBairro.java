@@ -87,7 +87,6 @@ public class ControllerCadastroBairro implements ActionListener {
             
             if(codigo !=0){
                 Bairro bairro = new Bairro();
-                //bairro = Dao.ClasseDados.bairros.get(codigo-1);
                 
                 bairro = service.BairroService.carregar(codigo);
                 

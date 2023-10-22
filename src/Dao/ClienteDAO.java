@@ -251,7 +251,19 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 
     @Override
     public void delete(Cliente objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "DELETE FROM mydb.cliente WHERE cliente.id = ?";
+        PreparedStatement pstm = null;
+
+        try {
+              pstm = conexao.prepareStatement(sqlExecutar);
+              pstm.setInt(1, objeto.getId());
+              pstm.execute();
+       } catch (SQLException ex) {
+              ex.printStackTrace();
+       } finally {
+              ConnectionFactory.closeConnection(conexao, pstm);
+       }
     }
     
 }

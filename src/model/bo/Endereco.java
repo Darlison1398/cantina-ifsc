@@ -9,7 +9,7 @@ public class Endereco {
     private int id;
     private String cep;
     private String logradouro;
-    private char status;
+    private boolean status;
     
     private Bairro bairro;
     private Cidade cidade;
@@ -17,7 +17,7 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(int id, String cep, String logradouro, char status, Bairro bairro, Cidade cidade) {
+    public Endereco(int id, String cep, String logradouro, boolean status, Bairro bairro, Cidade cidade) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
@@ -56,7 +56,7 @@ public class Endereco {
         return logradouro;
     }
 
-    public char getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -72,24 +72,18 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
     
-    public void setStatus(boolean status){
-        if (status == true){
-            this.status = 'I';
-        } else{
-            this.status = 'A';
-        }
-    }
+
     
     
     /**** implementei  ***/
     
     
     
-        public void setCidade(int cidadeId) {
+    public void setCidade(int cidadeId) {
         // Suponha que você tenha um método em CidadeDAO para obter uma cidade por ID
         this.cidade = CidadeDAO.obterCidadePorId(cidadeId);
     }
@@ -97,7 +91,7 @@ public class Endereco {
     // Método para configurar o Bairro com base no ID
     public void setBairro(int bairroId) {
         // Suponha que você tenha um método em BairroDAO para obter um bairro por ID
-        //this.bairro = BairroDAO.obterBairroPorId(bairroId);
+        this.bairro = BairroDAO.obterBairroPorId(bairroId);
     }
     
     

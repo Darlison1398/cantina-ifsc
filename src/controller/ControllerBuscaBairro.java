@@ -22,9 +22,10 @@ public class ControllerBuscaBairro implements ActionListener{
         
         this.buscaBairro.getjButtonFiltrar().addActionListener(this);
         this.buscaBairro.getjButtonCarregar().addActionListener(this);
-        this.buscaBairro.getjButtonSair().addActionListener(this);     
+        this.buscaBairro.getjButtonSair().addActionListener(this);  
+        this.buscaBairro.getjBtnApagar().addActionListener(this);
         
-        utilities.Utilities.ativa(true, this.buscaBairro.getjPanelBotoes());
+        //utilities.Utilities.ativa(true, this.buscaBairro.getjPanelBotoes());
         
     }
     
@@ -91,6 +92,21 @@ public class ControllerBuscaBairro implements ActionListener{
             
         }else if(e.getSource() == this.buscaBairro.getjButtonSair()){
             this.buscaBairro.dispose();
+            
+            
+            
+        } else if(e.getSource() == this.buscaBairro.getjBtnApagar()) {
+            int selectedRow = this.buscaBairro.getjTableDados().getSelectedRow();
+            if (selectedRow != -1) { // Verifica se algum item está selecionado
+                int bairroId = (int) this.buscaBairro.getjTableDados().getValueAt(selectedRow, 0);
+                Bairro bairro = BairroService.carregar(bairroId);
+                if (bairro != null) {
+                    DefaultTableModel tabela = (DefaultTableModel) this.buscaBairro.getjTableDados().getModel();
+                    BairroService.remover(bairro); // Chama o serviço para excluir o bairro
+                    tabela.removeRow(selectedRow);
+                }
+            }
+           
             
         }
     }

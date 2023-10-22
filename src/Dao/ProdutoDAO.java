@@ -123,10 +123,7 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
     @Override
     public List<Produto> retrieve(String parString) {
                 
-        Connection conexao = ConnectionFactory.getConnection();
-        
-        //String sqlExecutar = "SELECT produto.id, produto.descricao FROM bairro WHERE descricao like ?";
-        
+        Connection conexao = ConnectionFactory.getConnection();        
         String sqlExecutar = "SELECT produto.id, produto.descricao, produto.codigobarras, produto.status FROM produto WHERE descricao LIKE ?";
         PreparedStatement pstm = null;
         ResultSet rst = null;  
@@ -191,7 +188,21 @@ public class ProdutoDAO implements InterfaceDAO<Produto>{
 
     @Override
     public void delete(Produto objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "DELETE FROM mydb.produto WHERE produto.id = ?";
+        PreparedStatement pstm = null;
+
+        try {
+              pstm = conexao.prepareStatement(sqlExecutar);
+              pstm.setInt(1, objeto.getId());
+              pstm.execute();
+       } catch (SQLException ex) {
+              ex.printStackTrace();
+       } finally {
+              ConnectionFactory.closeConnection(conexao, pstm);
+       }
+
+    
     }
     
 }

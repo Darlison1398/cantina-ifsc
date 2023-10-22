@@ -23,6 +23,7 @@ public class ControllerBuscaCliente implements ActionListener {
         this.buscaCliente.getjButtonFiltrar().addActionListener(this);
         this.buscaCliente.getjButtonCarregar().addActionListener(this);
         this.buscaCliente.getjButtonSair().addActionListener(this);
+        this.buscaCliente.getjButtonApagar().addActionListener(this);
 
         utilities.Utilities.ativa(true, this.buscaCliente.getjPanelBotoes());
     }
@@ -100,6 +101,18 @@ public class ControllerBuscaCliente implements ActionListener {
         } else if (e.getSource() == this.buscaCliente.getjButtonSair()) {
             this.buscaCliente.dispose();
 
+        } else if (e.getSource() == this.buscaCliente.getjButtonApagar()){
+            int selectedRow = this.buscaCliente.getjTableDados().getSelectedRow();
+            if (selectedRow != -1) { // Verifica se algum item está selecionado
+                int clienteId = (int) this.buscaCliente.getjTableDados().getValueAt(selectedRow, 0);
+                Cliente cliente = ClienteService.carregar(clienteId);
+                if (cliente != null) {
+                    DefaultTableModel tabela = (DefaultTableModel) this.buscaCliente.getjTableDados().getModel();
+                    ClienteService.remover(cliente); // Chama o serviço para excluir o bairro
+                    tabela.removeRow(selectedRow);
+                }
+            }
+            
         }
 
     }
