@@ -78,7 +78,9 @@ public class ControllerBuscaCliente implements ActionListener {
                                            clienteAtual.getDataNascimento(),
                                            clienteAtual.getStatus(),
                                            clienteAtual.getEndereco(),
-                                           clienteAtual.getComplementoEndereco(),
+                                           //clienteAtual.getEndereco().getCidade(),
+                                           //clienteAtual.getEndereco().getCep(),
+                                           clienteAtual.getComplementoEndereco()
                                        
                 
                 });

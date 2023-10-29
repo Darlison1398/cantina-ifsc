@@ -317,10 +317,12 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
+                  <StringArray count="5">
                     <StringItem index="0" value=""/>
                     <StringItem index="1" value="ID"/>
-                    <StringItem index="2" value="DESCRI&#xc7;&#xc3;O"/>
+                    <StringItem index="2" value="CIDADE"/>
+                    <StringItem index="3" value="BAIRRO"/>
+                    <StringItem index="4" value="LOGRADOURO"/>
                   </StringArray>
                 </Property>
               </Properties>

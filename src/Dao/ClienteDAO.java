@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.bo.Cliente;
+import model.bo.Endereco;
 
 
 public class ClienteDAO implements InterfaceDAO<Cliente> {
@@ -32,9 +33,9 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
             pstm.setString(7, objeto.getCpf());
             pstm.setString(8, objeto.getMatricula());
             pstm.setString(9, objeto.getDataNascimento());
-            pstm.setString(10, objeto.getComplementoEndereco());
-            //pstm.setInt(11, objeto.getEndereco());
-            pstm.setInt(12, objeto.getId());
+            pstm.setInt(10, objeto.getEndereco().getId());
+            pstm.setString(11, objeto.getComplementoEndereco());
+          
             pstm.execute();
             
             
@@ -60,8 +61,20 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     public List<Cliente> retrieve() {
                 
        Connection conexao = ConnectionFactory.getConnection();
-       String sqlExecutar = "SELECT cliente.id, cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, cliente.endereco_id, cliente.complementoEndereco "
-                            + "FROM mydb.cliente";
+       String sqlExecutar = "SELECT cliente.id, "
+               + "cliente.nome, "
+               + "cliente.fone1, "
+               + "cliente.fone2, "
+               + "cliente.email, "
+               + "cliente.status, "
+               + "cliente.rg, "
+               + "cliente.cpf, "
+               + "cliente.matricula, "
+               + "cliente.datanascimento, "
+               + "cliente.endereco_id, "
+               + "cliente.complementoEndereco " 
+               + "FROM mydb.cliente "
+               + "LEFT OUTER JOIN endereco ON endereco.id = cliente.endereco_id";
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -86,7 +99,14 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
                  cliente.setStatus(true);
                  cliente.setMatricula(rst.getString("matricula"));
                  cliente.setDataNascimento(rst.getString("datanascimento"));
-                 cliente.setComplementoEndereco(rst.getString("endereco_id"));
+                 //cliente.setComplementoEndereco(rst.getString("complementoendereco"));
+                 
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("endereco_id"));
+                 //endereco.setCep(rst.getString("cep"));
+                 cliente.setEndereco(endereco);
+                
+                 
                
                  listaCliente.add(cliente);
                  
@@ -209,8 +229,19 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     @Override
     public void update(Cliente objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "UPDATE cliente SET cliente.nome = ?, cliente.fone1 = ?, cliente.fone2 = ?, cliente.email = ?, cliente.status = ?, cliente.rg = ?, cliente.cpf = ?, cliente.matricula = ?, cliente.datanascimento = ?, cliente.endereco_id = ?, cliente.complementoEndereco = ? "
-                            + " WHERE cliente.id = ?";
+        String sqlExecutar = "UPDATE cliente SET "
+                + "cliente.nome = ?, "
+                + "cliente.fone1 = ?, "
+                + "cliente.fone2 = ?, "
+                + "cliente.email = ?, "
+                + "cliente.status = ?, "
+                + "cliente.rg = ?, "
+                + "cliente.cpf = ?, "
+                + "cliente.matricula = ?, "
+                + "cliente.datanascimento = ?, "
+                + "cliente.endereco_id = ?, "
+                + "cliente.complementoEndereco = ? "  
+                + " WHERE cliente.id = ?";
 
         PreparedStatement pstm = null;
         
@@ -226,11 +257,12 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
             pstm.setBoolean(7, objeto.getStatus());
             pstm.setString(8, objeto.getMatricula());
             pstm.setString(9, objeto.getDataNascimento());
-            pstm.setString(10, objeto.getComplementoEndereco());
-            //pstm.setInt(11, objeto.getEndereco());
+            pstm.setInt(10, objeto.getEndereco().getId());
+            pstm.setString(11, objeto.getComplementoEndereco());
             
             
-            pstm.setInt(10, objeto.getId());
+            
+            pstm.setInt(12, objeto.getId());
             
             pstm.execute();
             

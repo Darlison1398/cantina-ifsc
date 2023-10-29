@@ -67,7 +67,7 @@ public class ControllerBuscaCidade implements ActionListener {
           } else if (selectedIndex == 2) {
                // Filtro por descrição
                String descricao = this.buscaCidade.getjTextFieldFiltrar().getText().trim();
-               listaCidade = CidadeService.carregar(descricao);
+               listaCidade = CidadeService.carregar(descricao, descricao);
           } else {
                // Se não for nenhuma das opções acima, não fazer nada ou mostrar mensagem de erro
                JOptionPane.showMessageDialog(null, "Selecione uma opção válida.");

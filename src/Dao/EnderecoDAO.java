@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.bo.Bairro;
+import model.bo.Cidade;
 import model.bo.Endereco;
 
 
@@ -57,8 +58,18 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
     public List<Endereco> retrieve() {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT endereco.id, endereco.cep, endereco.logradouro, endereco.status, endereco.cidade_id, endereco.bairro_id "
-                             + " FROM mydb.endereco";
+        String sqlExecutar = "SELECT endereco.id, "
+                + "endereco.cep, "
+                + "endereco.logradouro, "
+                + "endereco.status, "
+                + "endereco.cidade_id, "
+                + "endereco.bairro_id, "
+                + "bairro.descricao, "
+                + "cidade.descricao, "
+                + "cidade.uf "
+                + "FROM mydb.endereco "
+                + "LEFT OUTER JOIN bairro ON bairro.id = endereco.bairro_id "
+                + "LEFT OUTER JOIN cidade ON cidade.id = endereco.cidade_id ";
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -76,8 +87,21 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  endereco.setCep(rst.getString("cep"));
                  endereco.setLogradouro(rst.getString("logradouro"));
                  endereco.setStatus(true);
-                 endereco.setBairro(rst.getInt(("bairro_id")));
-                 endereco.setCidade(rst.getInt(("cidade_id")));
+                 //endereco.setBairro(rst.getInt(("bairro_id")));
+                 //endereco.setCidade(rst.getInt(("cidade_id")));
+                 
+                 Bairro bairro = new Bairro();
+                 bairro.setId(rst.getInt("bairro_id"));
+                 bairro.setDescricao(rst.getString("bairro.descricao"));
+                 endereco.setBairro(bairro);
+                 
+                 
+                 Cidade cidade = new Cidade();
+                 cidade.setId(rst.getInt("cidade_id"));
+                 cidade.setDescricao(rst.getString("cidade.descricao"));
+                 cidade.setUf(rst.getString("uf"));
+                
+                 endereco.setCidade(cidade);
 
                  listaEndereco.add(endereco);
                  
@@ -96,8 +120,19 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
     @Override
     public Endereco retrieve(int parPK) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT endereco.id, endereco.cep, endereco.status, endereco.logradouro, endereco.cidade_id, endereco.bairro_id "
-                             + " FROM mydb.endereco WHERE endereco.id = ?"; 
+        String sqlExecutar = "SELECT endereco.id, "
+                + "endereco.cep, "
+                + "endereco.status, "
+                + "endereco.logradouro, "
+                + "endereco.cidade_id, "
+                + "endereco.bairro_id, "
+                + "bairro.descricao, "
+                + "cidade.descricao, "
+                + "cidade.uf " 
+                + "FROM mydb.endereco "
+                + "LEFT OUTER JOIN bairro ON bairro.id = endereco.bairro_id "
+                + "LEFT OUTER JOIN cidade ON cidade.id = endereco.cidade_id "
+                + "WHERE endereco.id = ?"; 
         PreparedStatement pstm = null;
         ResultSet rst = null;
         Endereco endereco = new Endereco();
@@ -110,12 +145,21 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
              
              while(rst.next()) {   
                  endereco.setId(rst.getInt("id"));
-                 //endereco.setId(rst.getInt("id"));
                  endereco.setCep(rst.getString("cep"));
                  endereco.setLogradouro(rst.getString("logradouro"));
                  endereco.setStatus(true);
-                 endereco.setBairro(rst.getInt(("bairro_id")));
-                 endereco.setCidade(rst.getInt(("cidade_id")));
+                 //endereco.setBairro(rst.getInt(("bairro_id")));
+                 //endereco.setCidade(rst.getInt(("cidade_id")));
+                 Bairro bairro = new Bairro();
+                 bairro.setId(rst.getInt("bairro_id"));
+                 bairro.setDescricao(rst.getString("bairro.descricao"));
+                 endereco.setBairro(bairro);
+
+                 Cidade cidade = new Cidade();
+                 cidade.setId(rst.getInt("cidade_id"));
+                 cidade.setDescricao(rst.getString("cidade.descricao"));
+                 cidade.setUf(rst.getString("uf"));
+                 endereco.setCidade(cidade);
                  
              }
             
@@ -135,7 +179,8 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
 
     @Override
     public List<Endereco> retrieve(String parString) {
-        Connection conexao = ConnectionFactory.getConnection();
+        
+       /* Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "SELECT endereco.id, endereco.cep, endereco.logradouro, endereco.status, endereco.cidade_id, endereco.bairro_id "
                              + " FROM endereco WHERE logradouro LIKE ?"; 
         PreparedStatement pstm = null;
@@ -168,22 +213,109 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
             
             ConnectionFactory.closeConnection(conexao, pstm, rst);
             return listaEndereco;
+        }*/
+       
+                return null;
+         
+    }
+    
+    
+    
+    
+    
+    
+    public List<Endereco> retrieve(String nomeParametro, String parString){
+                
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "SELECT endereco.id, "
+                             + "endereco.cep, "
+                             + "endereco.logradouro, "
+                             + "endereco.status, "
+                             + "endereco.cidade_id, "
+                             + "endereco.bairro_id, "
+                             + "bairro.descricao AS bairro_descricao, "
+                             + "cidade.descricao AS cidade_descricao "
+                             + "FROM endereco "
+                             + "LEFT OUTER JOIN bairro ON bairro.id = endereco.bairro_id "
+                             + "LEFT OUTER JOIN cidade ON cidade.id = endereco.cidade_id "
+                             + "WHERE 1 = 1";
+                            //+ "WHERE " + nomeParametro + " LIKE ?"; 
+        
+            if ("logradouro".equals(nomeParametro)) {
+                sqlExecutar += " AND endereco.logradouro LIKE ?";
+            } else if ("cidade".equals(nomeParametro)) {
+                sqlExecutar += " AND cidade.descricao LIKE ?";
+            } else if ("bairro".equals(nomeParametro)) {
+                sqlExecutar += " AND bairro.descricao LIKE ?";
+            } else {
+               // Se nenhum parâmetro for passado, não realiza nenhuma busca
+              return new ArrayList<>(); // Retorna uma lista vazia ou trata de outra forma
+            }
+        
+        
+        
+        PreparedStatement pstm = null;
+        ResultSet rst = null;
+        List<Endereco> listaEndereco = new ArrayList<>();
+                
+        try{
+             pstm = conexao.prepareStatement(sqlExecutar);
+             pstm.setString(1, "%" + parString + "%");
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {   
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("id"));
+                 endereco.setCep(rst.getString("cep"));
+                 endereco.setLogradouro(rst.getString("logradouro"));
+                 endereco.setStatus(true);
+                 
+                 Bairro bairro = new Bairro();
+                 bairro.setId(rst.getInt("bairro_id"));
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+
+                 Cidade cidade = new Cidade();
+                 cidade.setId(rst.getInt("cidade_id"));
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 //cidade.setUf(rst.getString("uf"));
+                 endereco.setCidade(cidade);
+
+                 
+                 
+                 listaEndereco.add(endereco);
+             }
+            
+             
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaEndereco;
         }
-        
-        
-        
-        
-        
-        
-        
+       
         
     }
+            
+            
+            
+            
+            
+            
 
     @Override
     public void update(Endereco objeto) {
                 
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "UPDATE endereco SET endereco.cep = ?, endereco.logradouro = ?, endereco.status = ?, endereco.cidade_id = ?, endereco.bairro_id = ? WHERE endereco.id = ?";
+        String sqlExecutar = "UPDATE endereco SET endereco.cep = ?, "
+                + "endereco.logradouro = ?, "
+                + "endereco.status = ?, "
+                + "endereco.cidade_id = ?, "
+                + "endereco.bairro_id = ? "
+                + "WHERE endereco.id = ?";
         PreparedStatement pstm = null;
                 
         try {
@@ -194,7 +326,8 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
              pstm.setBoolean(3, objeto.getStatus());
              pstm.setInt(4, objeto.getCidade().getId());
              pstm.setInt(5, objeto.getBairro().getId());
-             pstm.executeUpdate();
+             pstm.setInt(6, objeto.getId());
+             pstm.execute();
             
             
         } catch (SQLException ex) {

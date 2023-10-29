@@ -83,7 +83,7 @@ public class Endereco {
     
     
     
-    public void setCidade(int cidadeId) {
+   /* public void setCidade(int cidadeId) {
         // Suponha que você tenha um método em CidadeDAO para obter uma cidade por ID
         this.cidade = CidadeDAO.obterCidadePorId(cidadeId);
     }
@@ -92,7 +92,7 @@ public class Endereco {
     public void setBairro(int bairroId) {
         // Suponha que você tenha um método em BairroDAO para obter um bairro por ID
         this.bairro = BairroDAO.obterBairroPorId(bairroId);
-    }
+    }*/
     
     
     

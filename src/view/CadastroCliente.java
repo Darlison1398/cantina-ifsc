@@ -171,10 +171,21 @@ public class CadastroCliente extends javax.swing.JFrame {
     public JTextField getjTextFieldNome() {
         return jTextFieldNome;
     }
+    
+    
 
     public void setjTextFieldNome(JTextField jTextFieldNome) {
         this.jTextFieldNome = jTextFieldNome;
     }
+
+    public JTextField getjTIdEndereco() {
+        return jTIdEndereco;
+    }
+
+    public void setjTIdEndereco(JTextField jTIdEndereco) {
+        this.jTIdEndereco = jTIdEndereco;
+    }
+    
     
 
     @SuppressWarnings("unchecked")
@@ -214,6 +225,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jTextFieldBairro = new javax.swing.JTextField();
         jLabelComplementoEndereco = new javax.swing.JLabel();
         jTextFieldComplementoEndereco = new javax.swing.JTextField();
+        jTIdEndereco = new javax.swing.JTextField();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
@@ -333,7 +345,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabelFone1.setMinimumSize(new java.awt.Dimension(13, 16));
 
         try {
-            jFormattedTextFieldFone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # #### - ####")));
+            jFormattedTextFieldFone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ##### - ####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -345,7 +357,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabelFone2.setMinimumSize(new java.awt.Dimension(13, 16));
 
         try {
-            jFormattedTextFieldFone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
+            jFormattedTextFieldFone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -405,6 +417,12 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabelComplementoEndereco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelComplementoEndereco.setText("Compl.");
 
+        jTIdEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTIdEnderecoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDadosLayout = new javax.swing.GroupLayout(jPanelDados);
         jPanelDados.setLayout(jPanelDadosLayout);
         jPanelDadosLayout.setHorizontalGroup(
@@ -412,24 +430,6 @@ public class CadastroCliente extends javax.swing.JFrame {
             .addGroup(jPanelDadosLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                                .addComponent(jLabelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                                .addComponent(jLabelLograouro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldLogradouro)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBairro)
-                            .addComponent(jLabelComplementoEndereco))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldComplementoEndereco)
-                            .addComponent(jTextFieldBairro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -480,7 +480,28 @@ public class CadastroCliente extends javax.swing.JFrame {
                                 .addComponent(jLabelFone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jFormattedTextFieldFone2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jCheckBoxStatus))))
+                            .addComponent(jCheckBoxStatus)))
+                    .addGroup(jPanelDadosLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanelDadosLayout.createSequentialGroup()
+                                .addComponent(jLabelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelDadosLayout.createSequentialGroup()
+                                .addComponent(jLabelLograouro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldLogradouro)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelBairro)
+                            .addComponent(jLabelComplementoEndereco))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldComplementoEndereco)
+                            .addComponent(jTextFieldBairro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanelDadosLayout.createSequentialGroup()
+                                .addComponent(jTIdEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(68, 68, 68))
         );
         jPanelDadosLayout.setVerticalGroup(
@@ -521,7 +542,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                         .addComponent(jLabelCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonAdicionarCep)
-                        .addComponent(jButtonPesquisarCep)))
+                        .addComponent(jButtonPesquisarCep)
+                        .addComponent(jTIdEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -759,6 +781,10 @@ public class CadastroCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonPesquisarCepActionPerformed
 
+    private void jTIdEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdEnderecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTIdEnderecoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -843,6 +869,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelDados;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JPanel jPanelTitulo;
+    private javax.swing.JTextField jTIdEndereco;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCidade;
     private javax.swing.JTextField jTextFieldComplementoEndereco;

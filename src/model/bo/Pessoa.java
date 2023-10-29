@@ -91,10 +91,6 @@ public abstract class Pessoa {
         this.status = status;
     }
     
-
-
-    
-    
     public void setComplementoEndereco(String complementoEndereco) {
         this.complementoEndereco = complementoEndereco;
     }

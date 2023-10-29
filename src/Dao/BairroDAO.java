@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class BairroDAO implements InterfaceDAO<Bairro> {
     
-    public static Bairro obterBairroPorId(int bairroId) {
+    /*public static Bairro obterBairroPorId(int bairroId) {
     Connection conexao = ConnectionFactory.getConnection();
     String sqlExecutar = "SELECT * FROM bairro WHERE id = ?";
     PreparedStatement pstm = null;
@@ -41,7 +41,7 @@ public class BairroDAO implements InterfaceDAO<Bairro> {
     }
 
     return bairro;
-    }
+    }*/
     
     
     

@@ -13,7 +13,7 @@ import model.bo.Cidade;
 public class CidadeDAO implements InterfaceDAO<Cidade> {
 
     
-    public static Cidade obterCidadePorId(int cidadeId) {
+    /*public static Cidade obterCidadePorId(int cidadeId) {
     Connection conexao = ConnectionFactory.getConnection();
     String sqlExecutar = "SELECT * FROM cidade WHERE id = ?";
     PreparedStatement pstm = null;
@@ -38,7 +38,7 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
     }
 
     return cidade;
-    }
+    }*/
     
     
     
@@ -85,11 +85,8 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
     @Override
     public List<Cidade> retrieve() {
         
-        Connection conexao = ConnectionFactory.getConnection();
-       // String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM mydb.cidade";
-        //String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM mydb.cidade WHERE cidade.id = ?"; 
+        Connection conexao = ConnectionFactory.getConnection(); 
         String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM mydb.cidade";
-
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -157,7 +154,8 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
 
     @Override
     public List<Cidade> retrieve(String parString) {
-        Connection conexao = ConnectionFactory.getConnection();
+        
+       /* Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade WHERE descricao like ?";
         PreparedStatement pstm = null;
         ResultSet rst = null;  
@@ -187,10 +185,56 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
             
             ConnectionFactory.closeConnection(conexao, pstm, rst);
             return listaCidade;
-        }    
+        }*/   
+       
+       return null;
         
         
         
+    }
+    
+    
+    
+    /**  nova implementação aqui. Se não de certo, devo descomentar a parte de cima **/
+    
+    public List<Cidade> retrieve(String nomeParametro, String parString){
+                
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "SELECT cidade.id, "
+                                    + " cidade.descricao, "
+                                    + " cidade.uf "
+                                    + " FROM cidade WHERE " + nomeParametro +  " like ?";
+        
+        PreparedStatement pstm = null;
+        ResultSet rst = null;  
+        List<Cidade> listaCidade = new ArrayList<>();
+        
+        
+         try{
+             
+             pstm = conexao.prepareStatement(sqlExecutar);
+             pstm.setString(1, "%" + parString + "%");
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {   
+                 Cidade cidade = new Cidade();
+                 cidade.setId(rst.getInt("id"));
+                 cidade.setDescricao(rst.getString("descricao"));
+                 cidade.setUf(rst.getString("uf"));
+                 listaCidade.add(cidade);
+             }
+            
+             
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaCidade;
+        } 
+       
     }
     
     
@@ -205,7 +249,10 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
     public void update(Cidade objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "UPDATE cidade SET cidade.descricao = ?, cidade.uf = ? WHERE cidade.id = ?";
+        String sqlExecutar = "UPDATE cidade "
+                             + "SET cidade.descricao = ?, "
+                             + "SET cidade.uf = ? "
+                             + "WHERE cidade.id = ?";
 
         PreparedStatement pstm = null;
         

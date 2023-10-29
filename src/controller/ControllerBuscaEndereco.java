@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.bo.Bairro;
+import model.bo.Cidade;
 import model.bo.Endereco;
 import service.EnderecoService;
 import view.BuscaEndereco;
@@ -23,9 +25,8 @@ public class ControllerBuscaEndereco implements ActionListener{
         this.buscaEndereco.getjButtonCarregar().addActionListener(this);
         this.buscaEndereco.getjButtonSair().addActionListener(this);
         this.buscaEndereco.getjButtonApagar().addActionListener(this);
-        
-        //utilities.Utilities.ativa(true, this.buscaEndereco.getjPanelBotoes());
-        
+        this.buscaEndereco.getjComboBoxFiltro().addActionListener(this);
+        this.buscaEndereco.getjTextFieldFiltrar().addActionListener(this);
         
 
     }
@@ -47,20 +48,31 @@ public class ControllerBuscaEndereco implements ActionListener{
            } else if (selectedIndex == 1) {
             // Filtro por ID
                String input = this.buscaEndereco.getjTextFieldFiltrar().getText().trim();
-           if (!input.isEmpty()) {
-               int id = Integer.parseInt(input);
-               listaEnderecos = new ArrayList<>();
-               listaEnderecos.add(EnderecoService.carregar(id));
-           } else {
-               // Informar ao usuário que o campo está vazio
-               JOptionPane.showMessageDialog(null, "Informe o ID para filtrar.");
-               return;
+               if (!input.isEmpty()) {
+                   int id = Integer.parseInt(input);
+                   listaEnderecos = new ArrayList<>();
+                   listaEnderecos.add(EnderecoService.carregar(id));
+               } else {
+                   // Informar ao usuário que o campo está vazio
+                   JOptionPane.showMessageDialog(null, "Informe o ID para filtrar.");
+                   return;
                }
           } else if (selectedIndex == 2) {
-               // Filtro por descrição
-               String descricao = this.buscaEndereco.getjTextFieldFiltrar().getText().trim();
-               listaEnderecos = EnderecoService.carregar(descricao);
-          } else {
+                  // Filtro por cidade
+                  String cidade = this.buscaEndereco.getjTextFieldFiltrar().getText().trim();
+                  listaEnderecos = EnderecoService.carregar("cidade", cidade);
+         } else if (selectedIndex == 3) {
+                  // Filtro por bairro
+                  String bairro = this.buscaEndereco.getjTextFieldFiltrar().getText().trim();
+                  listaEnderecos = EnderecoService.carregar("bairro", bairro);
+         } else if (selectedIndex == 4) {
+                   // Filtro por logradouro
+                  String logradouro = this.buscaEndereco.getjTextFieldFiltrar().getText().trim();
+                  listaEnderecos = EnderecoService.carregar("logradouro", logradouro);
+         }
+ 
+     
+          else {
                // Se não for nenhuma das opções acima, não fazer nada ou mostrar mensagem de erro
                JOptionPane.showMessageDialog(null, "Selecione uma opção válida.");
                return;
@@ -72,10 +84,11 @@ public class ControllerBuscaEndereco implements ActionListener{
                 tabela.addRow(new Object[]{enderecoAtual.getId(),
                                            enderecoAtual.getCep(),
                                            enderecoAtual.getLogradouro(),
-                                           /*enderecoAtual.getCidade().getId(),
-                                           enderecoAtual.getCidade().getDescricao(),
-                                           enderecoAtual.getBairro().getId(),
-                                           enderecoAtual.getBairro().getDescricao()*/});
+                                           //enderecoAtual.getCidade().getId(),
+                                           //enderecoAtual.getCidade().getDescricao(),
+                                           //enderecoAtual.getBairro().getId(),
+                                           //enderecoAtual.getBairro().getDescricao()
+                });
                 
             }
             
