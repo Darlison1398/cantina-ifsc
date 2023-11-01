@@ -72,15 +72,22 @@ public class ControllerBuscaCliente implements ActionListener {
                                            clienteAtual.getFone1(),
                                            clienteAtual.getFone2(),
                                            clienteAtual.getEmail(),
-                                           clienteAtual.getCpf(),
+                                           clienteAtual.getStatus(),
                                            clienteAtual.getRg(),
+                                           clienteAtual.getCpf(),
                                            clienteAtual.getMatricula(),
                                            clienteAtual.getDataNascimento(),
-                                           clienteAtual.getStatus(),
-                                           clienteAtual.getEndereco(),
-                                           //clienteAtual.getEndereco().getCidade(),
-                                           //clienteAtual.getEndereco().getCep(),
+                                           clienteAtual.getEndereco().getId(),
+                                           clienteAtual.getEndereco().getCep(),
+                                           clienteAtual.getEndereco().getCidade(),
+                                           clienteAtual.getEndereco().getBairro(),
+                                           clienteAtual.getEndereco().getLogradouro(),
                                            clienteAtual.getComplementoEndereco()
+                                           //clienteAtual.getEndereco()
+                                           //clienteAtual.getEndereco().getCidade().getDescricao(),
+                                          // clienteAtual.getEndereco().getBairro().getDescricao(),
+                                          // clienteAtual.getEndereco().getCep(),
+                                           
                                        
                 
                 });

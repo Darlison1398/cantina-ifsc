@@ -146,16 +146,21 @@ public class ControllerCadastroCliente implements ActionListener {
            
                 this.cadastroCliente.getjTextFieldID().setText(cliente.getId() + "");
                 this.cadastroCliente.getjTextFieldNome().setText(cliente.getNome());
-                this.cadastroCliente.getjTextFieldEmail().setText(cliente.getEmail());
-                this.cadastroCliente.getjTextFieldLogradouro().setText(cliente.getComplementoEndereco());
-                this.cadastroCliente.getjTextFieldMatricula().setText(cliente.getMatricula());
                 this.cadastroCliente.getjFormattedTextFieldFone1().setText(cliente.getFone1());
                 this.cadastroCliente.getjFormattedTextFieldFone2().setText(cliente.getFone2());
+                this.cadastroCliente.getjTextFieldEmail().setText(cliente.getEmail());
                 this.cadastroCliente.getjCheckBoxStatus().setSelected(true);
-                this.cadastroCliente.getjFormattedTextFieldDataNascimento().setText(cliente.getDataNascimento());
-                this.cadastroCliente.getjFormattedTextFieldCEP().setText(cliente.getEndereco().getCep());
-                this.cadastroCliente.getjFormattedTextFieldCPF().setText(cliente.getCpf());
                 this.cadastroCliente.getjFormattedTextFieldRg().setText(cliente.getRg());
+                this.cadastroCliente.getjFormattedTextFieldCPF().setText(cliente.getCpf());
+                this.cadastroCliente.getjTextFieldMatricula().setText(cliente.getMatricula());
+                this.cadastroCliente.getjFormattedTextFieldDataNascimento().setText(cliente.getDataNascimento());
+                this.cadastroCliente.getjTIdEndereco().setText(String.valueOf(cliente.getEndereco().getId()));
+                this.cadastroCliente.getjTextFieldLogradouro().setText(cliente.getComplementoEndereco());
+                //this.cadastroCliente.getjTIdEndereco().setText(cliente.getId() + "");
+                this.cadastroCliente.getjFormattedTextFieldCEP().setText(cliente.getEndereco().getCep());
+                this.cadastroCliente.getjTextFieldBairro().setText(cliente.getEndereco().getBairro().getDescricao());
+                this.cadastroCliente.getjTextFieldCidade().setText(cliente.getEndereco().getCidade().getDescricao());
+                
                 this.cadastroCliente.getjTextFieldID().setEditable(false);
 
                 

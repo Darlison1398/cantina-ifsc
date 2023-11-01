@@ -248,8 +248,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
             } else if ("bairro".equals(nomeParametro)) {
                 sqlExecutar += " AND bairro.descricao LIKE ?";
             } else {
-               // Se nenhum parâmetro for passado, não realiza nenhuma busca
-              return new ArrayList<>(); // Retorna uma lista vazia ou trata de outra forma
+              return new ArrayList<>(); 
             }
         
         

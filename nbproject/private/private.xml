@@ -4,10 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/Dao/EnderecoDAO.java</file>
+            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/view/BuscaCliente.java</file>
+            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/model/bo/Endereco.java</file>
             <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ControllerCadastroEndereco.java</file>
+            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ControllerBuscaEndereco.java</file>
             <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ControllerCadastroCliente.java</file>
+            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ControllerBuscaCliente.java</file>
             <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/Dao/ClienteDAO.java</file>
-            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/view/CadastroEndereco.java</file>
+            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/view/CadastroCliente.java</file>
         </group>
     </open-files>
 </project-private>
