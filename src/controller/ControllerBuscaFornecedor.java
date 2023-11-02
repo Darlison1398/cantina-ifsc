@@ -33,14 +33,6 @@ public class ControllerBuscaFornecedor implements ActionListener {
         
         if(e.getSource() == this.buscaFornecedor.getjButtonFiltrar()){
             
-            /*Dao.ClasseDados.getInstance();
-            
-            DefaultTableModel tabela = (DefaultTableModel) this.buscaFornecedor.getjTableDados().getModel();
-            for (Fornecedor fornecedorAtual : fornecedores) {
-                
-                tabela.addRow(new Object[]{fornecedorAtual.getId(),fornecedorAtual.getCnpj(),fornecedorAtual.getNome()});
-            }*/
-            
             List<Fornecedor> listaFornecedor;
 
             int selectedIndex = this.buscaFornecedor.getjComboBoxFiltro().getSelectedIndex();
@@ -76,16 +68,23 @@ public class ControllerBuscaFornecedor implements ActionListener {
             for (Fornecedor fornecedorAtual : listaFornecedor) {
                 
                 tabela.addRow(new Object[]{fornecedorAtual.getId(),
-                                           fornecedorAtual.getCnpj(),
+                                           fornecedorAtual.getRazaoSocial(),
                                            fornecedorAtual.getNome(),
+                                           fornecedorAtual.getInscricaoEstadual(),
+                                           fornecedorAtual.getCnpj(),
+                                           fornecedorAtual.getEmail(),
                                            fornecedorAtual.getFone1(),
                                            fornecedorAtual.getFone2(),
-                                           fornecedorAtual.getEmail(),
-                                           fornecedorAtual.getInscricaoEstadual(),
-                                           fornecedorAtual.getRazaoSocial(),
+                                           fornecedorAtual.getEndereco().getId(),
+                                           fornecedorAtual.getEndereco().getCep(),
+                                           fornecedorAtual.getEndereco().getCidade().getDescricao(),
+                                           fornecedorAtual.getEndereco().getBairro().getDescricao(),
+                                           fornecedorAtual.getEndereco().getLogradouro(),
+                       
+                                           //fornecedorAtual.getComplementoEndereco(),
                                            fornecedorAtual.getStatus(),
-                                           fornecedorAtual.getEndereco(),
-                                           fornecedorAtual.getComplementoEndereco(),
+                                           
+                                           
                                           
                 
                 });

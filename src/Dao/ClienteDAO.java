@@ -111,8 +111,8 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
                  //cliente.setComplementoEndereco(rst.getString("complementoendereco"));
                 
                  Endereco endereco = new Endereco();
-                 endereco.setId(rst.getInt("id")); // Altere para o campo correto retornado na consulta SQL
-                 endereco.setCep(rst.getString("cep")); // Verifique os nomes dos campos na consulta
+                 endereco.setId(rst.getInt("id")); 
+                 endereco.setCep(rst.getString("cep"));
                  endereco.setLogradouro(rst.getString("logradouro"));
                  
                      // Configurar cidade
@@ -220,21 +220,18 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     public List<Cliente> retrieve(String parString) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT cliente.id, "
-                + "cliente.nome, "
-                + "cliente.fone1, "
-                + "cliente.fone2, "
-                + "cliente.email, "
-                + "cliente.status, "
-                + "cliente.rg, "
-                + "cliente.cpf, "
-                + "cliente.matricula, "
-                + "cliente.datanascimento, "
-                + "cliente.endereco_id, "
-                + "cliente.complementoEndereco "
-                + "FROM cliente "
-                + "LEFT OUTER JOIN endereco ON endereco.id = cliente.endereco_id "
-                + "WHERE nome LIKE ?";
+        String sqlExecutar =  "SELECT cliente.id, cliente.nome, cliente.fone1, cliente.fone2, cliente.email, cliente.status, cliente.rg, cliente.cpf, cliente.matricula, cliente.datanascimento, endereco.cep, endereco.logradouro, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao " +
+                            "FROM mydb.cliente " +                               
+                            "LEFT OUTER JOIN endereco ON cliente.endereco_id = endereco.id " +
+                            "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
+                            "LEFT OUTER JOIN bairro ON endereco.bairro_id = bairro.id " +
+                            "WHERE nome LIKE ?";
+                
+                
+                
+                
+           
+        
         PreparedStatement pstm = null;
         ResultSet rst = null;  
         List<Cliente> listaCliente = new ArrayList<>();
@@ -259,12 +256,27 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
                  cliente.setRg(rst.getString("rg"));
                  cliente.setMatricula(rst.getString("matricula"));
                  cliente.setDataNascimento(rst.getString("datanascimento"));
-                 //cliente.setComplementoEndereco(rst.getString("endereco_id"));
-                 cliente.setComplementoEndereco(rst.getString("complementoendereco"));
+                 //cliente.setComplementoEndereco(rst.getString("complementoendereco"));
                  
                  Endereco endereco = new Endereco();
                  endereco.setId(rst.getInt("id"));
                  endereco.setCep(rst.getString("cep"));
+                 endereco.setLogradouro(rst.getString("logradouro"));
+                 
+                     // Configurar cidade
+                 Cidade cidade = new Cidade();
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 endereco.setCidade(cidade);
+                 
+                     // Configurar bairro
+                 Bairro bairro = new Bairro();
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+                 
+                 
+                 
+                 
+                 
                  cliente.setEndereco(endereco);
                  
                  listaCliente.add(cliente);
@@ -287,19 +299,22 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     @Override
     public void update(Cliente objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "UPDATE cliente SET "
-                + "cliente.nome = ?, "
-                + "cliente.fone1 = ?, "
-                + "cliente.fone2 = ?, "
-                + "cliente.email = ?, "
-                + "cliente.status = ?, "
-                + "cliente.rg = ?, "
-                + "cliente.cpf = ?, "
-                + "cliente.matricula = ?, "
-                + "cliente.datanascimento = ?, "
-                + "cliente.endereco_id = ?, "
-                + "cliente.complementoEndereco = ? "  
-                + " WHERE cliente.id = ?";
+        String sqlExecutar = "UPDATE cliente SET " +
+            "cliente.nome = ?, " +
+            "cliente.fone1 = ?, " +
+            "cliente.fone2 = ?, " +
+            "cliente.email = ?, " +
+            "cliente.status = ?, " +
+            "cliente.rg = ?, " +
+            "cliente.cpf = ?, " +
+            "cliente.matricula = ?, " +
+            "cliente.datanascimento = ?, " +
+            "cliente.endereco_id = ?, " +
+            "cliente.complementoEndereco = ? " +
+            "WHERE cliente.id = ?";
+                
+              
+              
 
         PreparedStatement pstm = null;
         
@@ -310,17 +325,19 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
             pstm.setString(2, objeto.getFone1());
             pstm.setString(3, objeto.getFone2());
             pstm.setString(4, objeto.getEmail());
-            pstm.setString(5, objeto.getCpf());
-            pstm.setString(6, objeto.getRg());
-            pstm.setBoolean(7, objeto.getStatus());
+            pstm.setBoolean(5, objeto.getStatus());
+            pstm.setString(6, objeto.getCpf());
+            pstm.setString(7, objeto.getRg());
+            
             pstm.setString(8, objeto.getMatricula());
             pstm.setString(9, objeto.getDataNascimento());
             pstm.setInt(10, objeto.getEndereco().getId());
-            pstm.setString(11, objeto.getComplementoEndereco());
+            pstm.setString(11, objeto.getEndereco().getCep());
+            pstm.setInt(12, objeto.getEndereco().getCidade().getId());
+            pstm.setInt(13, objeto.getEndereco().getCidade().getId());
+            pstm.setString(14, objeto.getComplementoEndereco());
+            pstm.setInt(15, objeto.getId());
             
-            
-            
-            pstm.setInt(12, objeto.getId());
             
             pstm.execute();
             

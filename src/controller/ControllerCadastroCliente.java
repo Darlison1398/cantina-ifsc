@@ -65,7 +65,10 @@ public class ControllerCadastroCliente implements ActionListener {
             
             utilities.Utilities.ativa(false, this.cadastroCliente.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroCliente.getjPanelDados());
-            this.cadastroCliente.getjTextFieldID().setEditable(false);
+            this.cadastroCliente.getjTextFieldID().setEnabled(false);
+            cadastroCliente.getjTIdEndereco().setEnabled(false);
+            cadastroCliente.getjTextFieldBairro().setEnabled(false);
+            cadastroCliente.getjTextFieldCidade().setEnabled(false);
             
         } else if (e.getSource() == this.cadastroCliente.getjButtonSair()) {
             this.cadastroCliente.dispose();
@@ -93,11 +96,6 @@ public class ControllerCadastroCliente implements ActionListener {
             cliente.setStatus(this.cadastroCliente.getjCheckBoxStatus().isSelected());
             cliente.setDataNascimento(this.cadastroCliente.getjFormattedTextFieldDataNascimento().getText());
        
-           //endereco.setBairro(service.BairroService.carregar("" + this.cadastroEndereco.getjTDescricaoBairro().getText()).get(0));
-            /*cliente.setEndereco(service.EnderecoService.carregar("" , this.cadastroCliente.getjTextFieldBairro().getText()).get(0));
-            cliente.setEndereco(service.EnderecoService.carregar("descricao", this.cadastroCliente.getjTextFieldCidade().getText() + "").get(0));
-            cliente.setEndereco(service.EnderecoService.carregar("cep", this.cadastroCliente.getjFormattedTextFieldCEP().getText() + "").get(0));*/
-
             cliente.setEndereco(service.EnderecoService.carregar(codigoEndereco));
              
             if(codigoCliente == 0) {
@@ -112,23 +110,6 @@ public class ControllerCadastroCliente implements ActionListener {
             }
             
             
-            /*if(this.cadastroCliente.getjTextFieldID().getText().equalsIgnoreCase("")){
-                service.ClienteService.adicionar(cliente);
-             
-            }else {
-                
-                cliente.setId(Integer.parseInt(this.cadastroCliente.getjTextFieldID().getText()));
-                service.ClienteService.atualizar(cliente);
-
-            }
-            
-            utilities.Utilities.ativa(true, cadastroCliente.getjPanelBotoes());
-            utilities.Utilities.limpaComponentes(false, cadastroCliente.getjPanelDados());*/
-           
-            
-            
-            
-                     
             
         } else if (e.getSource() == this.cadastroCliente.getjButtonConsultar()) {
             codigoCliente = 0;
@@ -155,13 +136,17 @@ public class ControllerCadastroCliente implements ActionListener {
                 this.cadastroCliente.getjTextFieldMatricula().setText(cliente.getMatricula());
                 this.cadastroCliente.getjFormattedTextFieldDataNascimento().setText(cliente.getDataNascimento());
                 this.cadastroCliente.getjTIdEndereco().setText(String.valueOf(cliente.getEndereco().getId()));
-                this.cadastroCliente.getjTextFieldLogradouro().setText(cliente.getComplementoEndereco());
-                //this.cadastroCliente.getjTIdEndereco().setText(cliente.getId() + "");
+                //this.cadastroCliente.getjTextFieldLogradouro().setText(cliente.getComplementoEndereco());
                 this.cadastroCliente.getjFormattedTextFieldCEP().setText(cliente.getEndereco().getCep());
                 this.cadastroCliente.getjTextFieldBairro().setText(cliente.getEndereco().getBairro().getDescricao());
                 this.cadastroCliente.getjTextFieldCidade().setText(cliente.getEndereco().getCidade().getDescricao());
+                this.cadastroCliente.getjTextFieldComplementoEndereco().setText(cliente.getEndereco().getLogradouro());
                 
-                this.cadastroCliente.getjTextFieldID().setEditable(false);
+                //this.cadastroCliente.getjTextFieldID().setEditable(false);
+                
+                cadastroCliente.getjTextFieldID().setEnabled(false);
+                cadastroCliente.getjTIdEndereco().setEnabled(false);
+                cadastroCliente.getjCheckBoxStatus().setEnabled(false);
 
                 
             }

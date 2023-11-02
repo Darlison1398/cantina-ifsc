@@ -48,7 +48,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanelFundo" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanelFundo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -165,9 +168,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonCarregar" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
-                      <Component id="jButtonApagar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButtonApagar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="318" max="-2" attributes="0"/>
                       <Component id="jButtonSair" min="-2" pref="99" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -279,9 +282,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBoxFiltro" pref="137" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextFieldFiltrar" min="-2" pref="505" max="-2" attributes="0"/>
+                      <Component id="jComboBoxFiltro" min="-2" pref="222" max="-2" attributes="0"/>
+                      <EmptySpace pref="184" max="32767" attributes="0"/>
+                      <Component id="jTextFieldFiltrar" min="-2" pref="571" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButtonFiltrar" min="-2" pref="99" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
@@ -391,12 +394,12 @@
                         <Column editable="false" title="Email" type="java.lang.String"/>
                         <Column editable="false" title="Fone 1" type="java.lang.String"/>
                         <Column editable="false" title="Fone 2" type="java.lang.String"/>
-                        <Column editable="false" title="Cidade" type="java.lang.String"/>
-                        <Column editable="false" title="Rua" type="java.lang.String"/>
-                        <Column editable="false" title="Bairro" type="java.lang.String"/>
-                        <Column editable="false" title="Complemento" type="java.lang.String"/>
-                        <Column editable="false" title="Status" type="java.lang.String"/>
+                        <Column editable="false" title="Id_Endere&#xe7;o" type="java.lang.String"/>
                         <Column editable="false" title="CEP" type="java.lang.String"/>
+                        <Column editable="false" title="Cidade" type="java.lang.String"/>
+                        <Column editable="false" title="Bairro" type="java.lang.String"/>
+                        <Column editable="false" title="Comlemento" type="java.lang.String"/>
+                        <Column editable="false" title="Status" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

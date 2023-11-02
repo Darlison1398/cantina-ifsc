@@ -107,8 +107,11 @@ public class ControllerCadastroEndereco implements ActionListener {
             endereco.setLogradouro(this.cadastroEndereco.getjTLogradouro().getText());
             endereco.setStatus(this.cadastroEndereco.getjCheckBoxStatus().isSelected());
             
-            endereco.setBairro(service.BairroService.carregar("" + this.cadastroEndereco.getjTDescricaoBairro().getText()).get(0));
-            endereco.setCidade(service.CidadeService.carregar("descricao", this.cadastroEndereco.getjTDescricaoCidade().getText() + "").get(0));
+            
+            //endereco.setBairro(service.BairroService.carregar("" + this.cadastroEndereco.getjTDescricaoBairro().getText()).get(0));
+            endereco.setBairro(service.BairroService.carregar(codigoBairro));
+            endereco.setCidade(service.CidadeService.carregar(codigoCidade));
+            //endereco.setCidade(service.CidadeService.carregar("descricao", this.cadastroEndereco.getjTDescricaoCidade().getText() + "").get(0));
             
             if (codigoEndereco == 0 ) {
                 service.EnderecoService.adicionar(endereco);        
@@ -174,14 +177,14 @@ public class ControllerCadastroEndereco implements ActionListener {
         
         else if (e.getSource() == this.cadastroEndereco.getjButtonBuscaBairro()) {
             
-            codigo = 0; 
+            codigoBairro = 0; 
             BuscaBairro buscaBairro = new BuscaBairro(null, true);
             ControllerBuscaBairro controllerBuscaBairro = new ControllerBuscaBairro(buscaBairro);
             buscaBairro.setVisible(true);
             
-            if(codigo !=0){
+            if(codigoBairro !=0){
                 Bairro bairro = new Bairro();
-                bairro = service.BairroService.carregar(codigo);
+                bairro = service.BairroService.carregar(codigoBairro);
                 
                 //utilities.Utilities.ativa(false, cadastroEndereco.getjPanelBotoes());
                 //utilities.Utilities.limpaComponentes(true, cadastroEndereco.getjPanelDados());

@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.bo.Bairro;
+import model.bo.Cidade;
+import model.bo.Endereco;
 import model.bo.Fornecedor;
 
 
@@ -30,9 +33,8 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
             pstm.setBoolean(5, true);
             pstm.setString(6, objeto.getCnpj());
             pstm.setString(7, objeto.getInscricaoEstadual());
-            pstm.setString(8, objeto.getRazaoSocial());
-            pstm.setString(9, objeto.getComplementoEndereco());           
-            pstm.setInt(10, objeto.getId()); 
+            pstm.setInt(8, objeto.getEndereco().getId());
+            pstm.setString(9, objeto.getRazaoSocial());
             
             pstm.execute();
             
@@ -58,8 +60,13 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     @Override
     public List<Fornecedor> retrieve() {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, fornecedor.endereco_id"
-                           + " FROM mydb.fornecedor";
+        String sqlExecutar = "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, endereco.logradouro, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao " +
+                            "FROM mydb.fornecedor " +                               
+                            "LEFT OUTER JOIN endereco ON fornecedor.endereco_id = endereco.id " +
+                            "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
+                            "LEFT OUTER JOIN bairro ON endereco.bairro_id = bairro.id";
+                
+  
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -82,8 +89,26 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
                  fornecedor.setStatus(true);
                  fornecedor.setInscricaoEstadual(rst.getString("inscricaoestadual"));
                  fornecedor.setRazaoSocial(rst.getString("razaosocial"));
-                 fornecedor.setComplementoEndereco(rst.getString("endereco_id")); 
+                 //fornecedor.setComplementoEndereco(rst.getString("endereco_id")); 
                  
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("id")); 
+                 endereco.setCep(rst.getString("cep"));
+                 endereco.setLogradouro(rst.getString("logradouro"));
+                 
+                     // Configurar cidade
+                 Cidade cidade = new Cidade();
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 endereco.setCidade(cidade);
+                 
+                     // Configurar bairro
+                 Bairro bairro = new Bairro();
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+                 
+                 
+                 
+                 fornecedor.setEndereco(endereco);
                  listaFornecedor.add(fornecedor);
                  
              }
@@ -104,8 +129,15 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     @Override
     public Fornecedor retrieve(int parPK) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, fornecedor.endereco_id"
-                + " FROM mydb.fornecedor WHERE fornecedor.id = ?";
+        String sqlExecutar =  "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, endereco.logradouro, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao " +
+                            "FROM mydb.fornecedor " +                               
+                            "LEFT OUTER JOIN endereco ON fornecedor.endereco_id = endereco.id " +
+                            "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
+                            "LEFT OUTER JOIN bairro ON endereco.bairro_id = bairro.id " +
+                            "WHERE fornecedor.id = ?";
+                
+                
+               
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -127,7 +159,26 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
                  fornecedor.setStatus(true);
                  fornecedor.setInscricaoEstadual(rst.getString("inscricaoestadual"));
                  fornecedor.setRazaoSocial(rst.getString("razaosocial"));
-                 fornecedor.setComplementoEndereco(rst.getString("endereco_id"));             
+                 //fornecedor.setComplementoEndereco(rst.getString("endereco_id")); 
+                 
+                           
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("id"));
+                 endereco.setCep(rst.getString("cep"));
+                 endereco.setLogradouro(rst.getString("logradouro"));
+                 
+                                  
+                     // Configurar cidade
+                 Cidade cidade = new Cidade();
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 endereco.setCidade(cidade);
+                 
+                     // Configurar bairro
+                 Bairro bairro = new Bairro();
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+                 
+                 fornecedor.setEndereco(endereco);
                  
              }
              
@@ -147,8 +198,14 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     @Override
     public List<Fornecedor> retrieve(String parString) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, fornecedor.endereco_id"
-                + " FROM fornecedor WHERE nome LIKE ?";
+        String sqlExecutar =   "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, endereco.logradouro, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao " +
+                            "FROM mydb.fornecedor " +                               
+                            "LEFT OUTER JOIN endereco ON fornecedor.endereco_id = endereco.id " +
+                            "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
+                            "LEFT OUTER JOIN bairro ON endereco.bairro_id = bairro.id " +
+                            "WHERE nome LIKE ?";
+                
+                
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -172,7 +229,28 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
                  fornecedor.setStatus(true);
                  fornecedor.setInscricaoEstadual(rst.getString("inscricaoestadual"));
                  fornecedor.setRazaoSocial(rst.getString("razaosocial"));
-                 fornecedor.setComplementoEndereco(rst.getString("endereco_id"));
+                 //fornecedor.setComplementoEndereco(rst.getString("endereco_id"));
+                 
+                                            
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("id"));
+                 endereco.setCep(rst.getString("cep"));
+                 endereco.setLogradouro(rst.getString("logradouro"));
+                 
+                                  
+                     // Configurar cidade
+                 Cidade cidade = new Cidade();
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 endereco.setCidade(cidade);
+                 
+                     // Configurar bairro
+                 Bairro bairro = new Bairro();
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+                 
+                 fornecedor.setEndereco(endereco);
+                 
+                 
                  
                  listaFornecedor.add(fornecedor);
                  

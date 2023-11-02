@@ -84,10 +84,10 @@ public class ControllerBuscaEndereco implements ActionListener{
                 tabela.addRow(new Object[]{enderecoAtual.getId(),
                                            enderecoAtual.getCep(),
                                            enderecoAtual.getLogradouro(),
-                                           //enderecoAtual.getCidade().getId(),
-                                           //enderecoAtual.getCidade().getDescricao(),
-                                           //enderecoAtual.getBairro().getId(),
-                                           //enderecoAtual.getBairro().getDescricao()
+                                           enderecoAtual.getStatus(),
+                                           enderecoAtual.getCidade().getDescricao(),
+                                           enderecoAtual.getBairro().getDescricao()
+                
                 });
                 
             }

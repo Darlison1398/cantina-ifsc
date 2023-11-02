@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
 import model.bo.Cliente;
 import model.bo.Endereco;
 import model.bo.Fornecedor;
@@ -35,6 +37,25 @@ public class ControllerCadastroFornecedor implements ActionListener {
         this.cadastroFornecedor.getjButtonPesquisarCep().addActionListener(this);
         this.cadastroFornecedor.getjButtonAdcionarCep().addActionListener(this);
         
+         
+        List<Endereco> listaEndereco = new ArrayList<Endereco>();
+        listaEndereco = service.EnderecoService.carregar();
+        
+        
+        this.cadastroFornecedor.getjTBairro().removeAll();
+        this.cadastroFornecedor.getjTCidade().removeAll();
+        this.cadastroFornecedor.getjTComplementoEndereco().removeAll();
+        this.cadastroFornecedor.getjFCep().removeAll();
+        
+        for (Endereco enderecoAtual : listaEndereco) {
+            this.cadastroFornecedor.getjFCep().setText(enderecoAtual.getCep());
+            this.cadastroFornecedor.getjTCidade().setText(enderecoAtual.getCidade().getDescricao());
+            this.cadastroFornecedor.getjTBairro().setText(enderecoAtual.getBairro().getDescricao());
+            this.cadastroFornecedor.getjTComplementoEndereco().setText(enderecoAtual.getLogradouro());
+        }
+        
+        
+        
         utilities.Utilities.ativa(true, this.cadastroFornecedor.getjPanelBotoes());
         utilities.Utilities.limpaComponentes(false, this.cadastroFornecedor.getjPanelDados());
     }
@@ -46,6 +67,7 @@ public class ControllerCadastroFornecedor implements ActionListener {
             utilities.Utilities.ativa(false, this.cadastroFornecedor.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroFornecedor.getjPanelDados());
             
+            cadastroFornecedor.getjTIdEndereco().setEnabled(false);
             cadastroFornecedor.getjTId().setEnabled(false);
             cadastroFornecedor.getjTCidade().setEnabled(false);
             cadastroFornecedor.getjTBairro().setEnabled(false);
@@ -67,7 +89,9 @@ public class ControllerCadastroFornecedor implements ActionListener {
             
             Fornecedor fornecedor = new Fornecedor();
             
-            fornecedor.setId(Dao.ClasseDados.fornecedores.size()+1);
+            //fornecedor.setId(Dao.ClasseDados.fornecedores.size()+1);
+            
+            
             fornecedor.setInscricaoEstadual(this.cadastroFornecedor.getjTInscricaoEstadual().getText());
             fornecedor.setNome(this.cadastroFornecedor.getjTNomeFantasia().getText());
             fornecedor.setEmail(this.cadastroFornecedor.getjTEmail().getText());
@@ -75,19 +99,21 @@ public class ControllerCadastroFornecedor implements ActionListener {
             fornecedor.setFone1(this.cadastroFornecedor.getjFFone1().getText());
             fornecedor.setFone2(this.cadastroFornecedor.getjFFone2().getText());
             fornecedor.setComplementoEndereco(this.cadastroFornecedor.getjTComplementoEndereco().getText());
+            fornecedor.setStatus(this.cadastroFornecedor.getjCheckBoxInativo().isSelected());
+            fornecedor.setRazaoSocial(this.cadastroFornecedor.getjTRazaoSocial().getText());
             
-            fornecedor.setEndereco(Dao.ClasseDados.enderecos.get(idEndereco));
-            Resposta resposta =new Resposta(null, true);
-            ControllerResposta controllerResposta= new ControllerResposta(resposta);
+            fornecedor.setEndereco(service.EnderecoService.carregar(codigoEndereco));
             
-            utilities.Utilities.ativa(true, this.cadastroFornecedor.getjPanelBotoes());
-            utilities.Utilities.limpaComponentes(false, this.cadastroFornecedor.getjPanelDados());
-            
-            if(this.cadastroFornecedor.getjTId().getText().equalsIgnoreCase("")){
+            if(codigoFornecedor == 0){
                 service.FornecedorService.adicionar(fornecedor);
+                utilities.Utilities.ativa(true, this.cadastroFornecedor.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(false, this.cadastroFornecedor.getjPanelDados());
+                
             }else{
-                fornecedor.setId(Integer.parseInt(this.cadastroFornecedor.getjTId().getText()));
+                fornecedor.setId(codigoFornecedor);
                 service.FornecedorService.atualizar(fornecedor);
+                utilities.Utilities.ativa(true, this.cadastroFornecedor.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(false, this.cadastroFornecedor.getjPanelDados());
             }
             
             utilities.Utilities.ativa(true, cadastroFornecedor.getjPanelBotoes());
@@ -122,8 +148,19 @@ public class ControllerCadastroFornecedor implements ActionListener {
                 this.cadastroFornecedor.getjTInscricaoEstadual().setText(fornecedor.getInscricaoEstadual());
                 this.cadastroFornecedor.getjTRazaoSocial().setText(fornecedor.getRazaoSocial());
                 this.cadastroFornecedor.getjFCnpj().setText(fornecedor.getCnpj());
-                this.cadastroFornecedor.getjTComplementoEndereco().setText(fornecedor.getComplementoEndereco());
+                this.cadastroFornecedor.getjTIdEndereco().setText(fornecedor.getEndereco().getId() + "");
+                this.cadastroFornecedor.getjFCep().setText(fornecedor.getEndereco().getCep());
+                this.cadastroFornecedor.getjTCidade().setText(fornecedor.getEndereco().getCidade().getDescricao());
+                this.cadastroFornecedor.getjTBairro().setText(fornecedor.getEndereco().getBairro().getDescricao());
+                this.cadastroFornecedor.getjTComplementoEndereco().setText(fornecedor.getEndereco().getLogradouro());
+                
                 this.cadastroFornecedor.getjCheckBoxInativo().setSelected(true);
+                
+                cadastroFornecedor.getjTIdEndereco().setEnabled(false);
+                cadastroFornecedor.getjTId().setEnabled(false);
+                cadastroFornecedor.getjCheckBoxInativo().setEnabled(false);
+                //cadastroFornecedor.getjTCidade().setEnabled(false);
+                //cadastroFornecedor.getjTBairro().setEnabled(false);
                 
                 
              
@@ -138,10 +175,25 @@ public class ControllerCadastroFornecedor implements ActionListener {
             
 
         } else if (e.getSource() == this.cadastroFornecedor.getjButtonPesquisarCep()){
+            codigoEndereco = 0;
             BuscaEndereco buscaEndereco = new BuscaEndereco(null, true);
             ControllerBuscaEndereco controllerBuscaEndereco = new ControllerBuscaEndereco(buscaEndereco);
-           // buscaEndereco.addWindowListener(disposeListenerEndereco);
             buscaEndereco.setVisible(true);
+            
+            if (codigoEndereco != 0) {
+                Endereco endereco = new Endereco();
+                endereco = service.EnderecoService.carregar(codigoEndereco);
+                
+                this.cadastroFornecedor.getjTIdEndereco().setText(endereco.getId() + "");
+                this.cadastroFornecedor.getjFCep().setText(endereco.getCep());
+                this.cadastroFornecedor.getjTCidade().setText(endereco.getCidade().getDescricao());
+                this.cadastroFornecedor.getjTBairro().setText(endereco.getBairro().getDescricao());
+                this.cadastroFornecedor.getjTComplementoEndereco().setText(endereco.getLogradouro());
+                
+                
+            }
+            
+            
             
         } else if(e.getSource() == this.cadastroFornecedor.getjButtonAdcionarCep()){
             CadastroEndereco cadastroEndereco = new CadastroEndereco();

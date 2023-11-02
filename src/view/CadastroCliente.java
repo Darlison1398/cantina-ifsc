@@ -152,13 +152,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         this.jTextFieldID = jTextFieldID;
     }
 
-    public JTextField getjTextFieldLogradouro() {
-        return jTextFieldLogradouro;
-    }
 
-    public void setjTextFieldLogradouro(JTextField jTextFieldLogradouro) {
-        this.jTextFieldLogradouro = jTextFieldLogradouro;
-    }
 
     public JTextField getjTextFieldMatricula() {
         return jTextFieldMatricula;
@@ -217,8 +211,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
         jButtonPesquisarCep = new javax.swing.JButton();
         jButtonAdicionarCep = new javax.swing.JButton();
-        jLabelLograouro = new javax.swing.JLabel();
-        jTextFieldLogradouro = new javax.swing.JTextField();
         jLabelCidade = new javax.swing.JLabel();
         jTextFieldCidade = new javax.swing.JTextField();
         jLabelBairro = new javax.swing.JLabel();
@@ -386,14 +378,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jButtonAdicionarCep.setBackground(new java.awt.Color(153, 255, 153));
         jButtonAdicionarCep.setText("+");
 
-        jLabelLograouro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelLograouro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLograouro.setText("Rua");
-        jLabelLograouro.setMaximumSize(new java.awt.Dimension(13, 16));
-        jLabelLograouro.setMinimumSize(new java.awt.Dimension(13, 16));
-
-        jTextFieldLogradouro.setEditable(false);
-
         jLabelCidade.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCidade.setText("Cidade");
@@ -415,7 +399,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
 
         jLabelComplementoEndereco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabelComplementoEndereco.setText("Compl.");
+        jLabelComplementoEndereco.setText("Complemento");
 
         jTIdEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,26 +466,21 @@ public class CadastroCliente extends javax.swing.JFrame {
                                 .addComponent(jFormattedTextFieldFone2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jCheckBoxStatus)))
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                                .addComponent(jLabelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                                .addComponent(jLabelLograouro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldLogradouro)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBairro)
-                            .addComponent(jLabelComplementoEndereco))
+                        .addComponent(jLabelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelBairro)
+                        .addGap(10, 10, 10)
                         .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldComplementoEndereco)
                             .addComponent(jTextFieldBairro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanelDadosLayout.createSequentialGroup()
                                 .addComponent(jTIdEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanelDadosLayout.createSequentialGroup()
+                        .addComponent(jLabelComplementoEndereco)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldComplementoEndereco)))
                 .addGap(68, 68, 68))
         );
         jPanelDadosLayout.setVerticalGroup(
@@ -553,10 +532,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelComplementoEndereco)
-                    .addComponent(jLabelLograouro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldComplementoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jLabelNascimento.getAccessibleContext().setAccessibleDescription("Data Nascimento"); // NOI18N
@@ -859,7 +836,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFone1;
     private javax.swing.JLabel jLabelFone2;
     private javax.swing.JLabel jLabelId;
-    private javax.swing.JLabel jLabelLograouro;
     private javax.swing.JLabel jLabelMatricula;
     private javax.swing.JLabel jLabelNascimento;
     private javax.swing.JLabel jLabelNome;
@@ -875,7 +851,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldComplementoEndereco;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldID;
-    private javax.swing.JTextField jTextFieldLogradouro;
     private javax.swing.JTextField jTextFieldMatricula;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
