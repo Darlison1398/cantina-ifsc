@@ -79,7 +79,7 @@ public class ControllerBuscaFornecedor implements ActionListener {
                                            fornecedorAtual.getEndereco().getCep(),
                                            fornecedorAtual.getEndereco().getCidade().getDescricao(),
                                            fornecedorAtual.getEndereco().getBairro().getDescricao(),
-                                           fornecedorAtual.getEndereco().getLogradouro(),
+                                           fornecedorAtual.getComplementoEndereco(),
                        
                                            //fornecedorAtual.getComplementoEndereco(),
                                            fornecedorAtual.getStatus(),

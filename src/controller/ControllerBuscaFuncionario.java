@@ -74,16 +74,18 @@ public class ControllerBuscaFuncionario implements ActionListener{
            for (Funcionario funcionarioAtual : listaFuncionario) {
                 tabela.addRow(new Object[]{funcionarioAtual.getId(), 
                                            funcionarioAtual.getNome(),
+                                           funcionarioAtual.getCpf(),
+                                           funcionarioAtual.getRg(),
                                            funcionarioAtual.getFone1(),
                                            funcionarioAtual.getFone2(),
                                            funcionarioAtual.getEmail(),
-                                           funcionarioAtual.getCpf(),
-                                           funcionarioAtual.getRg(),
                                            funcionarioAtual.getUsuario(),
                                            funcionarioAtual.getSenha(),
-                                           funcionarioAtual.getStatus(),
-                                           funcionarioAtual.getEndereco(),
+                                           funcionarioAtual.getEndereco().getCep(),
+                                           funcionarioAtual.getEndereco().getCidade().getDescricao(),
+                                           funcionarioAtual.getEndereco().getBairro().getDescricao(),
                                            funcionarioAtual.getComplementoEndereco(),
+                                           funcionarioAtual.getStatus()
                                        
                 
                 });

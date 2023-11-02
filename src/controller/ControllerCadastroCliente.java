@@ -43,14 +43,14 @@ public class ControllerCadastroCliente implements ActionListener {
         this.cadastroCliente.getjTextFieldBairro().removeAll();
         this.cadastroCliente.getjTextFieldCidade().removeAll();
         this.cadastroCliente.getjFormattedTextFieldCEP().removeAll();
-        this.cadastroCliente.getjTextFieldComplementoEndereco().removeAll();
+        //this.cadastroCliente.getjTextFieldComplementoEndereco().removeAll();
      
         
         for (Endereco enderecoAtual : listaEndereco) {
             this.cadastroCliente.getjTextFieldBairro().setText(enderecoAtual.getBairro().getDescricao());
             this.cadastroCliente.getjTextFieldCidade().setText(enderecoAtual.getCidade().getDescricao());
             this.cadastroCliente.getjFormattedTextFieldCEP().setText(enderecoAtual.getCep());
-            this.cadastroCliente.getjTextFieldComplementoEndereco().setText(enderecoAtual.getLogradouro());
+            //this.cadastroCliente.getjTextFieldComplementoEndereco().setText(enderecoAtual.getLogradouro());
         }
 
         utilities.Utilities.ativa(true, this.cadastroCliente.getjPanelBotoes());
@@ -136,13 +136,10 @@ public class ControllerCadastroCliente implements ActionListener {
                 this.cadastroCliente.getjTextFieldMatricula().setText(cliente.getMatricula());
                 this.cadastroCliente.getjFormattedTextFieldDataNascimento().setText(cliente.getDataNascimento());
                 this.cadastroCliente.getjTIdEndereco().setText(String.valueOf(cliente.getEndereco().getId()));
-                //this.cadastroCliente.getjTextFieldLogradouro().setText(cliente.getComplementoEndereco());
                 this.cadastroCliente.getjFormattedTextFieldCEP().setText(cliente.getEndereco().getCep());
                 this.cadastroCliente.getjTextFieldBairro().setText(cliente.getEndereco().getBairro().getDescricao());
                 this.cadastroCliente.getjTextFieldCidade().setText(cliente.getEndereco().getCidade().getDescricao());
-                this.cadastroCliente.getjTextFieldComplementoEndereco().setText(cliente.getEndereco().getLogradouro());
-                
-                //this.cadastroCliente.getjTextFieldID().setEditable(false);
+                this.cadastroCliente.getjTextFieldComplementoEndereco().setText(cliente.getComplementoEndereco());
                 
                 cadastroCliente.getjTextFieldID().setEnabled(false);
                 cadastroCliente.getjTIdEndereco().setEnabled(false);
@@ -166,13 +163,10 @@ public class ControllerCadastroCliente implements ActionListener {
                 endereco = service.EnderecoService.carregar(codigoEndereco);
                 
                 this.cadastroCliente.getjTIdEndereco().setText(endereco.getId() + "");
-                //this.cadastroCliente.getjTextFieldBairro().setText(endereco.getBairro().getId() + "");
                 this.cadastroCliente.getjTextFieldBairro().setText(endereco.getBairro().getDescricao());
-                //this.cadastroCliente.getjTextFieldCidade().setText(endereco.getCidade().getId() + "" );
                 this.cadastroCliente.getjTextFieldCidade().setText(endereco.getCidade().getDescricao());
                 this.cadastroCliente.getjFormattedTextFieldCEP().setText(endereco.getCep());
-                this.cadastroCliente.getjTextFieldComplementoEndereco().setText(endereco.getLogradouro());
-                
+                //this.cadastroCliente.getjTextFieldComplementoEndereco().setText(endereco.getLogradouro());
                 
             }
             

@@ -83,7 +83,6 @@ public class ControllerBuscaEndereco implements ActionListener{
             for (Endereco enderecoAtual : listaEnderecos) {
                 tabela.addRow(new Object[]{enderecoAtual.getId(),
                                            enderecoAtual.getCep(),
-                                           enderecoAtual.getLogradouro(),
                                            enderecoAtual.getStatus(),
                                            enderecoAtual.getCidade().getDescricao(),
                                            enderecoAtual.getBairro().getDescricao()

@@ -261,7 +261,7 @@ public class BuscaEndereco extends javax.swing.JDialog {
         jButtonFiltrar.setBorder(null);
 
         jComboBoxFiltro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ID", "CIDADE", "BAIRRO", "LOGRADOURO" }));
+        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ID", "CIDADE", "BAIRRO" }));
 
         javax.swing.GroupLayout jPanelFiltroLayout = new javax.swing.GroupLayout(jPanelFiltro);
         jPanelFiltro.setLayout(jPanelFiltroLayout);
@@ -295,14 +295,14 @@ public class BuscaEndereco extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "CEP", "Logradouro", "Status", "Cidade", "Bairro"
+                "ID", "CEP", "Status", "Cidade", "Bairro"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -320,13 +320,11 @@ public class BuscaEndereco extends javax.swing.JDialog {
             jTableDados.getColumnModel().getColumn(1).setResizable(false);
             jTableDados.getColumnModel().getColumn(1).setPreferredWidth(60);
             jTableDados.getColumnModel().getColumn(2).setResizable(false);
-            jTableDados.getColumnModel().getColumn(2).setPreferredWidth(80);
+            jTableDados.getColumnModel().getColumn(2).setPreferredWidth(40);
             jTableDados.getColumnModel().getColumn(3).setResizable(false);
-            jTableDados.getColumnModel().getColumn(3).setPreferredWidth(40);
+            jTableDados.getColumnModel().getColumn(3).setPreferredWidth(70);
             jTableDados.getColumnModel().getColumn(4).setResizable(false);
             jTableDados.getColumnModel().getColumn(4).setPreferredWidth(70);
-            jTableDados.getColumnModel().getColumn(5).setResizable(false);
-            jTableDados.getColumnModel().getColumn(5).setPreferredWidth(70);
         }
 
         javax.swing.GroupLayout jPanelDados2Layout = new javax.swing.GroupLayout(jPanelDados2);

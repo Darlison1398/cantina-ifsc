@@ -81,7 +81,6 @@ public class ControllerBuscaCliente implements ActionListener {
                                            clienteAtual.getEndereco().getCep(),
                                            clienteAtual.getEndereco().getCidade(),
                                            clienteAtual.getEndereco().getBairro(),
-                                           clienteAtual.getEndereco().getLogradouro(),
                                            clienteAtual.getComplementoEndereco()
                                            
                                        

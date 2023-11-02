@@ -2,11 +2,14 @@
 package controller;
 
 import static Dao.ClasseDados.funcionarios;
+import static controller.ControllerCadastroCliente.codigoEndereco;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
 import model.bo.Endereco;
 import model.bo.Funcionario;
 import view.BuscaEndereco;
@@ -31,7 +34,22 @@ public class ControllerCadastroFuncionario implements ActionListener {
         this.cadastroFuncionario.getjButtonConsultar().addActionListener(this);
         this.cadastroFuncionario.getjButtonAdicionarCep().addActionListener(this);
         this.cadastroFuncionario.getjButtonPesquisarCep().addActionListener(this);
-
+        
+        List<Endereco> listaEndereco = new ArrayList<Endereco>();
+        listaEndereco = service.EnderecoService.carregar();
+        
+       
+        this.cadastroFuncionario.getjTextFieldBairro().removeAll();
+        this.cadastroFuncionario.getjTextFieldCidade().removeAll();
+        this.cadastroFuncionario.getjFormattedTextFieldCEP().removeAll();
+        
+        for (Endereco enderecoAtual: listaEndereco) {
+            
+            this.cadastroFuncionario.getjTextFieldBairro().setText(enderecoAtual.getBairro().getDescricao());
+            this.cadastroFuncionario.getjTextFieldCidade().setText(enderecoAtual.getCidade().getDescricao());
+            this.cadastroFuncionario.getjFormattedTextFieldCEP().setText(enderecoAtual.getCep());
+        }
+        
         utilities.Utilities.ativa(true, this.cadastroFuncionario.getjPanelBotoes());
         utilities.Utilities.limpaComponentes(false, this.cadastroFuncionario.getjPanelDados());
     }
@@ -44,7 +62,6 @@ public class ControllerCadastroFuncionario implements ActionListener {
             utilities.Utilities.limpaComponentes(true, this.cadastroFuncionario.getjPanelDados());
             
             this.cadastroFuncionario.getjTextFieldID().setEnabled(false);
-            //this.cadastroFuncionario.getUf().setEnabled(false);
             this.cadastroFuncionario.getjTextFieldBairro().setEnabled(false);
             this.cadastroFuncionario.getjTextFieldCidade().setEnabled(false);
 
@@ -73,21 +90,23 @@ public class ControllerCadastroFuncionario implements ActionListener {
             funcionario.setComplementoEndereco(this.cadastroFuncionario.getjTextFieldComplementoEndereco().getText());
             funcionario.setStatus(this.cadastroFuncionario.getjCheckBoxStatus().isSelected());
             funcionario.setUsuario(this.cadastroFuncionario.getjTextFieldUsuario().getText());
-            funcionario.setSenha(this.cadastroFuncionario.getjPasswordFieldSenhaUsuario().getToolTipText());
+            funcionario.setSenha(this.cadastroFuncionario.getjPasswordFieldSenhaUsuario().getText());
             
-            
-            
-            //funcionario.setEndereco(Dao.ClasseDados.enderecos.get(idEndereco));
+            funcionario.setEndereco(service.EnderecoService.carregar(codigoEndereco));
             
             utilities.Utilities.ativa(true, cadastroFuncionario.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, cadastroFuncionario.getjPanelDados());
             
-            if (this.cadastroFuncionario.getjTextFieldID().getText().equalsIgnoreCase("")){
+            if (codigoFuncionario ==0){
                 service.FuncionarioService.adicionar(funcionario);
+               utilities.Utilities.ativa(true, cadastroFuncionario.getjPanelBotoes());
+               utilities.Utilities.limpaComponentes(false, cadastroFuncionario.getjPanelDados());
             
             } else {
-                funcionario.setId(Integer.parseInt(this.cadastroFuncionario.getjTextFieldID().getText()));
+                funcionario.setId(codigoFuncionario);
                 service.FuncionarioService.atualizar(funcionario);
+                utilities.Utilities.ativa(true, cadastroFuncionario.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(false, cadastroFuncionario.getjPanelDados());
                 
             }
             
@@ -122,7 +141,10 @@ public class ControllerCadastroFuncionario implements ActionListener {
                 this.cadastroFuncionario.getjCheckBoxStatus().setSelected(true);
                 this.cadastroFuncionario.getjFormattedTextFieldCPF().setText(funcionario.getCpf());
                 this.cadastroFuncionario.getjFormattedTextFieldRg().setText(funcionario.getRg());
-                
+                this.cadastroFuncionario.getjFormattedTextFieldCEP().setText(funcionario.getEndereco().getCep());
+                this.cadastroFuncionario.getjTextFieldCidade().setText(funcionario.getEndereco().getCidade().getDescricao());
+                this.cadastroFuncionario.getjTextFieldBairro().setText(funcionario.getEndereco().getBairro().getDescricao());
+                this.cadastroFuncionario.getjTextFieldComplementoEndereco().setText(funcionario.getComplementoEndereco());
                 
             
             }
@@ -131,9 +153,26 @@ public class ControllerCadastroFuncionario implements ActionListener {
             
              
         } else if (e.getSource() == this.cadastroFuncionario.getjButtonPesquisarCep()){
+            codigoEndereco = 0;
              BuscaEndereco buscaEndereco = new BuscaEndereco(null, true);
              ControllerBuscaEndereco controllerBuscaEndereco = new ControllerBuscaEndereco(buscaEndereco);
              buscaEndereco.setVisible(true);
+                  
+            if (codigoEndereco !=0) {
+                Endereco endereco = new Endereco();
+                endereco = service.EnderecoService.carregar(codigoEndereco);
+                
+                //this.cadastroFuncionario.getjTIdEndereco().setText(endereco.getId() + "");
+                this.cadastroFuncionario.getjTextFieldBairro().setText(endereco.getBairro().getDescricao());
+                this.cadastroFuncionario.getjTextFieldCidade().setText(endereco.getCidade().getDescricao());
+                this.cadastroFuncionario.getjFormattedTextFieldCEP().setText(endereco.getCep());
+                //this.cadastroCliente.getjTextFieldComplementoEndereco().setText(endereco.getLogradouro());
+                
+            }
+            
+            
+             
+             
                 
         } else if (e.getSource() == this.cadastroFuncionario.getjButtonAdicionarCep()){
              CadastroEndereco cadastroEndereco = new CadastroEndereco();

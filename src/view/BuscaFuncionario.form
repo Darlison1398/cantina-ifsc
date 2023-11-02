@@ -26,7 +26,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanelFundo" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanelFundo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -143,9 +146,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonCarregar" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="276" max="-2" attributes="0"/>
-                      <Component id="jButtonApagar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButtonApagar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
                       <Component id="jButtonSair" min="-2" pref="99" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -156,11 +159,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButtonSair" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButtonCarregar" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jButtonSair" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jButtonApagar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jButtonCarregar" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -260,7 +263,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jComboBoxFiltrar" min="-2" pref="156" max="-2" attributes="0"/>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <EmptySpace pref="278" max="32767" attributes="0"/>
                       <Component id="jTextFieldFiltrar" min="-2" pref="518" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButtonFiltrar" min="-2" pref="99" max="-2" attributes="0"/>
@@ -364,15 +367,15 @@
                         <Column editable="true" title="Nome" type="java.lang.String"/>
                         <Column editable="true" title="CPF" type="java.lang.String"/>
                         <Column editable="true" title="RG" type="java.lang.String"/>
-                        <Column editable="true" title="Fone" type="java.lang.String"/>
-                        <Column editable="true" title="Fone" type="java.lang.String"/>
+                        <Column editable="true" title="Fone1" type="java.lang.String"/>
+                        <Column editable="true" title="Fone2" type="java.lang.String"/>
+                        <Column editable="true" title="Email" type="java.lang.String"/>
+                        <Column editable="true" title="Usu&#xe1;rio" type="java.lang.String"/>
+                        <Column editable="true" title="Senha" type="java.lang.String"/>
                         <Column editable="true" title="CEP" type="java.lang.String"/>
                         <Column editable="true" title="Cidade" type="java.lang.String"/>
                         <Column editable="true" title="Bairro" type="java.lang.String"/>
-                        <Column editable="true" title="Rua" type="java.lang.String"/>
                         <Column editable="true" title="Complemento" type="java.lang.String"/>
-                        <Column editable="true" title="Usur&#xe1;rio" type="java.lang.String"/>
-                        <Column editable="true" title="Senha" type="java.lang.String"/>
                         <Column editable="true" title="Status" type="java.lang.Boolean"/>
                       </Table>
                     </Property>

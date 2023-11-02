@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.bo.Bairro;
+import model.bo.Cidade;
+import model.bo.Endereco;
 import model.bo.Funcionario;
 
 public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
@@ -14,8 +17,8 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     @Override
     public void create(Funcionario objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO funcionario (nome, fone1, fone2, email, status, rg, cpf, usuario, senha, endereco_id)"
-                           + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlExecutar = "INSERT INTO funcionario (nome, fone1, fone2, email, status, rg, cpf, usuario, senha, endereco_id, complementoEndereco)"
+                           + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm = null;
         
         
@@ -31,8 +34,8 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
             pstm.setString(7, objeto.getCpf());
             pstm.setString(8, objeto.getUsuario());
             pstm.setString(9, objeto.getSenha());
-            pstm.setString(10, objeto.getComplementoEndereco());
-            pstm.setInt(11, objeto.getId());
+            pstm.setInt(10, objeto.getEndereco().getId());
+            pstm.setString(11, objeto.getComplementoEndereco());
            
             pstm.execute();
             
@@ -61,8 +64,14 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     public List<Funcionario> retrieve() {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, funcionario.endereco_id, funcionario.complementoEndereco "
-                            + "FROM mydb.funcionario";
+        String sqlExecutar =  "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+                            "FROM mydb.funcionario " +                               
+                            "LEFT OUTER JOIN endereco ON funcionario.endereco_id = endereco.id " +
+                            "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
+                            "LEFT OUTER JOIN bairro ON endereco.bairro_id = bairro.id";
+                
+                
+
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -83,11 +92,25 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
                  funcionario.setEmail(rst.getString("email"));
                  funcionario.setCpf(rst.getString("cpf"));
                  funcionario.setRg(rst.getString("rg"));
-                 //cliente.setStatus(rst.getBoolean("status"));
                  funcionario.setStatus(true);
                  funcionario.setUsuario(rst.getString("usuario"));
                  funcionario.setSenha(rst.getString("senha"));
-                 funcionario.setComplementoEndereco(rst.getString("endereco_id"));
+                 funcionario.setComplementoEndereco(rst.getString("complementoEndereco"));
+                   
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("id")); 
+                 endereco.setCep(rst.getString("cep"));
+                 
+                 Cidade cidade = new Cidade();
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 endereco.setCidade(cidade);
+                 
+                 Bairro bairro = new Bairro();
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+            
+          
+                 funcionario.setEndereco(endereco);
                
                  listaFuncionario.add(funcionario);
                  
@@ -111,8 +134,13 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     public Funcionario retrieve(int parPK) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, funcionario.endereco_id, funcionario.complementoEndereco "
-                            + "FROM mydb.funcionario WHERE funcionario.id = ?";
+        String sqlExecutar =  "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+                            "FROM mydb.funcionario " +                               
+                            "LEFT OUTER JOIN endereco ON funcionario.endereco_id = endereco.id " +
+                            "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
+                            "LEFT OUTER JOIN bairro ON endereco.bairro_id = bairro.id " +
+                            " WHERE funcionario.id = ?";
+                
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -135,8 +163,23 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
                  funcionario.setStatus(true);
                  funcionario.setUsuario(rst.getString("usuario"));
                  funcionario.setSenha(rst.getString("senha"));             
-                 funcionario.setComplementoEndereco(rst.getString("endereco_id"));
+                 funcionario.setComplementoEndereco(rst.getString("complementoEndereco"));
                          
+                                  
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("id")); 
+                 endereco.setCep(rst.getString("cep"));
+                 
+                 Cidade cidade = new Cidade();
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 endereco.setCidade(cidade);
+                 
+                 Bairro bairro = new Bairro();
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+            
+          
+                 funcionario.setEndereco(endereco);
              }
             
              
@@ -157,8 +200,13 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     @Override
     public List<Funcionario> retrieve(String parString) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, funcionario.endereco_id, funcionario.complementoEndereco "
-                            + "FROM funcionario WHERE nome LIKE ?";
+        String sqlExecutar = "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+                            "FROM mydb.funcionario " +                               
+                            "LEFT OUTER JOIN endereco ON funcionario.endereco_id = endereco.id " +
+                            "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
+                            "LEFT OUTER JOIN bairro ON endereco.bairro_id = bairro.id " +
+                            " WHERE nome LIKE ?";
+                
         PreparedStatement pstm = null;
         ResultSet rst = null;
         
@@ -168,7 +216,6 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
         try{
              pstm = conexao.prepareStatement(sqlExecutar);
              pstm.setString(1, "%" + parString + "%");
-             //pstm.setInt(2, parId);
              rst = pstm.executeQuery();
              
              
@@ -186,7 +233,22 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
                  funcionario.setStatus(true);
                  funcionario.setUsuario(rst.getString("usuario"));
                  funcionario.setSenha(rst.getString("senha"));
-                 funcionario.setComplementoEndereco(rst.getString("endereco_id"));
+                 funcionario.setComplementoEndereco(rst.getString("complementoEndereco"));
+                                   
+                 Endereco endereco = new Endereco();
+                 endereco.setId(rst.getInt("id")); 
+                 endereco.setCep(rst.getString("cep"));
+                 
+                 Cidade cidade = new Cidade();
+                 cidade.setDescricao(rst.getString("cidade_descricao"));
+                 endereco.setCidade(cidade);
+                 
+                 Bairro bairro = new Bairro();
+                 bairro.setDescricao(rst.getString("bairro_descricao"));
+                 endereco.setBairro(bairro);
+            
+          
+                 funcionario.setEndereco(endereco);
                
                  listaFuncionario.add(funcionario);
              }

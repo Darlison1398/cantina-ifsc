@@ -21,17 +21,17 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
     public void create(Endereco objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO endereco (cep, logradouro, status, cidade_id, bairro_id) values(?,?,?,?,?)";
+        String sqlExecutar = "INSERT INTO endereco (cep, status, cidade_id, bairro_id) values(?,?,?,?)";
         PreparedStatement pstm = null;
         
         try {
             
              pstm = conexao.prepareStatement(sqlExecutar);
              pstm.setString(1, objeto.getCep());
-             pstm.setString(2, objeto.getLogradouro());
-             pstm.setBoolean(3, objeto.getStatus());
-             pstm.setInt(4, objeto.getCidade().getId());
-             pstm.setInt(5, objeto.getBairro().getId());
+             //pstm.setString(2, objeto.getLogradouro());
+             pstm.setBoolean(2, objeto.getStatus());
+             pstm.setInt(3, objeto.getCidade().getId());
+             pstm.setInt(4, objeto.getBairro().getId());
              pstm.execute();
         
             
@@ -60,7 +60,6 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "SELECT endereco.id, "
                 + "endereco.cep, "
-                + "endereco.logradouro, "
                 + "endereco.status, "
                 + "endereco.cidade_id, "
                 + "endereco.bairro_id, "
@@ -85,10 +84,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  Endereco endereco = new Endereco();
                  endereco.setId(rst.getInt("id"));
                  endereco.setCep(rst.getString("cep"));
-                 endereco.setLogradouro(rst.getString("logradouro"));
                  endereco.setStatus(true);
-                 //endereco.setBairro(rst.getInt(("bairro_id")));
-                 //endereco.setCidade(rst.getInt(("cidade_id")));
                  
                  Bairro bairro = new Bairro();
                  bairro.setId(rst.getInt("bairro_id"));
@@ -123,7 +119,6 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
         String sqlExecutar = "SELECT endereco.id, "
                 + "endereco.cep, "
                 + "endereco.status, "
-                + "endereco.logradouro, "
                 + "endereco.cidade_id, "
                 + "endereco.bairro_id, "
                 + "bairro.descricao, "
@@ -146,10 +141,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
              while(rst.next()) {   
                  endereco.setId(rst.getInt("id"));
                  endereco.setCep(rst.getString("cep"));
-                 endereco.setLogradouro(rst.getString("logradouro"));
                  endereco.setStatus(true);
-                 //endereco.setBairro(rst.getInt(("bairro_id")));
-                 //endereco.setCidade(rst.getInt(("cidade_id")));
                  Bairro bairro = new Bairro();
                  bairro.setId(rst.getInt("bairro_id"));
                  bairro.setDescricao(rst.getString("bairro.descricao"));
@@ -229,7 +221,6 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "SELECT endereco.id, "
                              + "endereco.cep, "
-                             + "endereco.logradouro, "
                              + "endereco.status, "
                              + "endereco.cidade_id, "
                              + "endereco.bairro_id, "
@@ -239,7 +230,6 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                              + "LEFT OUTER JOIN bairro ON bairro.id = endereco.bairro_id "
                              + "LEFT OUTER JOIN cidade ON cidade.id = endereco.cidade_id "
                              + "WHERE 1 = 1";
-                            //+ "WHERE " + nomeParametro + " LIKE ?"; 
         
             if ("logradouro".equals(nomeParametro)) {
                 sqlExecutar += " AND endereco.logradouro LIKE ?";
@@ -267,7 +257,6 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  Endereco endereco = new Endereco();
                  endereco.setId(rst.getInt("id"));
                  endereco.setCep(rst.getString("cep"));
-                 endereco.setLogradouro(rst.getString("logradouro"));
                  endereco.setStatus(true);
                  
                  Bairro bairro = new Bairro();
@@ -310,7 +299,6 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                 
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "UPDATE endereco SET endereco.cep = ?, "
-                + "endereco.logradouro = ?, "
                 + "endereco.status = ?, "
                 + "endereco.cidade_id = ?, "
                 + "endereco.bairro_id = ? "
@@ -321,11 +309,10 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
             
             pstm = conexao.prepareStatement(sqlExecutar);
              pstm.setString(1, objeto.getCep());
-             pstm.setString(2, objeto.getLogradouro());
-             pstm.setBoolean(3, objeto.getStatus());
-             pstm.setInt(4, objeto.getCidade().getId());
-             pstm.setInt(5, objeto.getBairro().getId());
-             pstm.setInt(6, objeto.getId());
+             pstm.setBoolean(2, objeto.getStatus());
+             pstm.setInt(3, objeto.getCidade().getId());
+             pstm.setInt(4, objeto.getBairro().getId());
+             pstm.setInt(5, objeto.getId());
              pstm.execute();
             
             
