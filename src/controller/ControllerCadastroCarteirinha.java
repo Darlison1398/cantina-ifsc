@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
 import model.bo.Carteirinha;
 import model.bo.Cliente;
 import view.BuscaCarteirinha;
@@ -31,62 +33,23 @@ public class ControllerCadastroCarteirinha implements ActionListener {
         this.cadastroCarteirinha.getjButtonPesquisarCPF().addActionListener(this);
         this.cadastroCarteirinha.getjButtonAdicionarCPF().addActionListener(this);
 
+        
+        List<Carteirinha> listaCarteirinha = new ArrayList<>();
+        listaCarteirinha = service.CarteirinhaService.carregar();
+        
+        this.cadastroCarteirinha.getjFormattedTextFieldCPF().removeAll();
+        this.cadastroCarteirinha.getjTextFieldNome().removeAll();
+        
+        for (Carteirinha carteirinhaAtual: listaCarteirinha) {
+            this.cadastroCarteirinha.getjFormattedTextFieldCPF().setText(carteirinhaAtual.getCliente().getCpf());
+            this.cadastroCarteirinha.getjTextFieldNome().setText(carteirinhaAtual.getCliente().getNome());
+            
+        }
+        
         utilities.Utilities.ativa(true, this.cadastroCarteirinha.getjPanelBotoes());
         utilities.Utilities.limpaComponentes(false, this.cadastroCarteirinha.getjPanelDados());
 
     }
-    
-    
-     WindowListener disposeListener = new WindowAdapter() {
-        
-        @Override
-        public void windowClosed(WindowEvent e){
-            
-            if(codigo!=0){
-                Carteirinha carteirinha = new Carteirinha();
-                carteirinha=Dao.ClasseDados.carteirinhas.get(codigo-1);
-                utilities.Utilities.ativa(false, cadastroCarteirinha.getjPanelBotoes());
-                utilities.Utilities.limpaComponentes(true, cadastroCarteirinha.getjPanelDados());
-                
-                cadastroCarteirinha.getjTextFieldID().setText(carteirinha.getId()+"");
-                cadastroCarteirinha.getjTextFieldCodBarra().setText(carteirinha.getCodigoBarra());
-                cadastroCarteirinha.getjFormattedTextFieldDataGeracao().setText(carteirinha.getDataGeracao());
-                cadastroCarteirinha.getjFormattedTextFieldDataCancelamento().setText(carteirinha.getDataCancelamento());
-                cadastroCarteirinha.getjTextFieldID().setText(carteirinha.getCliente().getId()+"");
-                cadastroCarteirinha.getjTextFieldNome().setText(carteirinha.getCliente().getNome());
-                
-                cadastroCarteirinha.getjTextFieldID().setEnabled(false);
-                cadastroCarteirinha.getjTextFieldID().setEnabled(false);
-                cadastroCarteirinha.getjTextFieldNome().setEnabled(false);
-                
-                
-            }
-        }
-    };
-    
-    WindowListener disposeListenerCliente = new WindowAdapter() {
-        
-        @Override
-        public void windowClosed(WindowEvent e){
-            if(codigoCliente!=0){
-            Cliente cliente = new Cliente();
-            cliente=Dao.ClasseDados.clientes.get(codigoCliente-1);
-            idCliente=cliente.getId()-1;
-            
-            cadastroCarteirinha.getjTextFieldID().setText(cliente.getId()+"");
-            cadastroCarteirinha.getjTextFieldNome().setText(cliente.getNome());
-            
-            cadastroCarteirinha.getjTextFieldID().setEnabled(false);
-            cadastroCarteirinha.getjTextFieldNome().setEnabled(false);
-        }
-        }
-    };
-    
-    
-    
-    
-    
-    
     
 
     @Override
@@ -111,49 +74,58 @@ public class ControllerCadastroCarteirinha implements ActionListener {
 
             
             
+            
+            
         } else if (e.getSource() == this.cadastroCarteirinha.getjButtonSalvar()) {
-            utilities.Utilities.ativa(true, cadastroCarteirinha.getjPanelBotoes());
-            utilities.Utilities.limpaComponentes(false, cadastroCarteirinha.getjPanelDados());
 
             Carteirinha carteirinha = new Carteirinha();
             
-            carteirinha.setId(Dao.ClasseDados.carteirinhas.size()+1);
             carteirinha.setDataGeracao(this.cadastroCarteirinha.getjFormattedTextFieldDataGeracao().getText());
             carteirinha.setDataCancelamento(this.cadastroCarteirinha.getjFormattedTextFieldDataCancelamento().getText());
             carteirinha.setCodigoBarra(this.cadastroCarteirinha.getjTextFieldCodBarra().getText());
-            carteirinha.setCliente(Dao.ClasseDados.clientes.get(idCliente));
-            Resposta resposta=new Resposta(null, true);
-            ControllerResposta controllerResposta= new ControllerResposta(resposta);
+            carteirinha.setCliente(service.ClienteService.carregar(codigoCliente));
             
-            if(this.cadastroCarteirinha.getjTextFieldID().getText().equalsIgnoreCase("")){
-                Dao.ClasseDados.carteirinhas.add(carteirinha);
-                controllerResposta.codigoFB=5;
-                controllerResposta.cadastroClasse();            
+            if(codigoCarteirinha == 0){
+                service.CarteirinhaService.adicionar(carteirinha);
+                utilities.Utilities.ativa(true, this.cadastroCarteirinha.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(false, this.cadastroCarteirinha.getjPanelDados());
             }else{
-                 int index = Integer.parseInt(this.cadastroCarteirinha.getjTextFieldID().getText())-1;
-                 
-                 Dao.ClasseDados.carteirinhas.get(index).setCliente(Dao.ClasseDados.clientes.get(idCliente));
-                 
-                 Dao.ClasseDados.carteirinhas.get(index).setCodigoBarra(this.cadastroCarteirinha.getjTextFieldCodBarra().getText());
-                 Dao.ClasseDados.carteirinhas.get(index).setDataCancelamento(this.cadastroCarteirinha.getjFormattedTextFieldDataCancelamento().getText());
-                 Dao.ClasseDados.carteirinhas.get(index).setDataGeracao(this.cadastroCarteirinha.getjFormattedTextFieldDataGeracao().getText());
-                 controllerResposta.codigoFB=5;
-                 controllerResposta.atualizacaoClasse();
+                 carteirinha.setId(codigoCarteirinha);
+                 service.CarteirinhaService.atualizar(carteirinha);
+                utilities.Utilities.ativa(true, this.cadastroCarteirinha.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(false, this.cadastroCarteirinha.getjPanelDados());
             }
-            
-            //resposta.setVisible(true);
-            Dao.ClasseDados.carteirinhas.add(carteirinha);
-            // para salvar os dados na outra interface
-            
             
             
             
             
         } else if (e.getSource() == this.cadastroCarteirinha.getjButtonConsultar()) {
+            codigoCarteirinha = 0;
             BuscaCarteirinha buscaCarteirinha = new BuscaCarteirinha(null, true);
             ControllerBuscaCarteirinha controllerBuscaCarteirinha = new ControllerBuscaCarteirinha(buscaCarteirinha);
-            buscaCarteirinha.addWindowListener(disposeListener);
             buscaCarteirinha.setVisible(true);
+            
+            if (codigoCarteirinha != 0) {
+                Carteirinha carteirinha = new Carteirinha();
+                carteirinha = service.CarteirinhaService.carregar(codigoCarteirinha);
+                
+                utilities.Utilities.ativa(false, this.cadastroCarteirinha.getjPanelBotoes());
+                utilities.Utilities.limpaComponentes(true, this.cadastroCarteirinha.getjPanelDados());
+                
+                this.cadastroCarteirinha.getjTextFieldID().setText(carteirinha.getId() + "");
+                this.cadastroCarteirinha.getjTextFieldNome().setText(carteirinha.getCliente().getNome());
+                this.cadastroCarteirinha.getjTextFieldCodBarra().setText(carteirinha.getCodigoBarra());
+                this.cadastroCarteirinha.getjFormattedTextFieldCPF().setText(carteirinha.getCliente().getCpf());
+                this.cadastroCarteirinha.getjFormattedTextFieldDataGeracao().setText(carteirinha.getDataGeracao());
+                this.cadastroCarteirinha.getjFormattedTextFieldDataCancelamento().setText(carteirinha.getDataCancelamento());
+                
+                cadastroCarteirinha.getjTextFieldID().setEnabled(false);
+                cadastroCarteirinha.getjTextFieldNome().setEnabled(false);
+                cadastroCarteirinha.getjFormattedTextFieldCPF().setEnabled(false);
+                
+                
+                
+            }
 
         } else if (e.getSource() == this.cadastroCarteirinha.getjButtonAdicionarCPF()) {
             CadastroCliente cadastroCliente = new CadastroCliente();
@@ -161,9 +133,18 @@ public class ControllerCadastroCarteirinha implements ActionListener {
             cadastroCliente.setVisible(true);
 
         } else if (e.getSource() == this.cadastroCarteirinha.getjButtonPesquisarCPF()) {
+            codigoCliente = 0;
             BuscaCliente buscaCliente = new BuscaCliente(null, true);
             ControllerBuscaCliente controllerBuscaCliente = new ControllerBuscaCliente(buscaCliente);
             buscaCliente.setVisible(true);
+            
+            if (codigoCliente != 0) {
+                Cliente cliente = new Cliente();
+                cliente = service.ClienteService.carregar(codigoCliente);
+                
+                this.cadastroCarteirinha.getjFormattedTextFieldCPF().setText(cliente.getCpf());
+                this.cadastroCarteirinha.getjTextFieldNome().setText(cliente.getNome());
+            }
         }
     }
 
