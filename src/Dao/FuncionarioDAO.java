@@ -271,8 +271,19 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     @Override
     public void update(Funcionario objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "UPDATE funcionario SET funcionario.nome = ?, funcionario.fone1 = ?, funcionario.fone2 = ?, funcionario.email = ?, funcionario.status = ?, funcionario.rg = ?, funcionario.cpf = ?, funcionario.usuario = ?, funcionario.senha = ?, funcionario.endereco_id = ?, funcionario.complementoEndereco = ? "
-                            + " WHERE funcionario.id = ?";
+        String sqlExecutar = "UPDATE funcionario SET "
+                + "funcionario.nome = ?, "
+                + "funcionario.fone1 = ?, "
+                + "funcionario.fone2 = ?, "
+                + "funcionario.email = ?, "
+                + "funcionario.status = ?, "
+                + "funcionario.rg = ?, "
+                + "funcionario.cpf = ?, "
+                + "funcionario.usuario = ?, "
+                + "funcionario.senha = ?, "
+                + "funcionario.endereco_id = ?, "
+                + "funcionario.complementoEndereco = ? "
+                + " WHERE funcionario.id = ?";
 
         PreparedStatement pstm = null;
                 
@@ -288,8 +299,9 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
             pstm.setString(7, objeto.getCpf());
             pstm.setString(8, objeto.getUsuario());
             pstm.setString(9, objeto.getSenha());
-            pstm.setString(10, objeto.getComplementoEndereco());
-            pstm.setInt(11, objeto.getId());
+            pstm.setInt(10, objeto.getEndereco().getId());
+            pstm.setString(11, objeto.getComplementoEndereco());
+            pstm.setInt(12, objeto.getId());
            
             pstm.execute();
             

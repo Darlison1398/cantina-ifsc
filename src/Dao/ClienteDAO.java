@@ -280,19 +280,19 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
     @Override
     public void update(Cliente objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "UPDATE cliente SET cliente.id" +
-            "cliente.nome = ?, " +
-            "cliente.fone1 = ?, " +
-            "cliente.fone2 = ?, " +
-            "cliente.email = ?, " +
-            "cliente.status = ?, " +
-            "cliente.rg = ?, " +
-            "cliente.cpf = ?, " +
-            "cliente.matricula = ?, " +
-            "cliente.datanascimento = ?, " +
-            "cliente.endereco_id = ?, " +
-            "cliente.complementoEndereco = ? " +
-            "WHERE cliente.id = ?";
+        String sqlExecutar = "UPDATE cliente SET " +
+        "nome = ?, " +
+        "fone1 = ?, " +
+        "fone2 = ?, " +
+        "email = ?, " +
+        "status = ?, " +
+        "cpf = ?, " +
+        "rg = ?, " +
+        "matricula = ?, " +
+        "datanascimento = ?, " +
+        "endereco_id = ?, " +
+        "complementoEndereco = ? " +
+        "WHERE id = ?";
                 
               
               
@@ -312,9 +312,8 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
             pstm.setString(8, objeto.getMatricula());
             pstm.setString(9, objeto.getDataNascimento());
             pstm.setInt(10, objeto.getEndereco().getId());
-            pstm.setString(11, objeto.getEndereco().getCep());
-            pstm.setString(12, objeto.getComplementoEndereco());
-            pstm.setInt(13, objeto.getId());
+            pstm.setString(11, objeto.getComplementoEndereco());
+            pstm.setInt(12, objeto.getId());
             
             
             pstm.execute();

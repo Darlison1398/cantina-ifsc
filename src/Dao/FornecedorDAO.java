@@ -273,8 +273,18 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     @Override
     public void update(Fornecedor objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "UPDATE fornecedor SET fornecedor.nome = ?, fornecedor.fone1 = ?, fornecedor.fone2 = ?, fornecedor.email = ?, fornecedor.status = ?, fornecedor.cnpj = ?, fornecedor.inscricaoestadual = ?, fornecedor.razaosocial = ?, fornecedor.endereco_id = ?"
-                + "  WHERE fornecedor.id = ?";
+        String sqlExecutar = "UPDATE fornecedor SET "
+                + "fornecedor.nome = ?, "
+                + "fornecedor.fone1 = ?, "
+                + "fornecedor.fone2 = ?, "
+                + "fornecedor.email = ?, "
+                + "fornecedor.status = ?, "
+                + "fornecedor.cnpj = ?, "
+                + "fornecedor.inscricaoestadual = ?, "
+                + "fornecedor.endereco_id = ?, "
+                + "fornecedor.razaosocial = ?, "
+                + "fornecedor.complementoEndereco = ? "
+                + "  WHERE id = ?";
         PreparedStatement pstm = null;
         
         try {
@@ -287,9 +297,10 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
             pstm.setBoolean(5, true);
             pstm.setString(6, objeto.getCnpj());
             pstm.setString(7, objeto.getInscricaoEstadual());
-            pstm.setString(8, objeto.getRazaoSocial());
-            pstm.setString(9, objeto.getComplementoEndereco());           
-            pstm.setInt(10, objeto.getId()); 
+            pstm.setInt(8, objeto.getEndereco().getId());
+            pstm.setString(9, objeto.getRazaoSocial());
+            pstm.setString(10, objeto.getComplementoEndereco());           
+            pstm.setInt(11, objeto.getId()); 
             
             pstm.execute();
                 
