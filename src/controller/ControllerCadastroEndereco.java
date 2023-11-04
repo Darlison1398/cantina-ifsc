@@ -56,6 +56,7 @@ public class ControllerCadastroEndereco implements ActionListener {
 
         this.cadastroEndereco.getjTDescricaoBairro().removeAll();
         this.cadastroEndereco.getjTDescricaoCidade().removeAll();
+        this.cadastroEndereco.getjCUf().removeAll();
 
         for (Bairro bairroAtual : listaBairros) {
             this.cadastroEndereco.getjTDescricaoBairro().setText(bairroAtual.getDescricao());
@@ -63,6 +64,7 @@ public class ControllerCadastroEndereco implements ActionListener {
 
         for (Cidade cidadeAtual : listaCidades) {
             this.cadastroEndereco.getjTDescricaoCidade().setText(cidadeAtual.getDescricao());
+            this.cadastroEndereco.getjCUf().addItem(cidadeAtual.getUf()); 
         }
 
         utilities.Utilities.ativa(true, this.cadastroEndereco.getjPanelBotoes());
@@ -85,16 +87,8 @@ public class ControllerCadastroEndereco implements ActionListener {
             utilities.Utilities.ativa(true, this.cadastroEndereco.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroEndereco.getjPanelDados());
             
+            this.cadastroEndereco.getjCheckBoxStatus().setSelected(false);
             
-            
-            
-            
-            
-            
-            
-            
-            
-      
         } else if (e.getSource() == this.cadastroEndereco.getjButtonSalvar()) {
             
             Endereco endereco = new Endereco();
@@ -112,8 +106,10 @@ public class ControllerCadastroEndereco implements ActionListener {
                 
             } else {
                 endereco.setId(codigoEndereco);
-                service.EnderecoService.atualizar(endereco);
-                this.cadastroEndereco.getjTId().setEnabled(false);
+                service.EnderecoService.atualizar(endereco);                 
+               utilities.Utilities.ativa(true, this.cadastroEndereco.getjPanelBotoes());
+               utilities.Utilities.limpaComponentes(false, this.cadastroEndereco.getjPanelDados());
+                
             }
           
          
@@ -140,7 +136,15 @@ public class ControllerCadastroEndereco implements ActionListener {
 
                 this.cadastroEndereco.getjTDescricaoBairro().setText(endereco.getBairro().getDescricao());
                 this.cadastroEndereco.getjTDescricaoCidade().setText(endereco.getCidade().getDescricao());
+                this.cadastroEndereco.getjCUf().setSelectedItem(endereco.getCidade().getUf());
                 
+                
+                cadastroEndereco.getjTId().setEnabled(false);
+                cadastroEndereco.getjCheckBoxStatus().setEnabled(false);
+                cadastroEndereco.getjTBairro().setEnabled(false);
+                cadastroEndereco.getjTCodigoCidade().setEnabled(false);
+                cadastroEndereco.getjTDescricaoBairro().setEditable(false);
+                cadastroEndereco.getjTDescricaoCidade().setEditable(false);
                 
             }
            
@@ -203,6 +207,8 @@ public class ControllerCadastroEndereco implements ActionListener {
                 
                 this.cadastroEndereco.getjTCodigoCidade().setText(cidade.getId()+"");
                 this.cadastroEndereco.getjTDescricaoCidade().setText(cidade.getDescricao());
+                this.cadastroEndereco.getjCUf().setSelectedItem(cidade.getUf());
+
                 this.cadastroEndereco.getjTId().setEditable(false);
             
             }

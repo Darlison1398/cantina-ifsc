@@ -37,7 +37,7 @@ public class ControllerCadastroProduto implements ActionListener{
         if (e.getSource() == this.cadastroProduto.getjButtonNovo()) {
             utilities.Utilities.ativa(false, this.cadastroProduto.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroProduto.getjPanelDados());
-            this.cadastroProduto.getjTId().setEditable(false);
+            this.cadastroProduto.getjTId().setEnabled(false);
             
 
         } else if (e.getSource() == this.cadastroProduto.getjButtonSair()) {
@@ -48,6 +48,8 @@ public class ControllerCadastroProduto implements ActionListener{
         } else if (e.getSource() == this.cadastroProduto.getjButtonCancelar()) {
             utilities.Utilities.ativa(true, this.cadastroProduto.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroProduto.getjPanelDados());
+            
+             this.cadastroProduto.getjCheckBoxStatus().setSelected(false);
 
             
             
@@ -93,7 +95,8 @@ public class ControllerCadastroProduto implements ActionListener{
                 this.cadastroProduto.getjTDescricao().setText(produto.getDescricao());
                 this.cadastroProduto.getjTCodigoBarras().setText(produto.getCodigoBarra());
                 this.cadastroProduto.getjCheckBoxStatus().setSelected(true);
-                this.cadastroProduto.getjTId().setEditable(false);
+                this.cadastroProduto.getjTId().setEnabled(false);
+                cadastroProduto.getjCheckBoxStatus().setEnabled(false);
          
                
             }

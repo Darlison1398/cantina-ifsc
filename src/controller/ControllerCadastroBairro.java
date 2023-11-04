@@ -37,7 +37,7 @@ public class ControllerCadastroBairro implements ActionListener {
             
             utilities.Utilities.ativa(false, this.cadastroBairro.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroBairro.getjPanelDados());
-            this.cadastroBairro.getjTextFieldId().setEditable(false);
+            this.cadastroBairro.getjTextFieldId().setEnabled(false);
             
 
         } else if (e.getSource() == this.cadastroBairro.getjButtonSair()) {
@@ -95,7 +95,7 @@ public class ControllerCadastroBairro implements ActionListener {
                 
                 this.cadastroBairro.getjTextFieldId().setText(bairro.getId()+"");
                 this.cadastroBairro.getjTextFieldDescricao().setText(bairro.getDescricao());
-                this.cadastroBairro.getjTextFieldId().setEditable(false);
+                this.cadastroBairro.getjTextFieldId().setEnabled(false);
             
             }
 

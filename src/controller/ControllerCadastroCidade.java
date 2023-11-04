@@ -36,7 +36,7 @@ public class ControllerCadastroCidade implements ActionListener {
         if (e.getSource() == this.cadastroCidade.getjButtonNovo()) {
             utilities.Utilities.ativa(false, this.cadastroCidade.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(true, this.cadastroCidade.getjPanelDados());
-            this.cadastroCidade.getjTextFieldId().setEditable(false);
+            this.cadastroCidade.getjTextFieldId().setEnabled(false);
 
         } else if (e.getSource() == this.cadastroCidade.getjButtonSair()) {
             this.cadastroCidade.dispose();
@@ -84,7 +84,6 @@ public class ControllerCadastroCidade implements ActionListener {
             if(codigoCidade !=0){
                 
                 Cidade cidade = new Cidade();
-                //cidade = Dao.ClasseDados.cidades.get(codigoCidade-1); 
                 cidade = service.CidadeService.carregar(codigoCidade);
                 
                 utilities.Utilities.ativa(false, cadastroCidade.getjPanelBotoes());
@@ -92,8 +91,8 @@ public class ControllerCadastroCidade implements ActionListener {
                 
                 this.cadastroCidade.getjTextFieldId().setText(cidade.getId()+"");
                 this.cadastroCidade.getjTextFieldDescricao().setText(cidade.getDescricao());
-                //this.cadastroCidade.getjComboBoxUf().setText(cidade.getUf());
-                this.cadastroCidade.getjTextFieldId().setEditable(false);
+                this.cadastroCidade.getjComboBoxUf().setSelectedItem(cidade.getUf());
+                this.cadastroCidade.getjTextFieldId().setEnabled(false);
             
             }
 

@@ -48,6 +48,7 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha> {
             }    
             
         } 
+        
     }
 
     @Override
@@ -214,8 +215,52 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha> {
 
     @Override
     public void update(Carteirinha objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar =  "UPDATE carteirinha SET "
+                   + "codigocarteirinha = ?, "
+                   + "datageracao = ?, "
+                   + "datacancelamento = ?, "
+                   + "cliente_id = ? "
+                   + "WHERE id = ?";
+        PreparedStatement pstm = null;
+        
+        try {
+            
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, objeto.getCodigoBarra());
+            pstm.setString(2, objeto.getDataGeracao());
+            pstm.setString(3, objeto.getDataCancelamento());
+            pstm.setInt(4, objeto.getCliente().getId());
+            pstm.setInt(5, objeto.getId());
+            pstm.execute();
+            
+            
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        } finally{
+            try {
+                if (pstm != null) {
+                    pstm.close();
+                    
+                } if (conexao != null) {
+                    conexao.close();
+                    
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();     
+            }    
+            
+        } 
+        
+        
+        
+        
+        
+        
     }
+    
+    
+    
 
     @Override
     public void delete(Carteirinha objeto) {

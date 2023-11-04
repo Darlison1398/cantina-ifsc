@@ -64,7 +64,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     public List<Funcionario> retrieve() {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar =  "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+        String sqlExecutar =  "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, cidade.uf AS cidade_uf, bairro.descricao AS bairro_descricao, complementoEndereco " +
                             "FROM mydb.funcionario " +                               
                             "LEFT OUTER JOIN endereco ON funcionario.endereco_id = endereco.id " +
                             "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
@@ -103,6 +103,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
                  
                  Cidade cidade = new Cidade();
                  cidade.setDescricao(rst.getString("cidade_descricao"));
+                 cidade.setUf(rst.getString("cidade_uf"));
                  endereco.setCidade(cidade);
                  
                  Bairro bairro = new Bairro();
@@ -134,7 +135,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     public Funcionario retrieve(int parPK) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar =  "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+        String sqlExecutar =  "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, cidade.uf AS cidade_uf, bairro.descricao AS bairro_descricao, complementoEndereco " +
                             "FROM mydb.funcionario " +                               
                             "LEFT OUTER JOIN endereco ON funcionario.endereco_id = endereco.id " +
                             "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
@@ -172,6 +173,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
                  
                  Cidade cidade = new Cidade();
                  cidade.setDescricao(rst.getString("cidade_descricao"));
+                 cidade.setUf(rst.getString("cidade_uf"));
                  endereco.setCidade(cidade);
                  
                  Bairro bairro = new Bairro();
@@ -200,7 +202,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
     @Override
     public List<Funcionario> retrieve(String parString) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+        String sqlExecutar = "SELECT funcionario.id, funcionario.nome, funcionario.fone1, funcionario.fone2, funcionario.email, funcionario.status, funcionario.rg, funcionario.cpf, funcionario.usuario, funcionario.senha, endereco.cep, cidade.descricao AS cidade_descricao, cidade.uf AS cidade_uf, bairro.descricao AS bairro_descricao, complementoEndereco " +
                             "FROM mydb.funcionario " +                               
                             "LEFT OUTER JOIN endereco ON funcionario.endereco_id = endereco.id " +
                             "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
@@ -241,6 +243,7 @@ public class FuncionarioDAO implements InterfaceDAO<Funcionario> {
                  
                  Cidade cidade = new Cidade();
                  cidade.setDescricao(rst.getString("cidade_descricao"));
+                 cidade.setUf(rst.getString("cidade_uf"));
                  endereco.setCidade(cidade);
                  
                  Bairro bairro = new Bairro();

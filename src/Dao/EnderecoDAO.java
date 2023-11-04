@@ -95,7 +95,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  Cidade cidade = new Cidade();
                  cidade.setId(rst.getInt("cidade_id"));
                  cidade.setDescricao(rst.getString("cidade.descricao"));
-                 cidade.setUf(rst.getString("uf"));
+                 cidade.setUf(rst.getString("cidade.uf"));
                 
                  endereco.setCidade(cidade);
 
@@ -142,6 +142,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  endereco.setId(rst.getInt("id"));
                  endereco.setCep(rst.getString("cep"));
                  endereco.setStatus(true);
+                 
                  Bairro bairro = new Bairro();
                  bairro.setId(rst.getInt("bairro_id"));
                  bairro.setDescricao(rst.getString("bairro.descricao"));
@@ -150,7 +151,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  Cidade cidade = new Cidade();
                  cidade.setId(rst.getInt("cidade_id"));
                  cidade.setDescricao(rst.getString("cidade.descricao"));
-                 cidade.setUf(rst.getString("uf"));
+                 cidade.setUf(rst.getString("cidade.uf"));
                  endereco.setCidade(cidade);
                  
              }
@@ -267,7 +268,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  Cidade cidade = new Cidade();
                  cidade.setId(rst.getInt("cidade_id"));
                  cidade.setDescricao(rst.getString("cidade_descricao"));
-                 //cidade.setUf(rst.getString("uf"));
+                 cidade.setUf(rst.getString("cidade.uf"));
                  endereco.setCidade(cidade);
 
                  

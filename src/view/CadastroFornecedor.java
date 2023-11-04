@@ -3,6 +3,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -317,12 +318,12 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         this.jTRazaoSocial = jTRazaoSocial;
     }
 
-    public JTextField getjTIdEndereco() {
-        return jTIdEndereco;
+    public JComboBox<String> getjCUf() {
+        return jCUf;
     }
 
-    public void setjTIdEndereco(JTextField jTIdEndereco) {
-        this.jTIdEndereco = jTIdEndereco;
+    public void setjCUf(JComboBox<String> jCUf) {
+        this.jCUf = jCUf;
     }
     
     
@@ -362,7 +363,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jLabelComplementoEndereco = new javax.swing.JLabel();
         jTComplementoEndereco = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTIdEndereco = new javax.swing.JTextField();
+        jCUf = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
@@ -385,111 +387,91 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         jPanelDados.setBackground(new java.awt.Color(255, 255, 255));
         jPanelDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelDados.setLayout(null);
+        jPanelDados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelId.setText("ID");
-        jPanelDados.add(jLabelId);
-        jLabelId.setBounds(30, 10, 80, 16);
-        jPanelDados.add(jTId);
-        jTId.setBounds(122, 8, 53, 22);
+        jPanelDados.add(jLabelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+        jPanelDados.add(jTId, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 8, 53, -1));
 
         jLabelRazaoSocial.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelRazaoSocial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelRazaoSocial.setText("Razão Social");
-        jPanelDados.add(jLabelRazaoSocial);
-        jLabelRazaoSocial.setBounds(30, 50, 81, 16);
-        jPanelDados.add(jTRazaoSocial);
-        jTRazaoSocial.setBounds(122, 42, 255, 22);
+        jPanelDados.add(jLabelRazaoSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 81, -1));
+        jPanelDados.add(jTRazaoSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 42, 255, -1));
 
         jLabelNomeFantasia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelNomeFantasia.setText("Nome Fantasia");
-        jPanelDados.add(jLabelNomeFantasia);
-        jLabelNomeFantasia.setBounds(30, 80, 81, 16);
-        jPanelDados.add(jTNomeFantasia);
-        jTNomeFantasia.setBounds(122, 76, 255, 22);
+        jPanelDados.add(jLabelNomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jPanelDados.add(jTNomeFantasia, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 76, 255, -1));
 
         jCheckBoxInativo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBoxInativo.setText("Ativo");
-        jPanelDados.add(jCheckBoxInativo);
-        jCheckBoxInativo.setBounds(611, 9, 53, 20);
+        jPanelDados.add(jCheckBoxInativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 9, -1, -1));
 
         jLabelInscricaoEstadual.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelInscricaoEstadual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelInscricaoEstadual.setText("Ins. Estadual");
-        jPanelDados.add(jLabelInscricaoEstadual);
-        jLabelInscricaoEstadual.setBounds(395, 45, 81, 16);
-        jPanelDados.add(jTInscricaoEstadual);
-        jTInscricaoEstadual.setBounds(499, 42, 165, 22);
+        jPanelDados.add(jLabelInscricaoEstadual, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 45, 81, -1));
+        jPanelDados.add(jTInscricaoEstadual, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 42, 165, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CNPJ");
-        jPanelDados.add(jLabel1);
-        jLabel1.setBounds(410, 80, 81, 16);
+        jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 81, -1));
 
         try {
             jFCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanelDados.add(jFCnpj);
-        jFCnpj.setBounds(499, 76, 165, 22);
+        jPanelDados.add(jFCnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 76, 165, -1));
 
         jLabelEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelEmail.setText("Email");
-        jPanelDados.add(jLabelEmail);
-        jLabelEmail.setBounds(30, 120, 81, 16);
-        jPanelDados.add(jTEmail);
-        jTEmail.setBounds(122, 116, 255, 22);
+        jPanelDados.add(jLabelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 81, -1));
+        jPanelDados.add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 116, 255, -1));
 
         jLabelFone1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelFone1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFone1.setText("Fone");
-        jPanelDados.add(jLabelFone1);
-        jLabelFone1.setBounds(410, 120, 81, 16);
+        jPanelDados.add(jLabelFone1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 81, -1));
 
         try {
             jFFone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanelDados.add(jFFone1);
-        jFFone1.setBounds(499, 116, 109, 22);
+        jPanelDados.add(jFFone1, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 116, 109, -1));
 
         try {
             jFFone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanelDados.add(jFFone2);
-        jFFone2.setBounds(499, 150, 109, 22);
+        jPanelDados.add(jFFone2, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 150, 109, -1));
 
         jLabelCep.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelCep.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCep.setText("CEP");
-        jPanelDados.add(jLabelCep);
-        jLabelCep.setBounds(40, 150, 81, 16);
+        jPanelDados.add(jLabelCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 70, 20));
 
         try {
             jFCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanelDados.add(jFCep);
-        jFCep.setBounds(216, 150, 109, 22);
+        jPanelDados.add(jFCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 130, -1));
 
         jButtonPesquisarCep.setBackground(new java.awt.Color(153, 255, 153));
         jButtonPesquisarCep.setText("...");
-        jPanelDados.add(jButtonPesquisarCep);
-        jButtonPesquisarCep.setBounds(337, 150, 22, 23);
+        jPanelDados.add(jButtonPesquisarCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 40, -1));
 
         jButtonAdcionarCep.setBackground(new java.awt.Color(153, 255, 153));
         jButtonAdcionarCep.setText("+");
-        jPanelDados.add(jButtonAdcionarCep);
-        jButtonAdcionarCep.setBounds(377, 150, 23, 23);
+        jPanelDados.add(jButtonAdcionarCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 30, -1));
 
         jLabelCidade.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -497,20 +479,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jLabelCidade.setMaximumSize(new java.awt.Dimension(13, 16));
         jLabelCidade.setMinimumSize(new java.awt.Dimension(13, 16));
         jLabelCidade.setPreferredSize(new java.awt.Dimension(20, 16));
-        jPanelDados.add(jLabelCidade);
-        jLabelCidade.setBounds(40, 190, 81, 16);
+        jPanelDados.add(jLabelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 81, -1));
 
         jTCidade.setEditable(false);
         jTCidade.setMinimumSize(new java.awt.Dimension(70, 22));
-        jPanelDados.add(jTCidade);
-        jTCidade.setBounds(122, 191, 148, 22);
+        jPanelDados.add(jTCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 148, -1));
 
         jLabelBairro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelBairro.setText("Bairro");
         jLabelBairro.setMaximumSize(new java.awt.Dimension(13, 16));
         jLabelBairro.setMinimumSize(new java.awt.Dimension(13, 16));
-        jPanelDados.add(jLabelBairro);
-        jLabelBairro.setBounds(70, 240, 34, 22);
+        jPanelDados.add(jLabelBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, 22));
 
         jTBairro.setEditable(false);
         jTBairro.setMinimumSize(new java.awt.Dimension(70, 22));
@@ -519,36 +498,35 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 jTBairroActionPerformed(evt);
             }
         });
-        jPanelDados.add(jTBairro);
-        jTBairro.setBounds(122, 235, 165, 22);
+        jPanelDados.add(jTBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 170, -1));
 
         jLabelComplementoEndereco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelComplementoEndereco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelComplementoEndereco.setText("Complemento (rua, n°, ...)");
-        jPanelDados.add(jLabelComplementoEndereco);
-        jLabelComplementoEndereco.setBounds(120, 290, 160, 16);
+        jPanelDados.add(jLabelComplementoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 160, -1));
 
         jTComplementoEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTComplementoEnderecoActionPerformed(evt);
             }
         });
-        jPanelDados.add(jTComplementoEndereco);
-        jTComplementoEndereco.setBounds(120, 310, 542, 22);
+        jPanelDados.add(jTComplementoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 310, 550, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Fone");
-        jPanelDados.add(jLabel2);
-        jLabel2.setBounds(412, 153, 81, 16);
+        jPanelDados.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 153, 81, -1));
 
-        jTIdEndereco.addActionListener(new java.awt.event.ActionListener() {
+        jCUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTIdEnderecoActionPerformed(evt);
+                jCUfActionPerformed(evt);
             }
         });
-        jPanelDados.add(jTIdEndereco);
-        jTIdEndereco.setBounds(122, 150, 76, 22);
+        jPanelDados.add(jCUf, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 130, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Uf");
+        jPanelDados.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 37, 16));
 
         jPanelBotoes.setBackground(new java.awt.Color(204, 255, 102));
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -758,13 +736,13 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jTIdEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdEnderecoActionPerformed
-
     private void jTComplementoEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTComplementoEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTComplementoEnderecoActionPerformed
+
+    private void jCUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCUfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCUfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -816,6 +794,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton jButtonPesquisarCep;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JComboBox<String> jCUf;
     private javax.swing.JCheckBox jCheckBoxInativo;
     private javax.swing.JFormattedTextField jFCep;
     private javax.swing.JFormattedTextField jFCnpj;
@@ -823,6 +802,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFFone2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBairro;
     private javax.swing.JLabel jLabelCep;
     private javax.swing.JLabel jLabelCidade;
@@ -843,7 +823,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField jTComplementoEndereco;
     private javax.swing.JTextField jTEmail;
     private javax.swing.JTextField jTId;
-    private javax.swing.JTextField jTIdEndereco;
     private javax.swing.JTextField jTInscricaoEstadual;
     private javax.swing.JTextField jTNomeFantasia;
     private javax.swing.JTextField jTRazaoSocial;

@@ -377,8 +377,8 @@
                         <Column editable="false" title="Cpf" type="java.lang.Object"/>
                         <Column editable="false" title="Matricula" type="java.lang.Object"/>
                         <Column editable="false" title="DataNascimento" type="java.lang.Object"/>
-                        <Column editable="false" title="Endereco_id" type="java.lang.Object"/>
                         <Column editable="false" title="Cep" type="java.lang.Object"/>
+                        <Column editable="false" title="Uf" type="java.lang.Object"/>
                         <Column editable="true" title="Cidade" type="java.lang.Object"/>
                         <Column editable="true" title="Bairro" type="java.lang.Object"/>
                         <Column editable="true" title="Complemento" type="java.lang.Object"/>

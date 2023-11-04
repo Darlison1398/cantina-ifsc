@@ -296,7 +296,7 @@ public class BuscaCliente extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Nome", "Fone1", "Fone2", "Email", "Status", "Rg", "Cpf", "Matricula", "DataNascimento", "Endereco_id", "Cep", "Cidade", "Bairro", "Complemento"
+                "ID", "Nome", "Fone1", "Fone2", "Email", "Status", "Rg", "Cpf", "Matricula", "DataNascimento", "Cep", "Uf", "Cidade", "Bairro", "Complemento"
             }
         ) {
             Class[] types = new Class [] {

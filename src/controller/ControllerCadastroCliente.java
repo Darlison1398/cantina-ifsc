@@ -43,13 +43,14 @@ public class ControllerCadastroCliente implements ActionListener {
         this.cadastroCliente.getjTextFieldBairro().removeAll();
         this.cadastroCliente.getjTextFieldCidade().removeAll();
         this.cadastroCliente.getjFormattedTextFieldCEP().removeAll();
-        //this.cadastroCliente.getjTextFieldComplementoEndereco().removeAll();
+        this.cadastroCliente.getjCUf().removeAll();
      
         
         for (Endereco enderecoAtual : listaEndereco) {
             this.cadastroCliente.getjTextFieldBairro().setText(enderecoAtual.getBairro().getDescricao());
             this.cadastroCliente.getjTextFieldCidade().setText(enderecoAtual.getCidade().getDescricao());
             this.cadastroCliente.getjFormattedTextFieldCEP().setText(enderecoAtual.getCep());
+            this.cadastroCliente.getjCUf().addItem(enderecoAtual.getCidade().getUf());
         }
 
         utilities.Utilities.ativa(true, this.cadastroCliente.getjPanelBotoes());
@@ -75,6 +76,8 @@ public class ControllerCadastroCliente implements ActionListener {
         } else if (e.getSource() == this.cadastroCliente.getjButtonCancelar()) {
             utilities.Utilities.ativa(true, this.cadastroCliente.getjPanelBotoes());
             utilities.Utilities.limpaComponentes(false, this.cadastroCliente.getjPanelDados());
+            
+            this.cadastroCliente.getjCheckBoxStatus().setSelected(false);
 
             
             
@@ -138,9 +141,13 @@ public class ControllerCadastroCliente implements ActionListener {
                 this.cadastroCliente.getjTextFieldBairro().setText(cliente.getEndereco().getBairro().getDescricao());
                 this.cadastroCliente.getjTextFieldCidade().setText(cliente.getEndereco().getCidade().getDescricao());
                 this.cadastroCliente.getjTextFieldComplementoEndereco().setText(cliente.getComplementoEndereco());
+                this.cadastroCliente.getjCUf().setSelectedItem(cliente.getEndereco().getCidade().getUf());
                 
                 cadastroCliente.getjTextFieldID().setEnabled(false);
                 cadastroCliente.getjCheckBoxStatus().setEnabled(false);
+                cadastroCliente.getjTextFieldBairro().setEnabled(false);
+                cadastroCliente.getjTextFieldCidade().setEnabled(false);
+                cadastroCliente.getjFormattedTextFieldCEP().setEnabled(false);
 
                 
             }
@@ -159,10 +166,11 @@ public class ControllerCadastroCliente implements ActionListener {
                 Endereco endereco = new Endereco();
                 endereco = service.EnderecoService.carregar(codigoEndereco);
                 
-                //this.cadastroCliente.getjTIdEndereco().setText(endereco.getId() + "");
                 this.cadastroCliente.getjTextFieldBairro().setText(endereco.getBairro().getDescricao());
                 this.cadastroCliente.getjTextFieldCidade().setText(endereco.getCidade().getDescricao());
                 this.cadastroCliente.getjFormattedTextFieldCEP().setText(endereco.getCep());
+                this.cadastroCliente.getjCUf().setSelectedItem(endereco.getCidade().getUf());
+
                 
             }
             

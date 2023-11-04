@@ -61,7 +61,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     @Override
     public List<Fornecedor> retrieve() {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+        String sqlExecutar = "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, cidade.descricao AS cidade_descricao, cidade.uf AS cidade_uf, bairro.descricao AS bairro_descricao, complementoEndereco " +
                             "FROM mydb.fornecedor " +                               
                             "LEFT OUTER JOIN endereco ON fornecedor.endereco_id = endereco.id " +
                             "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
@@ -99,6 +99,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
                      // Configurar cidade
                  Cidade cidade = new Cidade();
                  cidade.setDescricao(rst.getString("cidade_descricao"));
+                 cidade.setUf(rst.getString("cidade_uf"));
                  endereco.setCidade(cidade);
                  
                      // Configurar bairro
@@ -129,7 +130,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     @Override
     public Fornecedor retrieve(int parPK) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar =  "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+        String sqlExecutar =  "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, cidade.descricao AS cidade_descricao, cidade.uf AS cidade_uf, bairro.descricao AS bairro_descricao, complementoEndereco " +
                             "FROM mydb.fornecedor " +                               
                             "LEFT OUTER JOIN endereco ON fornecedor.endereco_id = endereco.id " +
                             "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
@@ -170,6 +171,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
                      // Configurar cidade
                  Cidade cidade = new Cidade();
                  cidade.setDescricao(rst.getString("cidade_descricao"));
+                 cidade.setUf(rst.getString("cidade_uf"));
                  endereco.setCidade(cidade);
                  
                      // Configurar bairro
@@ -197,7 +199,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
     @Override
     public List<Fornecedor> retrieve(String parString) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar =   "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, cidade.descricao AS cidade_descricao, bairro.descricao AS bairro_descricao, complementoEndereco " +
+        String sqlExecutar =   "SELECT fornecedor.id, fornecedor.nome, fornecedor.fone1, fornecedor.fone2, fornecedor.email, fornecedor.status, fornecedor.cnpj, fornecedor.inscricaoestadual, fornecedor.razaosocial, endereco.cep, cidade.descricao AS cidade_descricao, cidade.uf AS cidade_uf, bairro.descricao AS bairro_descricao, complementoEndereco " +
                             "FROM mydb.fornecedor " +                               
                             "LEFT OUTER JOIN endereco ON fornecedor.endereco_id = endereco.id " +
                             "LEFT OUTER JOIN cidade ON endereco.cidade_id = cidade.id " +
@@ -239,6 +241,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
                      // Configurar cidade
                  Cidade cidade = new Cidade();
                  cidade.setDescricao(rst.getString("cidade_descricao"));
+                 cidade.setUf(rst.getString("cidade_uf"));
                  endereco.setCidade(cidade);
                  
                      // Configurar bairro
