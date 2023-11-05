@@ -8,12 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modal.FuncionarioModal;
 import model.bo.Fornecedor;
 import model.bo.Funcionario;
 import service.FuncionarioService;
 import view.BuscaFuncionario;
+import view.ModalConnfirm;
 
 public class ControllerBuscaFuncionario implements ActionListener{
     
@@ -27,7 +30,6 @@ public class ControllerBuscaFuncionario implements ActionListener{
         this.buscaFuncionario.getjButtonSair().addActionListener(this);
         this.buscaFuncionario.getjButtonApagar().addActionListener(this);
         
-        //utilities.Utilities.ativa(true, this.buscaFuncionario.getjPanelBotoes());
     }
     
     
@@ -111,16 +113,18 @@ public class ControllerBuscaFuncionario implements ActionListener{
             this.buscaFuncionario.dispose();
             
         } else if (e.getSource() == this.buscaFuncionario.getjButtonApagar()) {
-            int selectedRow = this.buscaFuncionario.getjTableDados().getSelectedRow();
-            if (selectedRow != -1) { // Verifica se algum item está selecionado
-                int funcionarioId = (int) this.buscaFuncionario.getjTableDados().getValueAt(selectedRow, 0);
-                Funcionario funcionario = FuncionarioService.carregar(funcionarioId);
-                if (funcionario != null) {
-                    DefaultTableModel tabela = (DefaultTableModel) this.buscaFuncionario.getjTableDados().getModel();
-                    FuncionarioService.remover(funcionario); // Chama o serviço para excluir o bairro
-                    tabela.removeRow(selectedRow);
+                       
+                int selectedRow = this.buscaFuncionario.getjTableDados().getSelectedRow();
+                if (selectedRow != -1) {
+                    int funcionarioId = (int) this.buscaFuncionario.getjTableDados().getValueAt(selectedRow, 0);
+
+                    ModalConnfirm modalConnfirm = new ModalConnfirm(new JFrame(), true);
+                    FuncionarioModal funcionarioModal = new FuncionarioModal(modalConnfirm, funcionarioId, (DefaultTableModel) this.buscaFuncionario.getjTableDados().getModel(), selectedRow);
+                    modalConnfirm.setLocationRelativeTo(null);
+                    modalConnfirm.setVisible(true);
+
                 }
-            }
+            
             
         }
     }

@@ -5,8 +5,8 @@
         <group>
             <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ModalConfimController.java</file>
             <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ControllerBuscaBairro.java</file>
-            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ControllerCadastroBairro.java</file>
-            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/view/ModalConnfirm.java</file>
+            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/controller/ControllerBuscaCidade.java</file>
+            <file>file:/C:/Users/darli/Documents/NetBeansProjects/Cantina-IFSC-main/src/modal/CidadeModal.java</file>
         </group>
     </open-files>
 </project-private>

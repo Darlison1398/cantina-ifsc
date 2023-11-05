@@ -6,13 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modal.EnderecoModal;
 import model.bo.Bairro;
 import model.bo.Cidade;
 import model.bo.Endereco;
 import service.EnderecoService;
 import view.BuscaEndereco;
+import view.ModalConnfirm;
 
 public class ControllerBuscaEndereco implements ActionListener{
     
@@ -116,16 +119,18 @@ public class ControllerBuscaEndereco implements ActionListener{
             
             
         } else if( e.getSource() == this.buscaEndereco.getjButtonApagar()) {
-            int selectedRow = this.buscaEndereco.getjTableDados().getSelectedRow();
-            if (selectedRow != -1) { // Verifica se algum item está selecionado
-                int enderecoId = (int) this.buscaEndereco.getjTableDados().getValueAt(selectedRow, 0);
-                Endereco endereco = EnderecoService.carregar(enderecoId);
-                if (endereco != null) {
-                    DefaultTableModel tabela = (DefaultTableModel) this.buscaEndereco.getjTableDados().getModel();
-                    EnderecoService.remover(endereco); // Chama o serviço para excluir o bairro
-                    tabela.removeRow(selectedRow);
+                         
+                int selectedRow = this.buscaEndereco.getjTableDados().getSelectedRow();
+                if (selectedRow != -1) {
+                    int enderecoId = (int) this.buscaEndereco.getjTableDados().getValueAt(selectedRow, 0);
+
+                    ModalConnfirm modalConnfirm = new ModalConnfirm(new JFrame(), true);
+                    EnderecoModal enderecoModal = new EnderecoModal(modalConnfirm, enderecoId, (DefaultTableModel) this.buscaEndereco.getjTableDados().getModel(), selectedRow);
+                    modalConnfirm.setLocationRelativeTo(null);
+                    modalConnfirm.setVisible(true);
+
                 }
-            }
+            
             
         }
     }

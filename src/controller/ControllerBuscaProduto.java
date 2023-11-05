@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modal.PordutoModal;
 import model.bo.Produto;
 import service.ProdutoService;
 import view.BuscaProduto;
+import view.ModalConnfirm;
 
 public class ControllerBuscaProduto implements ActionListener {
 
@@ -83,16 +86,20 @@ public class ControllerBuscaProduto implements ActionListener {
             this.buscaProduto.dispose();
 
         } else if (e.getSource() == this.buscaProduto.getjButtonApagar()) {
-            int selectedRow = this.buscaProduto.getjTableDados().getSelectedRow();
-            if (selectedRow != -1) { // Verifica se algum item está selecionado
-                int produtoId = (int) this.buscaProduto.getjTableDados().getValueAt(selectedRow, 0);
-                Produto produto = ProdutoService.carregar(produtoId);
-                if (produto != null) {
-                    DefaultTableModel tabela = (DefaultTableModel) this.buscaProduto.getjTableDados().getModel();
-                    ProdutoService.remover(produto); // Chama o serviço para excluir o bairro
-                    tabela.removeRow(selectedRow);
+                    
+                int selectedRow = this.buscaProduto.getjTableDados().getSelectedRow();
+                if (selectedRow != -1) {
+                    int produtoId = (int) this.buscaProduto.getjTableDados().getValueAt(selectedRow, 0);
+
+                    ModalConnfirm modalConnfirm = new ModalConnfirm(new JFrame(), true);
+                    PordutoModal produtoModal = new PordutoModal(modalConnfirm, produtoId, (DefaultTableModel) this.buscaProduto.getjTableDados().getModel(), selectedRow);
+                    modalConnfirm.setLocationRelativeTo(null);
+                    modalConnfirm.setVisible(true);
+
                 }
-            }
+            
+            
+            
             
         }
     }

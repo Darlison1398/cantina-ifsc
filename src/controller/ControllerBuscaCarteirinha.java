@@ -7,10 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modal.CarteirinhaModal;
 import model.bo.Carteirinha;
 import view.BuscaCarteirinha;
+import view.ModalConnfirm;
 
 public class ControllerBuscaCarteirinha implements ActionListener{
     
@@ -82,6 +85,18 @@ public class ControllerBuscaCarteirinha implements ActionListener{
             this.buscaCarteirinha.dispose();
             
         } else if (e.getSource() == this.buscaCarteirinha.getjButtonApagar()) {
+                        
+                int selectedRow = this.buscaCarteirinha.getjTableDados().getSelectedRow();
+                if (selectedRow != -1) {
+                    int carteirinhaId = (int) this.buscaCarteirinha.getjTableDados().getValueAt(selectedRow, 0);
+
+                    ModalConnfirm modalConnfirm = new ModalConnfirm(new JFrame(), true);
+                    CarteirinhaModal carteirinhaModal = new CarteirinhaModal(modalConnfirm, carteirinhaId, (DefaultTableModel) this.buscaCarteirinha.getjTableDados().getModel(), selectedRow);
+                    modalConnfirm.setLocationRelativeTo(null);
+                    modalConnfirm.setVisible(true);
+
+                }
+            
             
         }
     }

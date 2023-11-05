@@ -6,11 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modal.FornecedorModal;
 import model.bo.Fornecedor;
 import service.FornecedorService;
 import view.BuscaFornecedor;
+import view.ModalConnfirm;
 
 public class ControllerBuscaFornecedor implements ActionListener {
     
@@ -102,16 +105,17 @@ public class ControllerBuscaFornecedor implements ActionListener {
             this.buscaFornecedor.dispose();
             
         } else if (e.getSource() == this.buscaFornecedor.getjButtonApagar()) {
-            int selectedRow = this.buscaFornecedor.getjTableDados().getSelectedRow();
-            if (selectedRow != -1) { // Verifica se algum item está selecionado
-                int fornecedorId = (int) this.buscaFornecedor.getjTableDados().getValueAt(selectedRow, 0);
-                Fornecedor fornecedor = FornecedorService.carregar(fornecedorId);
-                if (fornecedor != null) {
-                    DefaultTableModel tabela = (DefaultTableModel) this.buscaFornecedor.getjTableDados().getModel();
-                    FornecedorService.remover(fornecedor); // Chama o serviço para excluir o bairro
-                    tabela.removeRow(selectedRow);
+                             
+                int selectedRow = this.buscaFornecedor.getjTableDados().getSelectedRow();
+                if (selectedRow != -1) {
+                    int fornecedorId = (int) this.buscaFornecedor.getjTableDados().getValueAt(selectedRow, 0);
+
+                    ModalConnfirm modalConnfirm = new ModalConnfirm(new JFrame(), true);
+                    FornecedorModal fornecedorModal = new FornecedorModal(modalConnfirm, fornecedorId, (DefaultTableModel) this.buscaFornecedor.getjTableDados().getModel(), selectedRow);
+                    modalConnfirm.setLocationRelativeTo(null);
+                    modalConnfirm.setVisible(true);
+
                 }
-            }
             
         }
         

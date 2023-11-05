@@ -96,6 +96,7 @@ public class ControllerBuscaBairro implements ActionListener{
             
             
             
+            
         } else if(e.getSource() == this.buscaBairro.getjBtnApagar()) {
             
                 int selectedRow = this.buscaBairro.getjTableDados().getSelectedRow();
