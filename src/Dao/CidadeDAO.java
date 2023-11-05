@@ -155,7 +155,7 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
     @Override
     public List<Cidade> retrieve(String parString) {
         
-       /* Connection conexao = ConnectionFactory.getConnection();
+        Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade WHERE descricao like ?";
         PreparedStatement pstm = null;
         ResultSet rst = null;  
@@ -185,9 +185,9 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
             
             ConnectionFactory.closeConnection(conexao, pstm, rst);
             return listaCidade;
-        }*/   
+        }  
        
-       return null;
+       //return null;
         
         
         
@@ -197,7 +197,7 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
     
     /**  nova implementação aqui. Se não de certo, devo descomentar a parte de cima **/
     
-    public List<Cidade> retrieve(String nomeParametro, String parString){
+   /* public List<Cidade> retrieve(String nomeParametro, String parString){
                 
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "SELECT cidade.id, "
@@ -235,7 +235,7 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
             return listaCidade;
         } 
        
-    }
+    }*/
     
     
     
@@ -251,7 +251,7 @@ public class CidadeDAO implements InterfaceDAO<Cidade> {
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = "UPDATE cidade "
                              + "SET cidade.descricao = ?, "
-                             + "SET cidade.uf = ? "
+                             + "cidade.uf = ? "
                              + "WHERE cidade.id = ?";
 
         PreparedStatement pstm = null;

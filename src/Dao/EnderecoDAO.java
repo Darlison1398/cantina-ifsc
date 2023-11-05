@@ -226,7 +226,8 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                              + "endereco.cidade_id, "
                              + "endereco.bairro_id, "
                              + "bairro.descricao AS bairro_descricao, "
-                             + "cidade.descricao AS cidade_descricao "
+                             + "cidade.descricao AS cidade_descricao, "
+                             + "cidade.uf AS cidade_uf "
                              + "FROM endereco "
                              + "LEFT OUTER JOIN bairro ON bairro.id = endereco.bairro_id "
                              + "LEFT OUTER JOIN cidade ON cidade.id = endereco.cidade_id "
@@ -268,7 +269,7 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
                  Cidade cidade = new Cidade();
                  cidade.setId(rst.getInt("cidade_id"));
                  cidade.setDescricao(rst.getString("cidade_descricao"));
-                 cidade.setUf(rst.getString("cidade.uf"));
+                 cidade.setUf(rst.getString("cidade_uf"));
                  endereco.setCidade(cidade);
 
                  

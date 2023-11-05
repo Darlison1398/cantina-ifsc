@@ -6,11 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.image.ColorModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Bairro;
 import service.BairroService;
 import view.BuscaBairro;
+import view.ModalConnfirm;
 
 public class ControllerBuscaBairro implements ActionListener{
     
@@ -25,7 +27,6 @@ public class ControllerBuscaBairro implements ActionListener{
         this.buscaBairro.getjButtonSair().addActionListener(this);  
         this.buscaBairro.getjBtnApagar().addActionListener(this);
         
-        //utilities.Utilities.ativa(true, this.buscaBairro.getjPanelBotoes());
         
     }
     
@@ -96,17 +97,18 @@ public class ControllerBuscaBairro implements ActionListener{
             
             
         } else if(e.getSource() == this.buscaBairro.getjBtnApagar()) {
-            int selectedRow = this.buscaBairro.getjTableDados().getSelectedRow();
-            if (selectedRow != -1) { // Verifica se algum item está selecionado
-                int bairroId = (int) this.buscaBairro.getjTableDados().getValueAt(selectedRow, 0);
-                Bairro bairro = BairroService.carregar(bairroId);
-                if (bairro != null) {
-                    DefaultTableModel tabela = (DefaultTableModel) this.buscaBairro.getjTableDados().getModel();
-                    BairroService.remover(bairro); // Chama o serviço para excluir o bairro
-                    tabela.removeRow(selectedRow);
+            
+                int selectedRow = this.buscaBairro.getjTableDados().getSelectedRow();
+                if (selectedRow != -1) {
+                    int bairroId = (int) this.buscaBairro.getjTableDados().getValueAt(selectedRow, 0);
+
+                    // Chama o modal de confirmação passando o ID do bairro
+                    ModalConnfirm modalConnfirm = new ModalConnfirm(new JFrame(), true);
+                    ModalConfimController modalConfimController = new ModalConfimController(modalConnfirm, bairroId, (DefaultTableModel) this.buscaBairro.getjTableDados().getModel(), selectedRow);
+                    modalConnfirm.setLocationRelativeTo(null);
+                    modalConnfirm.setVisible(true);
+
                 }
-            }
-           
             
         }
     }

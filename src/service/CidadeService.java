@@ -23,21 +23,21 @@ public class CidadeService {
         return cidadeDAO.retrieve(parPK);
     }
     
-    /*public static List<Cidade> carregar(String parString){
+    public static List<Cidade> carregar(String parString){
         CidadeDAO cidadeDAO = new CidadeDAO();
         return cidadeDAO.retrieve(parString);
-    }*/
+    }
     
     
     
     
     
     
-    /*  implementei aqui. se não de certo, aapagar        **/
+    /*  implementei aqui. se não de certo, aapagar        
     public static List<Cidade> carregar(String nomeParametro, String parString){
         CidadeDAO cidadeDAO = new CidadeDAO();
         return cidadeDAO.retrieve(nomeParametro, parString);
-    }
+    }*/
     
     
     

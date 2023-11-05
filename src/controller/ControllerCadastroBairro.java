@@ -85,6 +85,7 @@ public class ControllerCadastroBairro implements ActionListener {
             //Inserir o controller da busca de bairros
             buscaBairro.setVisible(true);
             
+            
             if(codigo !=0){
                 Bairro bairro = new Bairro();
                 

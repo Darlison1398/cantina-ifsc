@@ -287,7 +287,7 @@ public class FornecedorDAO implements InterfaceDAO<Fornecedor>{
                 + "fornecedor.endereco_id = ?, "
                 + "fornecedor.razaosocial = ?, "
                 + "fornecedor.complementoEndereco = ? "
-                + "  WHERE id = ?";
+                + "WHERE id = ?";
         PreparedStatement pstm = null;
         
         try {
