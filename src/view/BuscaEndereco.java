@@ -233,9 +233,9 @@ public class BuscaEndereco extends javax.swing.JDialog {
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonCarregar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(165, 165, 165)
-                .addComponent(jButtonApagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonApagar)
+                .addGap(231, 231, 231)
                 .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

@@ -10,7 +10,7 @@ public class Produto {
     private int id;
     private String descricao;
     private String codigoBarra;
-    //private char status;
+    private float valor;
     private boolean status;
 
     public Produto() {
@@ -63,6 +63,16 @@ public class Produto {
         }
     
     }*/
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+    
+    
     
     
     
@@ -73,7 +83,8 @@ public class Produto {
     public String toString() {
         return this.getId() + ", " 
                 + this.getDescricao() + ", " 
-                + this.getCodigoBarra() 
+                + this.getCodigoBarra() + ", "
+                + this.getValor()
                 + ", " + this.getStatus();
 
     }

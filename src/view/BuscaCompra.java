@@ -68,12 +68,12 @@ public class BuscaCompra extends javax.swing.JDialog {
 
         jPanelFundo.setBackground(new java.awt.Color(147, 216, 67));
 
-        jPanelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelTitulo.setBackground(new java.awt.Color(204, 255, 102));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelTitulo.setBackground(new java.awt.Color(235, 235, 235));
         jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(78, 124, 0));
+        jLabelTitulo.setForeground(new java.awt.Color(0, 102, 102));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Busca Compra");
 
@@ -94,12 +94,12 @@ public class BuscaCompra extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanelBotoes.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelBotoes.setBackground(new java.awt.Color(204, 255, 102));
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonCarregar.setBackground(new java.awt.Color(249, 213, 100));
+        jButtonCarregar.setBackground(new java.awt.Color(0, 153, 153));
         jButtonCarregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButtonCarregar.setForeground(new java.awt.Color(130, 98, 0));
+        jButtonCarregar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCarregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeCarregar.png"))); // NOI18N
         jButtonCarregar.setText("Carregar");
         jButtonCarregar.setActionCommand("0");
@@ -110,10 +110,10 @@ public class BuscaCompra extends javax.swing.JDialog {
             }
         });
 
-        jButtonSair.setBackground(new java.awt.Color(255, 210, 210));
+        jButtonSair.setBackground(new java.awt.Color(0, 153, 153));
         jButtonSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButtonSair.setForeground(new java.awt.Color(255, 0, 0));
-        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeSair.png"))); // NOI18N
+        jButtonSair.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Imagens/Exit.png"))); // NOI18N
         jButtonSair.setText("Sair");
         jButtonSair.setActionCommand("0");
         jButtonSair.setBorder(null);

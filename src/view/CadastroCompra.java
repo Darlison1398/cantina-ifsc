@@ -331,13 +331,13 @@ public class CadastroCompra extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanelBotoes.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelBotoes.setBackground(new java.awt.Color(204, 255, 102));
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonNovo.setBackground(new java.awt.Color(153, 255, 153));
+        jButtonNovo.setBackground(new java.awt.Color(0, 153, 153));
         jButtonNovo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonNovo.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeNovo.png"))); // NOI18N
+        jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Create.png"))); // NOI18N
         jButtonNovo.setText("Novo");
         jButtonNovo.setActionCommand("0");
         jButtonNovo.setBorder(null);
@@ -351,10 +351,10 @@ public class CadastroCompra extends javax.swing.JFrame {
             }
         });
 
-        jButtonSalvar.setBackground(new java.awt.Color(153, 255, 153));
+        jButtonSalvar.setBackground(new java.awt.Color(0, 153, 153));
         jButtonSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeSalvar.png"))); // NOI18N
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Down.png"))); // NOI18N
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.setActionCommand("1");
         jButtonSalvar.setBorder(null);
@@ -366,10 +366,10 @@ public class CadastroCompra extends javax.swing.JFrame {
             }
         });
 
-        jButtonCancelar.setBackground(new java.awt.Color(153, 255, 153));
+        jButtonCancelar.setBackground(new java.awt.Color(0, 153, 153));
         jButtonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeCancelar.png"))); // NOI18N
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.setActionCommand("1");
         jButtonCancelar.setBorder(null);
@@ -382,10 +382,10 @@ public class CadastroCompra extends javax.swing.JFrame {
             }
         });
 
-        jButtonConsultar.setBackground(new java.awt.Color(153, 255, 153));
+        jButtonConsultar.setBackground(new java.awt.Color(0, 153, 153));
         jButtonConsultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonConsultar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconePesquisar.png"))); // NOI18N
+        jButtonConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/Find.png"))); // NOI18N
         jButtonConsultar.setText("Consultar");
         jButtonConsultar.setActionCommand("0");
         jButtonConsultar.setBorder(null);
@@ -398,10 +398,10 @@ public class CadastroCompra extends javax.swing.JFrame {
             }
         });
 
-        jButtonSair.setBackground(new java.awt.Color(153, 255, 153));
+        jButtonSair.setBackground(new java.awt.Color(0, 153, 153));
         jButtonSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonSair.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/iconeSair.png"))); // NOI18N
+        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Imagens/Exit.png"))); // NOI18N
         jButtonSair.setText("Sair");
         jButtonSair.setActionCommand("0");
         jButtonSair.setBorder(null);
@@ -445,12 +445,12 @@ public class CadastroCompra extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelTitulo.setBackground(new java.awt.Color(204, 255, 102));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelTitulo.setBackground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(78, 124, 0));
+        jLabelTitulo.setForeground(new java.awt.Color(0, 102, 102));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Cadastro Compra");
 

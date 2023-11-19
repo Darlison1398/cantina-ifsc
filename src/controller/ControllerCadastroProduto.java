@@ -15,7 +15,7 @@ import view.Resposta;
 public class ControllerCadastroProduto implements ActionListener{
     
     CadastroProduto cadastroProduto;
-    public static int codigo;
+    public static int codigo, codigoProduto;
     
     public ControllerCadastroProduto(CadastroProduto cadastroProduto) {
         this.cadastroProduto = cadastroProduto;
@@ -61,6 +61,12 @@ public class ControllerCadastroProduto implements ActionListener{
             produto.setDescricao(this.cadastroProduto.getjTDescricao().getText());
             produto.setCodigoBarra(this.cadastroProduto.getjTCodigoBarras().getText());            
             produto.setStatus(this.cadastroProduto.getjCheckBoxStatus().isSelected());
+            produto.setValor(Float.parseFloat(this.cadastroProduto.getjFValor().getText()));
+           //String valorText = this.cadastroProduto.getjFValor().getText().trim();
+
+        
+            
+
           
             if(this.cadastroProduto.getjTId().getText().equalsIgnoreCase("")){
             
@@ -94,6 +100,8 @@ public class ControllerCadastroProduto implements ActionListener{
                 this.cadastroProduto.getjTId().setText(produto.getId() + "");
                 this.cadastroProduto.getjTDescricao().setText(produto.getDescricao());
                 this.cadastroProduto.getjTCodigoBarras().setText(produto.getCodigoBarra());
+                this.cadastroProduto.getjFValor().setText(String.valueOf(produto.getValor()));
+
                 this.cadastroProduto.getjCheckBoxStatus().setSelected(true);
                 this.cadastroProduto.getjTId().setEnabled(false);
                 cadastroProduto.getjCheckBoxStatus().setEnabled(false);

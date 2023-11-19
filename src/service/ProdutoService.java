@@ -37,5 +37,10 @@ public class ProdutoService {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         produtoDAO.delete(objeto);
     }
+    public static List<Produto> carregarPorCodigoBarras(String codBarras) {
+       ProdutoDAO produtoDAO = new ProdutoDAO();
+       return produtoDAO.retrieveByCodBarras(codBarras);
+    }
+
     
 }

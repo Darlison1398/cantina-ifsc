@@ -68,7 +68,11 @@ public class ControllerBuscaProduto implements ActionListener {
                 tabela.addRow(new Object[]{produtoAtual.getId(), 
                                            produtoAtual.getDescricao(), 
                                            produtoAtual.getCodigoBarra(), 
-                                           produtoAtual.getStatus()});
+                                           produtoAtual.getValor(),
+                                           produtoAtual.getStatus()
+                                           
+                        
+                });
                 
             }
                     

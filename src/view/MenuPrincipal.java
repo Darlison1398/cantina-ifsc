@@ -11,13 +11,14 @@ import controller.ControllerCadastroFornecedor;
 import controller.ControllerCadastroFuncionario;
 import controller.ControllerCadastroProduto;
 import controller.ControllerCadastroVenda;
+import controllerMovimento.FaturamentoController;
 import javax.swing.JOptionPane;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
     public MenuPrincipal() {
         initComponents();
-        Dao.ClasseDados.getInstance();
+        //Dao.ClasseDados.getInstance();
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -30,6 +31,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -40,6 +42,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         jMenuItemCliente = new javax.swing.JMenuItem();
@@ -58,8 +61,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuCaixa = new javax.swing.JMenu();
         jMenuItemPagar = new javax.swing.JMenuItem();
         jMenuItemReceber = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuRelatorios = new javax.swing.JMenu();
         jMenuAjuda = new javax.swing.JMenu();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(710, 622));
@@ -99,6 +105,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setText("Dehon, Tubarão-SC, Cep: 88704-296");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel8.setText("F1 : Faturamento");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,7 +124,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(64, 64, 64))
@@ -138,18 +148,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(98, 98, 98)
                         .addComponent(jLabel3)
-                        .addGap(63, 63, 63)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4)
-                        .addGap(64, 64, 64)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel5)
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addGap(130, 130, 130))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel7)
                 .addContainerGap())
         );
@@ -159,7 +172,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Notes.png"))); // NOI18N
         jMenuCadastros.setText("Cadastros");
 
-        jMenuItemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Person.png"))); // NOI18N
+        jMenuItemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Male.png"))); // NOI18N
         jMenuItemCliente.setText("Cliente");
         jMenuItemCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +286,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuCaixa.add(jMenuItemReceber);
 
         jMenuMovimentos.add(jMenuCaixa);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem1.setText("Faturamento");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuMovimentos.add(jMenuItem1);
 
         jMenuBar1.add(jMenuMovimentos);
 
@@ -397,6 +419,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cadastroCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItemClienteActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // Botar a tela de faturamento aqui
+        Faturamento faturamento = new Faturamento();
+        FaturamentoController fatController = new FaturamentoController(faturamento);
+        faturamento.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,11 +472,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JMenu jMenuCaixa;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemBairro;
     private javax.swing.JMenuItem jMenuItemCarteirinha;
     private javax.swing.JMenuItem jMenuItemCidade;
