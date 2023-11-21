@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package view;
 
 import controllerMovimento.EndVendaController;
@@ -14,10 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-/**
- *
- * @author darli
- */
 public class Faturamento extends javax.swing.JDialog {
 
     public Faturamento(java.awt.Frame parent, boolean modal) {
@@ -401,6 +394,11 @@ public class Faturamento extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jFormattedTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCodigoBarrasLayout = new javax.swing.GroupLayout(jPanelCodigoBarras);
         jPanelCodigoBarras.setLayout(jPanelCodigoBarrasLayout);
@@ -724,6 +722,10 @@ public class Faturamento extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnAdicionarActionPerformed
 
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -800,4 +802,6 @@ public class Faturamento extends javax.swing.JDialog {
     private javax.swing.JTable jTableDadosProduto;
     private javax.swing.JTextField jTnomeCliente;
     // End of variables declaration//GEN-END:variables
+
+ 
 }
