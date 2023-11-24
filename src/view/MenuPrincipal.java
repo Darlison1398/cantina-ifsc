@@ -392,10 +392,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPagarActionPerformed
         // TODO add your handling code here:
-        CadastroCompra cadastroCompra = new CadastroCompra();
+        /*CadastroCompra cadastroCompra = new CadastroCompra();
         ControllerCadastroCompra controllerCadastroCompra = new ControllerCadastroCompra(cadastroCompra);
         
-        cadastroCompra.setVisible(true);
+        cadastroCompra.setVisible(true);*/
     }//GEN-LAST:event_jMenuItemPagarActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
@@ -405,9 +405,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReceberActionPerformed
         // TODO add your handling code here:
-        CadastroVenda cadastroVenda = new CadastroVenda();
+        /*CadastroVenda cadastroVenda = new CadastroVenda();
         ControllerCadastroVenda controllerCadastroVenda = new ControllerCadastroVenda(cadastroVenda);
-        cadastroVenda.setVisible(true);
+        cadastroVenda.setVisible(true);*/
     }//GEN-LAST:event_jMenuItemReceberActionPerformed
 
     private void jMenuItemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClienteActionPerformed

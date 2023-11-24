@@ -1,6 +1,7 @@
 
 package controllerMovimento;
 
+import controller.ControllerBuscaCarteirinha;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Produto;
 import service.ProdutoService;
+import view.BuscaCarteirinha;
 import view.Faturamento;
 
 public class FaturamentoController implements ActionListener {
@@ -39,6 +41,8 @@ public class FaturamentoController implements ActionListener {
         modeloTabela.addColumn("Valor");
         this.faturamento.getjTableDadosProduto().setModel(modeloTabela);
         
+        this.faturamento.getjBtnAdicionar().setEnabled(false);
+        
      
        
     }
@@ -51,7 +55,9 @@ public class FaturamentoController implements ActionListener {
             String codigoBarras = this.faturamento.getjTCodBarrasProduto().getText();
             
 
-            if (!codigoBarras.isEmpty()) {
+            if (!codigoBarras.isEmpty()  && codigoBarras.matches(".*\\d.*")) {
+                this.faturamento.getjBtnAdicionar().setEnabled(true);
+
                 List<Produto> produtos = service.ProdutoService.carregarPorCodigoBarras(codigoBarras);
 
                 if (!produtos.isEmpty()) {
@@ -73,6 +79,7 @@ public class FaturamentoController implements ActionListener {
                     this.faturamento.getjTCodBarrasProduto().setText("");
                 }
             } else {
+                this.faturamento.getjBtnAdicionar().setEnabled(false);
                 JOptionPane.showMessageDialog(null, "Digite o código de barras");
             }
             
@@ -80,6 +87,9 @@ public class FaturamentoController implements ActionListener {
             
             
         } else if(e.getSource() == this.faturamento.getjBtnAdicionar()){
+            if (this.faturamento.getjTCodBarrasProduto().getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Código de barras não encontrado");
+            }
             
             Produto produto = new Produto();
             
@@ -110,17 +120,38 @@ public class FaturamentoController implements ActionListener {
                }
             }
 
-            this.faturamento.getjFvalorTotProduto().setText(String.format("%.2f", valorTotal));
+            this.faturamento.getjFvalorTotProduto().setText(String.format("%.0f", valorTotal));
             this.faturamento.getjFvalorTotProduto().setEditable(false);
             
             utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosProduto());
             utilities.Utilities.ativa(false, this.faturamento.getjPanDadosProduto());
             utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanelCodigoBarras());
+            this.faturamento.getjTCodBarrasProduto().requestFocus(); 
+            this.faturamento.getjBtnAdicionar().setEnabled(false);
     
     
          } else if (e.getSource() == this.faturamento.getjBtnBuscarCliente()){
              
+             BuscaCarteirinha buscarCarteirinha = new BuscaCarteirinha(null, true);
+             ControllerBuscaCarteirinha conBusCarteirinha = new ControllerBuscaCarteirinha(buscarCarteirinha);
+             buscarCarteirinha.setVisible(true);
+             this.faturamento.getjTCodBarrasProduto().setText("");
+             
+             
+             
          } else if (e.getSource() == this.faturamento.getjBtnCancelar()) {
+             DefaultTableModel modeloTabela = (DefaultTableModel) this.faturamento.getjTableDadosProduto().getModel();
+             modeloTabela.setRowCount(0); 
+
+             this.faturamento.getjFvalorTotProduto().setText("");
+
+             utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosProduto());
+             utilities.Utilities.ativa(true, this.faturamento.getjPanDadosProduto());
+             utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanelCodigoBarras());
+             this.faturamento.getjTCodBarrasProduto().requestFocus();
+             
+             
+             
              
          } else if (e.getSource() == this.faturamento.getjBtnEndVenda()) {
              
