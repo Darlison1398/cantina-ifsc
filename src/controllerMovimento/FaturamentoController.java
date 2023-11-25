@@ -2,12 +2,16 @@
 package controllerMovimento;
 
 import controller.ControllerBuscaCarteirinha;
+import static controller.ControllerCadastroCarteirinha.codigoCarteirinha;
+import static controller.ControllerCadastroCliente.codigoCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.bo.Carteirinha;
+import model.bo.Cliente;
 import model.bo.Produto;
 import service.ProdutoService;
 import view.BuscaCarteirinha;
@@ -32,6 +36,8 @@ public class FaturamentoController implements ActionListener {
         utilities.Utilities.ativa(true, this.faturamento.getjPanDadosProduto());
         this.faturamento.getjTNomeProduto().setEditable(false);
         this.faturamento.getjTVlorProduto().setEditable(false);
+        this.faturamento.getjTCodCliente().setEditable(false);
+        this.faturamento.getjTnomeCliente().setEditable(false);
         
         List<Produto> listaProduto = new ArrayList<Produto>();
         listaProduto = service.ProdutoService.carregar();
@@ -126,16 +132,29 @@ public class FaturamentoController implements ActionListener {
             utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosProduto());
             utilities.Utilities.ativa(false, this.faturamento.getjPanDadosProduto());
             utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanelCodigoBarras());
+            utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosCliente());
+            
             this.faturamento.getjTCodBarrasProduto().requestFocus(); 
             this.faturamento.getjBtnAdicionar().setEnabled(false);
     
     
          } else if (e.getSource() == this.faturamento.getjBtnBuscarCliente()){
-             
+             codigoCarteirinha = 0;
              BuscaCarteirinha buscarCarteirinha = new BuscaCarteirinha(null, true);
              ControllerBuscaCarteirinha conBusCarteirinha = new ControllerBuscaCarteirinha(buscarCarteirinha);
              buscarCarteirinha.setVisible(true);
              this.faturamento.getjTCodBarrasProduto().setText("");
+             
+             if (codigoCarteirinha != 0) {
+                 Carteirinha carteirinha = new Carteirinha();
+                // Cliente cliente = new Cliente();
+                 carteirinha = service.CarteirinhaService.carregar(codigoCarteirinha);
+                 
+                 this.faturamento.getjTCodCliente().setText(carteirinha.getCodigoBarra());
+                 this.faturamento.getjTnomeCliente().setText(carteirinha.getCliente().getNome());
+                 
+                
+             }
              
              
              
@@ -148,6 +167,8 @@ public class FaturamentoController implements ActionListener {
              utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosProduto());
              utilities.Utilities.ativa(true, this.faturamento.getjPanDadosProduto());
              utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanelCodigoBarras());
+             utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosCliente());
+             
              this.faturamento.getjTCodBarrasProduto().requestFocus();
              
              
