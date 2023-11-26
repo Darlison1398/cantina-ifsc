@@ -11,6 +11,7 @@ import controller.ControllerCadastroFornecedor;
 import controller.ControllerCadastroFuncionario;
 import controller.ControllerCadastroProduto;
 import controller.ControllerCadastroVenda;
+import controllerMovimento.CompraController;
 import controllerMovimento.FaturamentoController;
 import javax.swing.JOptionPane;
 
@@ -62,6 +63,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItemPagar = new javax.swing.JMenuItem();
         jMenuItemReceber = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuRelatorios = new javax.swing.JMenu();
         jMenuAjuda = new javax.swing.JMenu();
 
@@ -296,6 +298,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenuMovimentos.add(jMenuItem1);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem2.setText("Compra");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuMovimentos.add(jMenuItem2);
+
         jMenuBar1.add(jMenuMovimentos);
 
         jMenuRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Icones/List.png"))); // NOI18N
@@ -427,6 +438,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        TelaCompra telaCompra  = new TelaCompra();
+        CompraController compraController = new CompraController(telaCompra);
+        telaCompra.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -480,6 +497,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JMenu jMenuCaixa;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemBairro;
     private javax.swing.JMenuItem jMenuItemCarteirinha;
     private javax.swing.JMenuItem jMenuItemCidade;

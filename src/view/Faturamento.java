@@ -695,9 +695,7 @@ public class Faturamento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEndVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEndVendaActionPerformed
-        FinalizarVenda endVenda = new FinalizarVenda();
-        EndVendaController controllerVenda = new  EndVendaController(endVenda);
-        endVenda.setVisible(true);
+
         
     }//GEN-LAST:event_jBtnEndVendaActionPerformed
 

@@ -16,10 +16,13 @@ import model.bo.Produto;
 import service.ProdutoService;
 import view.BuscaCarteirinha;
 import view.Faturamento;
+import view.FinalizarVenda;
 
 public class FaturamentoController implements ActionListener {
     
     Faturamento faturamento;
+    
+    public static int codigoEndVenda;
     
 
     public FaturamentoController(Faturamento faturamento) {
@@ -58,6 +61,7 @@ public class FaturamentoController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource() == this.faturamento.getjTCodBarrasProduto()){
+            
             String codigoBarras = this.faturamento.getjTCodBarrasProduto().getText();
             
 
@@ -93,6 +97,7 @@ public class FaturamentoController implements ActionListener {
             
             
         } else if(e.getSource() == this.faturamento.getjBtnAdicionar()){
+            
             if (this.faturamento.getjTCodBarrasProduto().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Código de barras não encontrado");
             }
@@ -175,6 +180,21 @@ public class FaturamentoController implements ActionListener {
              
              
          } else if (e.getSource() == this.faturamento.getjBtnEndVenda()) {
+             FinalizarVenda endVenda = new FinalizarVenda(null, true);
+             EndVendaController controllerVenda = new  EndVendaController(endVenda);
+             endVenda.setVisible(true);
+             
+             
+             
+             
+                         
+            utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosProduto());
+            utilities.Utilities.ativa(false, this.faturamento.getjPanDadosProduto());
+            utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanelCodigoBarras());
+            utilities.Utilities.limpaComponentes(true, this.faturamento.getjPanDadosCliente());
+            utilities.Utilities.limpaComponentes(true, this.faturamento.getjPdadosFinalProduto());
+            
+            
              
          }
         
