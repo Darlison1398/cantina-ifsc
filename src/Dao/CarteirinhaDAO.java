@@ -206,13 +206,67 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha> {
             ConnectionFactory.closeConnection(conexao, pstm, rst);
             return listaCarteirinha;
         }
+            
         
+    }
+    
+   // @Override
+    public List<Carteirinha> retrieveByCodBarras(String codBarras) {
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar =  "SELECT carteirinha.id, "
+                + "carteirinha.codigocarteirinha, "
+                + "carteirinha.datageracao, "
+                + "carteirinha.datacancelamento, "
+                + "cliente.nome, "
+                + "cliente.cpf "
+                + "FROM mydb.carteirinha "
+                + "LEFT OUTER JOIN cliente ON cliente.id = carteirinha.cliente_id "
+                + "WHERE carteirinha.codigocarteirinha LIKE ?";
+        PreparedStatement pstm = null;
+        ResultSet rst = null;
         
-        
-        
+        List<Carteirinha> listaCarteirinha = new ArrayList<>();
+                
+        try{
+            
+             pstm = conexao.prepareStatement(sqlExecutar);
+             pstm.setString(1, "%" + codBarras + "%");
+             rst = pstm.executeQuery();
+             
+             
+             while(rst.next()) {
+                 Carteirinha carteirinha = new Carteirinha();
+                 carteirinha.setId(rst.getInt("id"));
+                 carteirinha.setCodigoBarra(rst.getString("codigocarteirinha"));
+                 carteirinha.setDataGeracao(rst.getString("datageracao"));
+                 carteirinha.setDataCancelamento(rst.getString("datacancelamento"));
+                 
+                 Cliente cliente = new Cliente();
+                 cliente.setId(rst.getInt("id"));
+                 cliente.setNome(rst.getString("nome"));
+                 cliente.setCpf(rst.getString("cpf"));
+                 
+                 carteirinha.setCliente(cliente);
+                 
+                 listaCarteirinha.add(carteirinha);
+                 
+             }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        }  finally{
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaCarteirinha;
+        }
+            
         
     }
 
+    
+
+    
     @Override
     public void update(Carteirinha objeto) {
         Connection conexao = ConnectionFactory.getConnection();

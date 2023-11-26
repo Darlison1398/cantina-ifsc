@@ -37,5 +37,11 @@ public class CarteirinhaService {
         carteirinhaDAO.delete(objeto);
     }
     
+    public  static List<Carteirinha> retrieveByCodBarras(String codBarras){
+        CarteirinhaDAO carteirinhaDAO = new CarteirinhaDAO();
+        return carteirinhaDAO.retrieveByCodBarras(codBarras);
+        
+    }
+    
     
 }

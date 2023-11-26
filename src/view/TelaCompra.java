@@ -533,6 +533,11 @@ public class TelaCompra extends javax.swing.JDialog {
         jLabel6.setText("Carteirinha");
 
         jTcodCarteirinha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTcodCarteirinha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ENTER(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel7.setText("Nome");
@@ -787,6 +792,10 @@ public class TelaCompra extends javax.swing.JDialog {
     private void jBtnCANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCANCELARActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnCANCELARActionPerformed
+
+    private void ENTER(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ENTER
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ENTER
 
     /**
      * @param args the command line arguments
