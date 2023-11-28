@@ -143,20 +143,20 @@ public class CompraController implements ActionListener{
         } else if(e.getSource() == this.telaCompra.getjBtnBuscarCliente()){
              codigoCarteirinha = 0;
              codigoCliente = 0;
-             /*BuscaCarteirinha buscarCarteirinha = new BuscaCarteirinha(null, true);
+             BuscaCarteirinha buscarCarteirinha = new BuscaCarteirinha(null, true);
              ControllerBuscaCarteirinha conBusCarteirinha = new ControllerBuscaCarteirinha(buscarCarteirinha);
-             buscarCarteirinha.setVisible(true);*/
+             buscarCarteirinha.setVisible(true);
              this.telaCompra.getjFcodBarras().setText("");
              
-             BuscaCliente buscCliente = new BuscaCliente(null, true);
+             /*BuscaCliente buscCliente = new BuscaCliente(null, true);
              ControllerBuscaCliente ctcliente = new ControllerBuscaCliente(buscCliente);
              
-             buscCliente.setVisible(true);
+             buscCliente.setVisible(true);*/
                           
              if (codigoCarteirinha != 0) {
-                 /*Carteirinha carteirinha = new Carteirinha();
+                 Carteirinha carteirinha = new Carteirinha();
                 
-                 carteirinha = service.CarteirinhaService.carregar(codigoCarteirinha);
+                 carteirinha = service.CompraService.dadosCliente(codigoCliente);
                  
                  this.telaCompra.getjTcodCarteirinha().setText(carteirinha.getCodigoBarra());
                  this.telaCompra.getjTnomeCliente().setText(carteirinha.getCliente().getNome());
@@ -164,11 +164,11 @@ public class CompraController implements ActionListener{
                  this.telaCompra.getjComboBoxUf().setSelectedItem(carteirinha.getCliente().getEndereco().getCidade().getUf());
                  this.telaCompra.getjTcidade().setText(carteirinha.getCliente().getEndereco().getCidade().getDescricao());
                  this.telaCompra.getjTbairro().setText(carteirinha.getCliente().getEndereco().getBairro().getDescricao());
-                 this.telaCompra.getjTcomplemento().setText(carteirinha.getCliente().getComplementoEndereco());*/
+                 this.telaCompra.getjTcomplemento().setText(carteirinha.getCliente().getComplementoEndereco());
                  
              }
              
-             if (codigoCliente != 0) {
+             /*if (codigoCliente != 0) {
                  Cliente cliente = new Cliente();
                  cliente = service.ClienteService.carregar(codigoCliente);
                  this.telaCompra.getjTcodCarteirinha().setText(cliente.getCpf());
@@ -179,7 +179,7 @@ public class CompraController implements ActionListener{
                  this.telaCompra.getjTbairro().setText(cliente.getEndereco().getBairro().getDescricao());
                  this.telaCompra.getjTcomplemento().setText(cliente.getComplementoEndereco());
                  
-             }
+             }*/
              
             
              
