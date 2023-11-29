@@ -31,6 +31,7 @@ public class CompraController implements ActionListener{
        this.telaCompra.getJbFinalizarCompra().addActionListener(this);
        this.telaCompra.getjFcodBarras().addActionListener(this);
        this.telaCompra.getjTcidade().addActionListener(this);
+       this.telaCompra.getjComboBoxDesconto().addActionListener(this);
        
        
        /* desativando campos de textos */
@@ -157,9 +158,10 @@ public class CompraController implements ActionListener{
                  Carteirinha carteirinha = new Carteirinha();
                 
                  carteirinha = service.CompraService.dadosCliente(codigoCliente);
-                 
+                 System.out.println(carteirinha);
+                 System.out.println("olá");
                  this.telaCompra.getjTcodCarteirinha().setText(carteirinha.getCodigoBarra());
-                 this.telaCompra.getjTnomeCliente().setText(carteirinha.getCliente().getNome());
+                 //this.telaCompra.getjTnomeCliente().setText(carteirinha.getCliente().getNome());
                  this.telaCompra.getjFcep().setText(carteirinha.getCliente().getEndereco().getCep());
                  this.telaCompra.getjComboBoxUf().setSelectedItem(carteirinha.getCliente().getEndereco().getCidade().getUf());
                  this.telaCompra.getjTcidade().setText(carteirinha.getCliente().getEndereco().getCidade().getDescricao());
@@ -207,6 +209,34 @@ public class CompraController implements ActionListener{
             
         } else if (e.getSource() == this.telaCompra.getJbFinalizarCompra()) {
             
+        } else if (e.getSource() == this.telaCompra.getjComboBoxDesconto()){
+            float semDesc = 0.1f;
+            float descAluno = 0.03f;  // 3% de desconto
+            float descProf = 0.04f;   // 4% de desconto
+            float descFunc = 0.06f;   // 6% de desconto
+
+            String valorOriginalStr = this.telaCompra.getjTvalorTotal().getText();
+    
+            // Substituir vírgula por ponto (caso haja vírgula)
+            valorOriginalStr = valorOriginalStr.replace(",", ".");
+    
+            float valorOriginal = Float.parseFloat(valorOriginalStr);
+            float novoValor = valorOriginal;
+
+            int selectedIndex = this.telaCompra.getjComboBoxDesconto().getSelectedIndex();
+
+            if (selectedIndex == 0) {
+                System.out.println("Sem descontos");
+                 novoValor = (1 - semDesc) * valorOriginal;
+            } else if (selectedIndex == 1) {
+                novoValor = (1 - descAluno) * valorOriginal;
+            } else if (selectedIndex == 2) {
+                novoValor = (1 - descProf) * valorOriginal;
+            } else if (selectedIndex == 3) {
+                novoValor = (1 - descFunc) * valorOriginal;
+            }
+            
+            this.telaCompra.getjTvalorTotal().setText(String.format("%.2f", novoValor));
         }
         
     }
