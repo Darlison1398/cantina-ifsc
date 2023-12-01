@@ -17,6 +17,7 @@ import model.bo.Produto;
 import view.BuscaCarteirinha;
 import view.BuscaCliente;
 import view.TelaCompra;
+import view.TelaComproFiscal;
 
 
 public class CompraController implements ActionListener{
@@ -30,19 +31,16 @@ public class CompraController implements ActionListener{
        this.telaCompra.getjBtnCANCELAR().addActionListener(this);
        this.telaCompra.getJbFinalizarCompra().addActionListener(this);
        this.telaCompra.getjFcodBarras().addActionListener(this);
-       this.telaCompra.getjTcidade().addActionListener(this);
+      // this.telaCompra.getjTcidade().addActionListener(this);
        this.telaCompra.getjComboBoxDesconto().addActionListener(this);
        
        
        /* desativando campos de textos */
        this.telaCompra.getjTnomeCliente().setEditable(false);
-       //this.telaCompra.getjTcodCarteirinha().setEditable(false);
-       this.telaCompra.getjFcep().setEditable(false);
-       this.telaCompra.getjTbairro().setEditable(false);
-       this.telaCompra.getjTcidade().setEditable(false);
-       //this.telaCompra.getjTvalorTotal().setEditable(false);
-       this.telaCompra.getjTcomplemento().setEditable(false);
        this.telaCompra.getjTvalorTotal().setEditable(false);
+       this.telaCompra.getjTcodCarteirinha().setEditable(false);
+       
+      // this.telaCompra.getjTableDadosProduto().setEditingRow(false);
        
        
         List<Produto> listaProduto = new ArrayList<Produto>();
@@ -142,53 +140,23 @@ public class CompraController implements ActionListener{
             
             
         } else if(e.getSource() == this.telaCompra.getjBtnBuscarCliente()){
-             codigoCarteirinha = 0;
-             codigoCliente = 0;
+            codigoCarteirinha = 0;
              BuscaCarteirinha buscarCarteirinha = new BuscaCarteirinha(null, true);
              ControllerBuscaCarteirinha conBusCarteirinha = new ControllerBuscaCarteirinha(buscarCarteirinha);
              buscarCarteirinha.setVisible(true);
              this.telaCompra.getjFcodBarras().setText("");
              
-             /*BuscaCliente buscCliente = new BuscaCliente(null, true);
-             ControllerBuscaCliente ctcliente = new ControllerBuscaCliente(buscCliente);
-             
-             buscCliente.setVisible(true);*/
-                          
              if (codigoCarteirinha != 0) {
                  Carteirinha carteirinha = new Carteirinha();
-                
-                 carteirinha = service.CompraService.dadosCliente(codigoCliente);
-                 System.out.println(carteirinha);
-                 System.out.println("olá");
-                 this.telaCompra.getjTcodCarteirinha().setText(carteirinha.getCodigoBarra());
-                 //this.telaCompra.getjTnomeCliente().setText(carteirinha.getCliente().getNome());
-                 this.telaCompra.getjFcep().setText(carteirinha.getCliente().getEndereco().getCep());
-                 this.telaCompra.getjComboBoxUf().setSelectedItem(carteirinha.getCliente().getEndereco().getCidade().getUf());
-                 this.telaCompra.getjTcidade().setText(carteirinha.getCliente().getEndereco().getCidade().getDescricao());
-                 this.telaCompra.getjTbairro().setText(carteirinha.getCliente().getEndereco().getBairro().getDescricao());
-                 this.telaCompra.getjTcomplemento().setText(carteirinha.getCliente().getComplementoEndereco());
+                // Cliente cliente = new Cliente();
+                 carteirinha = service.CarteirinhaService.carregar(codigoCarteirinha);
                  
+                 this.telaCompra.getjTcodCarteirinha().setText(carteirinha.getCodigoBarra());
+                 this.telaCompra.getjTnomeCliente().setText(carteirinha.getCliente().getNome());
+                 
+                
              }
              
-             /*if (codigoCliente != 0) {
-                 Cliente cliente = new Cliente();
-                 cliente = service.ClienteService.carregar(codigoCliente);
-                 this.telaCompra.getjTcodCarteirinha().setText(cliente.getCpf());
-                 this.telaCompra.getjTnomeCliente().setText(cliente.getNome());
-                 this.telaCompra.getjFcep().setText(cliente.getEndereco().getCep());
-                 this.telaCompra.getjComboBoxUf().setSelectedItem(cliente.getEndereco().getCidade().getUf());
-                 this.telaCompra.getjTcidade().setText(cliente.getEndereco().getCidade().getDescricao());
-                 this.telaCompra.getjTbairro().setText(cliente.getEndereco().getBairro().getDescricao());
-                 this.telaCompra.getjTcomplemento().setText(cliente.getComplementoEndereco());
-                 
-             }*/
-             
-            
-             
-             
-            
-            
-            
             
         } else if (e.getSource() == this.telaCompra.getjBtnCANCELAR()) {
             
@@ -208,6 +176,23 @@ public class CompraController implements ActionListener{
               
             
         } else if (e.getSource() == this.telaCompra.getJbFinalizarCompra()) {
+            
+            if (this.telaCompra.getjTableDadosProduto().equals("") && this.telaCompra.getjTvalorTotal().equals("")){
+                JOptionPane.showMessageDialog(null, "Código de barras não encontrado");
+            } else {
+                  TelaComproFiscal tlcFiscal = new TelaComproFiscal(null, true);
+                  tlcFiscal.setVisible(true);
+            }
+            /*if (!this.telaCompra.getjTableDadosProduto().getModel().isEmpty() && !this.telaCompra.getjTvalorTotal().getText().isEmpty()) {
+    TelaComproFiscal tlcFiscal = new TelaComproFiscal(null, true);
+    tlcFiscal.setVisible(true);
+} else {
+    JOptionPane.showMessageDialog(null, "Preencha a tabela e o valor total antes de finalizar a compra");
+}*/
+
+            
+            
+          
             
         } else if (e.getSource() == this.telaCompra.getjComboBoxDesconto()){
             float semDesc = 0.1f;
