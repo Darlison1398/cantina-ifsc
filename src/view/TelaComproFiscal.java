@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package view;
 
-/**
- *
- * @author darli
- */
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
+
 public class TelaComproFiscal extends javax.swing.JDialog {
 
     /**
@@ -21,6 +24,232 @@ public class TelaComproFiscal extends javax.swing.JDialog {
     public TelaComproFiscal() {
         initComponents();
     }
+
+    public JButton getjBtnCANCELAR() {
+        return jBtnCANCELAR;
+    }
+
+    public void setjBtnCANCELAR(JButton jBtnCANCELAR) {
+        this.jBtnCANCELAR = jBtnCANCELAR;
+    }
+
+    public JButton getjBtnRECEBER() {
+        return jBtnRECEBER;
+    }
+
+    public void setjBtnRECEBER(JButton jBtnRECEBER) {
+        this.jBtnRECEBER = jBtnRECEBER;
+    }
+
+    public JComboBox<String> getjComboBoxTipoDesconto() {
+        return jComboBoxTipoDesconto;
+    }
+
+    public void setjComboBoxTipoDesconto(JComboBox<String> jComboBoxTipoDesconto) {
+        this.jComboBoxTipoDesconto = jComboBoxTipoDesconto;
+    }
+
+    public JInternalFrame getjInternalFrame1() {
+        return jInternalFrame1;
+    }
+
+    public void setjInternalFrame1(JInternalFrame jInternalFrame1) {
+        this.jInternalFrame1 = jInternalFrame1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    public void setjLabel9(JLabel jLabel9) {
+        this.jLabel9 = jLabel9;
+    }
+
+    public JPanel getjPanDadosGerais() {
+        return jPanDadosGerais;
+    }
+
+    public void setjPanDadosGerais(JPanel jPanDadosGerais) {
+        this.jPanDadosGerais = jPanDadosGerais;
+    }
+
+    public JPanel getjPanDadosItens() {
+        return jPanDadosItens;
+    }
+
+    public void setjPanDadosItens(JPanel jPanDadosItens) {
+        this.jPanDadosItens = jPanDadosItens;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public void setjPanel3(JPanel jPanel3) {
+        this.jPanel3 = jPanel3;
+    }
+
+    public JPanel getjPanel6() {
+        return jPanel6;
+    }
+
+    public void setjPanel6(JPanel jPanel6) {
+        this.jPanel6 = jPanel6;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTextField getjTValorDesconto() {
+        return jTValorDesconto;
+    }
+
+    public void setjTValorDesconto(JTextField jTValorDesconto) {
+        this.jTValorDesconto = jTValorDesconto;
+    }
+
+    public JTable getjTableDadosProduto() {
+        return jTableDadosProduto;
+    }
+
+    public void setjTableDadosProduto(JTable jTableDadosProduto) {
+        this.jTableDadosProduto = jTableDadosProduto;
+    }
+
+    public JTextField getjTcodCarteirinha() {
+        return jTcodCarteirinha;
+    }
+
+    public void setjTcodCarteirinha(JTextField jTcodCarteirinha) {
+        this.jTcodCarteirinha = jTcodCarteirinha;
+    }
+
+    public JTextField getjTdataHora() {
+        return jTdataHora;
+    }
+
+    public void setjTdataHora(JTextField jTdataHora) {
+        this.jTdataHora = jTdataHora;
+    }
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+
+    public void setjTextField1(JTextField jTextField1) {
+        this.jTextField1 = jTextField1;
+    }
+
+    public JTextField getjTnomeCarteirinha() {
+        return jTnomeCarteirinha;
+    }
+
+    public void setjTnomeCarteirinha(JTextField jTnomeCarteirinha) {
+        this.jTnomeCarteirinha = jTnomeCarteirinha;
+    }
+
+    public JTextField getjTobservacao() {
+        return jTobservacao;
+    }
+
+    public void setjTobservacao(JTextField jTobservacao) {
+        this.jTobservacao = jTobservacao;
+    }
+
+    public JTextField getjTvalorTotalProduto() {
+        return jTvalorTotalProduto;
+    }
+
+    public void setjTvalorTotalProduto(JTextField jTvalorTotalProduto) {
+        this.jTvalorTotalProduto = jTvalorTotalProduto;
+    }
+    
+    
     
     
 
@@ -33,29 +262,29 @@ public class TelaComproFiscal extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jBtnCANCELAR = new javax.swing.JButton();
+        jBtnRECEBER = new javax.swing.JButton();
+        jPanDadosGerais = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTValorDesconto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxTipoDesconto = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
+        jTobservacao = new javax.swing.JTextField();
+        jPanDadosItens = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableDadosProduto = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTvalorTotalProduto = new javax.swing.JTextField();
+        jTdataHora = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTcodCarteirinha = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jTnomeCarteirinha = new javax.swing.JTextField();
 
         jInternalFrame1.setVisible(true);
 
@@ -100,20 +329,20 @@ public class TelaComproFiscal extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(102, 204, 0));
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnCANCELAR.setBackground(new java.awt.Color(153, 153, 153));
+        jBtnCANCELAR.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jBtnCANCELAR.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnCANCELAR.setText("Cancelar");
+        jBtnCANCELAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtnCANCELARActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Receber");
+        jBtnRECEBER.setBackground(new java.awt.Color(0, 153, 153));
+        jBtnRECEBER.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        jBtnRECEBER.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnRECEBER.setText("Receber");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -121,9 +350,9 @@ public class TelaComproFiscal extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton1)
+                .addComponent(jBtnCANCELAR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBtnRECEBER, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
         jPanel3Layout.setVerticalGroup(
@@ -131,98 +360,100 @@ public class TelaComproFiscal extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jBtnRECEBER)
+                    .addComponent(jBtnCANCELAR))
                 .addGap(19, 19, 19))
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanDadosGerais.setBackground(new java.awt.Color(255, 255, 255));
+        jPanDadosGerais.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Número Fiscal");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-        jPanel4.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 271, -1));
+        jPanDadosGerais.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jPanDadosGerais.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 271, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Data/hora");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, -1, -1));
+        jPanDadosGerais.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Valor do desconto");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
-        jPanel4.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 271, -1));
+        jPanDadosGerais.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPanDadosGerais.add(jTValorDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 271, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Tipo de desconto");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        jPanDadosGerais.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 254, -1));
+        jPanDadosGerais.add(jComboBoxTipoDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 254, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Observação");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
-        jPanel4.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 300, -1));
+        jPanDadosGerais.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
+        jPanDadosGerais.add(jTobservacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 300, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDadosProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Id", "Item", "Qtd.", "Preço"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(140);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(400);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(160);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(160);
+        jScrollPane1.setViewportView(jTableDadosProduto);
+        if (jTableDadosProduto.getColumnModel().getColumnCount() > 0) {
+            jTableDadosProduto.getColumnModel().getColumn(0).setMaxWidth(140);
+            jTableDadosProduto.getColumnModel().getColumn(1).setMaxWidth(400);
+            jTableDadosProduto.getColumnModel().getColumn(2).setMaxWidth(160);
+            jTableDadosProduto.getColumnModel().getColumn(3).setMaxWidth(160);
         }
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel7.setText("Valor Total");
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTvalorTotalProduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTvalorTotalProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTvalorTotalProdutoActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanDadosItensLayout = new javax.swing.GroupLayout(jPanDadosItens);
+        jPanDadosItens.setLayout(jPanDadosItensLayout);
+        jPanDadosItensLayout.setHorizontalGroup(
+            jPanDadosItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanDadosItensLayout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(jLabel7)
                 .addGap(53, 53, 53)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTvalorTotalProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 92, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanDadosItensLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        jPanDadosItensLayout.setVerticalGroup(
+            jPanDadosItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanDadosItensLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanDadosItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTvalorTotalProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        jPanDadosGerais.add(jPanDadosItens, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTdataHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTdataHoraActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 254, -1));
+        jPanDadosGerais.add(jTdataHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 254, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Carteirinha");
@@ -237,13 +468,13 @@ public class TelaComproFiscal extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4)
+                    .addComponent(jTcodCarteirinha)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
                         .addGap(0, 221, Short.MAX_VALUE))
-                    .addComponent(jTextField7))
+                    .addComponent(jTnomeCarteirinha))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -252,15 +483,15 @@ public class TelaComproFiscal extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTcodCarteirinha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTnomeCarteirinha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 300, 160));
+        jPanDadosGerais.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 300, 160));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,14 +499,14 @@ public class TelaComproFiscal extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanDadosGerais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanDadosGerais, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -301,13 +532,17 @@ public class TelaComproFiscal extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTdataHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdataHoraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTdataHoraActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBtnCANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCANCELARActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBtnCANCELARActionPerformed
+
+    private void jTvalorTotalProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTvalorTotalProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTvalorTotalProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,9 +587,9 @@ public class TelaComproFiscal extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jBtnCANCELAR;
+    private javax.swing.JButton jBtnRECEBER;
+    private javax.swing.JComboBox<String> jComboBoxTipoDesconto;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -365,20 +600,20 @@ public class TelaComproFiscal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanDadosGerais;
+    private javax.swing.JPanel jPanDadosItens;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTValorDesconto;
+    private javax.swing.JTable jTableDadosProduto;
+    private javax.swing.JTextField jTcodCarteirinha;
+    private javax.swing.JTextField jTdataHora;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTnomeCarteirinha;
+    private javax.swing.JTextField jTobservacao;
+    private javax.swing.JTextField jTvalorTotalProduto;
     // End of variables declaration//GEN-END:variables
 }

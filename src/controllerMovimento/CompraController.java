@@ -10,9 +10,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.bo.Carteirinha;
 import model.bo.Cliente;
+import model.bo.Compra;
 import model.bo.Produto;
 import view.BuscaCarteirinha;
 import view.BuscaCliente;
@@ -31,14 +33,14 @@ public class CompraController implements ActionListener{
        this.telaCompra.getjBtnCANCELAR().addActionListener(this);
        this.telaCompra.getJbFinalizarCompra().addActionListener(this);
        this.telaCompra.getjFcodBarras().addActionListener(this);
-      // this.telaCompra.getjTcidade().addActionListener(this);
        this.telaCompra.getjComboBoxDesconto().addActionListener(this);
+       this.telaCompra.getjFcodCarteirinha().addActionListener(this);
+       this.telaCompra.getjFquantidade().addActionListener(this);
        
        
        /* desativando campos de textos */
        this.telaCompra.getjTnomeCliente().setEditable(false);
        this.telaCompra.getjTvalorTotal().setEditable(false);
-       this.telaCompra.getjTcodCarteirinha().setEditable(false);
        
       // this.telaCompra.getjTableDadosProduto().setEditingRow(false);
        
@@ -73,7 +75,7 @@ public class CompraController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if (e.getSource() == this.telaCompra.getjFcodBarras()) {
-                        
+                                    
             String codigoBarras = this.telaCompra.getjFcodBarras().getText();
             
             if (!codigoBarras.isEmpty()  && codigoBarras.matches(".*\\d.*")) {
@@ -122,9 +124,13 @@ public class CompraController implements ActionListener{
             
             
             
-        } else if (e.getSource() == this.telaCompra.getjTcodCarteirinha()){
             
-                String codBarras = this.telaCompra.getjTcodCarteirinha().getText();
+            
+           
+            
+        } else if (e.getSource() == this.telaCompra.getjFcodCarteirinha()){
+            
+                String codBarras = this.telaCompra.getjFcodCarteirinha().getText();
                 if (!codBarras.isEmpty() && codBarras.matches(".*\\d.*")) {
                     List<Carteirinha> carteirinhas = service.CarteirinhaService.retrieveByCodBarras(codBarras);
                     if (!carteirinhas.isEmpty()) {
@@ -136,6 +142,9 @@ public class CompraController implements ActionListener{
             
             
             
+                
+                
+                
             
             
             
@@ -151,12 +160,48 @@ public class CompraController implements ActionListener{
                 // Cliente cliente = new Cliente();
                  carteirinha = service.CarteirinhaService.carregar(codigoCarteirinha);
                  
-                 this.telaCompra.getjTcodCarteirinha().setText(carteirinha.getCodigoBarra());
+                 this.telaCompra.getjFcodCarteirinha().setText(carteirinha.getCodigoBarra());
                  this.telaCompra.getjTnomeCliente().setText(carteirinha.getCliente().getNome());
                  
                 
              }
              
+             
+             
+             
+             
+             
+             
+            
+        } else if (e.getSource() == this.telaCompra.getjFquantidade()){
+                String valorTotalStr = this.telaCompra.getjTvalorTotal().getText();
+    
+    if (!valorTotalStr.isEmpty() && valorTotalStr.matches(".*\\d.*")) {
+        float valorTotal = Float.parseFloat(valorTotalStr);
+        
+        JTextField quantidadeField = this.telaCompra.getjFquantidade();
+        
+        if (!quantidadeField.getText().isEmpty() && quantidadeField.getText().matches("\\d+")) {
+            int quantidade = Integer.parseInt(quantidadeField.getText());
+            
+            float novoValorTotal = valorTotal * quantidade;
+            
+            this.telaCompra.getjTvalorTotal().setText(String.format("%.0f", novoValorTotal));
+        } else {
+            JOptionPane.showMessageDialog(null, "Digite uma quantidade válida.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Digite um valor total válido antes de inserir a quantidade.");
+    }
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
         } else if (e.getSource() == this.telaCompra.getjBtnCANCELAR()) {
             
@@ -177,19 +222,14 @@ public class CompraController implements ActionListener{
             
         } else if (e.getSource() == this.telaCompra.getJbFinalizarCompra()) {
             
-            if (this.telaCompra.getjTableDadosProduto().equals("") && this.telaCompra.getjTvalorTotal().equals("")){
-                JOptionPane.showMessageDialog(null, "Código de barras não encontrado");
+            if (this.telaCompra.getjTableDadosProduto().getRowCount() > 0 && !this.telaCompra.getjTvalorTotal().getText().isEmpty()) {
+                TelaComproFiscal tlcFiscal = new TelaComproFiscal(null, true);
+                ComprovanteFiscalController comproFiscControl = new ComprovanteFiscalController(tlcFiscal);
+                tlcFiscal.setVisible(true);
+                
             } else {
-                  TelaComproFiscal tlcFiscal = new TelaComproFiscal(null, true);
-                  tlcFiscal.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Adicione produtos para realizar a venda.");
             }
-            /*if (!this.telaCompra.getjTableDadosProduto().getModel().isEmpty() && !this.telaCompra.getjTvalorTotal().getText().isEmpty()) {
-    TelaComproFiscal tlcFiscal = new TelaComproFiscal(null, true);
-    tlcFiscal.setVisible(true);
-} else {
-    JOptionPane.showMessageDialog(null, "Preencha a tabela e o valor total antes de finalizar a compra");
-}*/
-
             
             
           

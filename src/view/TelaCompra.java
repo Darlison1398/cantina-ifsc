@@ -212,13 +212,18 @@ public class TelaCompra extends javax.swing.JDialog {
         this.jScrollPane1 = jScrollPane1;
     }
 
-    public JTextField getjTQuantidade() {
-        return jTQuantidade;
+    public JFormattedTextField getjFquantidade() {
+        return jFquantidade;
     }
 
-    public void setjTQuantidade(JTextField jTQuantidade) {
-        this.jTQuantidade = jTQuantidade;
+    public void setjFquantidade(JFormattedTextField jFquantidade) {
+        this.jFquantidade = jFquantidade;
     }
+
+    
+    
+
+    
 
     public JTable getjTableDadosProduto() {
         return jTableDadosProduto;
@@ -228,13 +233,6 @@ public class TelaCompra extends javax.swing.JDialog {
         this.jTableDadosProduto = jTableDadosProduto;
     }
 
-    public JTextField getjTcodCarteirinha() {
-        return jTcodCarteirinha;
-    }
-
-    public void setjTcodCarteirinha(JTextField jTcodCarteirinha) {
-        this.jTcodCarteirinha = jTcodCarteirinha;
-    }
 
     public JTextField getjTnomeCliente() {
         return jTnomeCliente;
@@ -268,6 +266,16 @@ public class TelaCompra extends javax.swing.JDialog {
         this.jbFinalizarCompra = jbFinalizarCompra;
     }
 
+    public JFormattedTextField getjFcodCarteirinha() {
+        return jFcodCarteirinha;
+    }
+
+    public void setjFcodCarteirinha(JFormattedTextField jFcodCarteirinha) {
+        this.jFcodCarteirinha = jFcodCarteirinha;
+    }
+    
+    
+
     
     
     
@@ -291,14 +299,14 @@ public class TelaCompra extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jTobservacao = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTQuantidade = new javax.swing.JTextField();
+        jFquantidade = new javax.swing.JFormattedTextField();
         jPanel5 = new javax.swing.JPanel();
         jBtnBuscarCliente = new javax.swing.JButton();
         jPaneldadosCliente = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTcodCarteirinha = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTnomeCliente = new javax.swing.JTextField();
+        jFcodCarteirinha = new javax.swing.JFormattedTextField();
         jPanelbbtnsFim = new javax.swing.JPanel();
         jBtnCANCELAR = new javax.swing.JButton();
         jbFinalizarCompra = new javax.swing.JButton();
@@ -404,10 +412,15 @@ public class TelaCompra extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel8.setText("Quantidade");
 
-        jTQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTQuantidadeActionPerformed(evt);
+        try {
+            jFquantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFquantidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jFquantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ENTER(evt);
             }
         });
 
@@ -434,7 +447,7 @@ public class TelaCompra extends javax.swing.JDialog {
                         .addGroup(jPanelddosProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel8)
-                            .addComponent(jTQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -444,8 +457,8 @@ public class TelaCompra extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelddosProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -477,17 +490,27 @@ public class TelaCompra extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel6.setText("Carteirinha");
 
-        jTcodCarteirinha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTcodCarteirinha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ENTER(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel7.setText("Nome");
 
         jTnomeCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        try {
+            jFcodCarteirinha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFcodCarteirinha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jFcodCarteirinha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFcodCarteirinhaActionPerformed(evt);
+            }
+        });
+        jFcodCarteirinha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ENTER(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPaneldadosClienteLayout = new javax.swing.GroupLayout(jPaneldadosCliente);
         jPaneldadosCliente.setLayout(jPaneldadosClienteLayout);
@@ -496,13 +519,13 @@ public class TelaCompra extends javax.swing.JDialog {
             .addGroup(jPaneldadosClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPaneldadosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTcodCarteirinha)
                     .addComponent(jTnomeCliente)
                     .addGroup(jPaneldadosClienteLayout.createSequentialGroup()
                         .addGroup(jPaneldadosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jFcodCarteirinha))
                 .addContainerGap())
         );
         jPaneldadosClienteLayout.setVerticalGroup(
@@ -511,8 +534,8 @@ public class TelaCompra extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTcodCarteirinha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jFcodCarteirinha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTnomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -664,13 +687,13 @@ public class TelaCompra extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnCANCELARActionPerformed
 
+    private void jFcodCarteirinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFcodCarteirinhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFcodCarteirinhaActionPerformed
+
     private void ENTER(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ENTER
         // TODO add your handling code here:
     }//GEN-LAST:event_ENTER
-
-    private void jTQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTQuantidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -719,6 +742,8 @@ public class TelaCompra extends javax.swing.JDialog {
     private javax.swing.JButton jBtnCANCELAR;
     private javax.swing.JComboBox<String> jComboBoxDesconto;
     private javax.swing.JFormattedTextField jFcodBarras;
+    private javax.swing.JFormattedTextField jFcodCarteirinha;
+    private javax.swing.JFormattedTextField jFquantidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -738,9 +763,7 @@ public class TelaCompra extends javax.swing.JDialog {
     private javax.swing.JPanel jPaneldadosCliente;
     private javax.swing.JPanel jPanelddosProduto;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTQuantidade;
     private javax.swing.JTable jTableDadosProduto;
-    private javax.swing.JTextField jTcodCarteirinha;
     private javax.swing.JTextField jTnomeCliente;
     private javax.swing.JTextField jTobservacao;
     private javax.swing.JTextField jTvalorTotal;
