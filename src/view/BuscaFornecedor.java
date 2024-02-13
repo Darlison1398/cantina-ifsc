@@ -316,14 +316,14 @@ public class BuscaFornecedor extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Razão Social", "Nome Fantasia", "Ins. Estadual", "CNPJ", "Email", "Fone 1", "Fone 2", "Id_Endereço", "CEP", "Cidade", "Bairro", "Comlemento", "Status"
+                "ID", "Razão Social", "Nome Fantasia", "Ins. Estadual", "CNPJ", "Email", "Fone 1", "Fone 2", "Id_Endereço", "CEP", "Cidade", "Bairro", "Logradouro", "Comlemento", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

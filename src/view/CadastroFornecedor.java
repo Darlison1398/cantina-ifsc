@@ -325,6 +325,15 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     public void setjCUf(JComboBox<String> jCUf) {
         this.jCUf = jCUf;
     }
+
+    public JTextField getjTlogradouro() {
+        return jTlogradouro;
+    }
+
+    public void setjTlogradouro(JTextField jTlogradouro) {
+        this.jTlogradouro = jTlogradouro;
+    }
+    
     
     
 
@@ -365,6 +374,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jCUf = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTlogradouro = new javax.swing.JTextField();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
@@ -503,14 +514,14 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jLabelComplementoEndereco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelComplementoEndereco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelComplementoEndereco.setText("Complemento (rua, n°, ...)");
-        jPanelDados.add(jLabelComplementoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 160, -1));
+        jPanelDados.add(jLabelComplementoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 160, -1));
 
         jTComplementoEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTComplementoEnderecoActionPerformed(evt);
             }
         });
-        jPanelDados.add(jTComplementoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 310, 550, 30));
+        jPanelDados.add(jTComplementoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 310, 260, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -527,6 +538,11 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Uf");
         jPanelDados.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 37, 16));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Logradouro");
+        jPanelDados.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        jPanelDados.add(jTlogradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 290, 30));
 
         jPanelBotoes.setBackground(new java.awt.Color(204, 255, 102));
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -699,9 +715,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanelFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -803,6 +817,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelBairro;
     private javax.swing.JLabel jLabelCep;
     private javax.swing.JLabel jLabelCidade;
@@ -826,5 +841,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField jTInscricaoEstadual;
     private javax.swing.JTextField jTNomeFantasia;
     private javax.swing.JTextField jTRazaoSocial;
+    private javax.swing.JTextField jTlogradouro;
     // End of variables declaration//GEN-END:variables
 }

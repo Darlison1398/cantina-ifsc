@@ -362,7 +362,7 @@
                 <Component class="javax.swing.JTable" name="jTableDados">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="14" rowCount="0">
+                      <Table columnCount="15" rowCount="0">
                         <Column editable="true" title="ID" type="java.lang.Integer"/>
                         <Column editable="true" title="Nome" type="java.lang.String"/>
                         <Column editable="true" title="CPF" type="java.lang.String"/>
@@ -375,6 +375,7 @@
                         <Column editable="true" title="CEP" type="java.lang.String"/>
                         <Column editable="true" title="Cidade" type="java.lang.String"/>
                         <Column editable="true" title="Bairro" type="java.lang.String"/>
+                        <Column editable="true" title="Logradouro" type="java.lang.String"/>
                         <Column editable="true" title="Complemento" type="java.lang.String"/>
                         <Column editable="true" title="Status" type="java.lang.Boolean"/>
                       </Table>
@@ -408,6 +409,11 @@
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title value="Email"/>
                           <Editor/>
                           <Renderer/>
                         </Column>

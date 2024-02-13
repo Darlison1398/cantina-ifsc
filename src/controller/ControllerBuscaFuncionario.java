@@ -86,6 +86,7 @@ public class ControllerBuscaFuncionario implements ActionListener{
                                            funcionarioAtual.getEndereco().getCep(),
                                            funcionarioAtual.getEndereco().getCidade().getDescricao(),
                                            funcionarioAtual.getEndereco().getBairro().getDescricao(),
+                                           funcionarioAtual.getEndereco().getLogradouro(),
                                            funcionarioAtual.getComplementoEndereco(),
                                            funcionarioAtual.getStatus()
                                        

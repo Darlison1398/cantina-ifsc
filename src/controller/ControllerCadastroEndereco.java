@@ -57,6 +57,7 @@ public class ControllerCadastroEndereco implements ActionListener {
         this.cadastroEndereco.getjTDescricaoBairro().removeAll();
         this.cadastroEndereco.getjTDescricaoCidade().removeAll();
         this.cadastroEndereco.getjCUf().removeAll();
+        this.cadastroEndereco.getjTlogradouro().removeAll();
 
         for (Bairro bairroAtual : listaBairros) {
             this.cadastroEndereco.getjTDescricaoBairro().setText(bairroAtual.getDescricao());
@@ -131,6 +132,7 @@ public class ControllerCadastroEndereco implements ActionListener {
                 this.cadastroEndereco.getjTId().setText(endereco.getId() + "");
                 this.cadastroEndereco.getjFCep().setText(endereco.getCep());
                 this.cadastroEndereco.getjCheckBoxStatus().setSelected(true);
+                this.cadastroEndereco.getjTlogradouro().setText(endereco.getLogradouro());
            
                 this.cadastroEndereco.getjTBairro().setText(String.valueOf(endereco.getBairro().getId()));
                 this.cadastroEndereco.getjTCodigoCidade().setText(String.valueOf(endereco.getCidade().getId()));

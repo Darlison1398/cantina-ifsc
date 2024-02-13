@@ -43,6 +43,7 @@ public class ControllerCadastroFuncionario implements ActionListener {
         this.cadastroFuncionario.getjTextFieldCidade().removeAll();
         this.cadastroFuncionario.getjFormattedTextFieldCEP().removeAll();
         this.cadastroFuncionario.getjCUf().removeAll();
+        this.cadastroFuncionario.getjTlogradouro().removeAll();
         
         for (Endereco enderecoAtual: listaEndereco) {
             
@@ -50,6 +51,7 @@ public class ControllerCadastroFuncionario implements ActionListener {
             this.cadastroFuncionario.getjTextFieldCidade().setText(enderecoAtual.getCidade().getDescricao());
             this.cadastroFuncionario.getjFormattedTextFieldCEP().setText(enderecoAtual.getCep());
             this.cadastroFuncionario.getjCUf().addItem(enderecoAtual.getCidade().getUf());
+            this.cadastroFuncionario.getjTlogradouro().setText(enderecoAtual.getLogradouro());
         }
         
         utilities.Utilities.ativa(true, this.cadastroFuncionario.getjPanelBotoes());
@@ -148,6 +150,7 @@ public class ControllerCadastroFuncionario implements ActionListener {
                 this.cadastroFuncionario.getjTextFieldBairro().setText(funcionario.getEndereco().getBairro().getDescricao());
                 this.cadastroFuncionario.getjTextFieldComplementoEndereco().setText(funcionario.getComplementoEndereco());
                 this.cadastroFuncionario.getjCUf().setSelectedItem(funcionario.getEndereco().getCidade().getUf());
+                this.cadastroFuncionario.getjTlogradouro().setText(funcionario.getEndereco().getLogradouro());
                 
                 cadastroFuncionario.getjTextFieldID().setEnabled(false);
                 cadastroFuncionario.getjTextFieldBairro().setEnabled(false);
@@ -174,6 +177,7 @@ public class ControllerCadastroFuncionario implements ActionListener {
                 this.cadastroFuncionario.getjTextFieldCidade().setText(endereco.getCidade().getDescricao());
                 this.cadastroFuncionario.getjFormattedTextFieldCEP().setText(endereco.getCep());
                 this.cadastroFuncionario.getjCUf().setSelectedItem(endereco.getCidade().getUf());
+                this.cadastroFuncionario.getjTlogradouro().setText(endereco.getLogradouro());
 
                 
             }

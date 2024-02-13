@@ -47,12 +47,14 @@ public class ControllerCadastroFornecedor implements ActionListener {
         this.cadastroFornecedor.getjTComplementoEndereco().removeAll();
         this.cadastroFornecedor.getjFCep().removeAll();
         this.cadastroFornecedor.getjCUf().removeAll();
+        this.cadastroFornecedor.getjTlogradouro().removeAll();
         
         for (Endereco enderecoAtual : listaEndereco) {
             this.cadastroFornecedor.getjFCep().setText(enderecoAtual.getCep());
             this.cadastroFornecedor.getjTCidade().setText(enderecoAtual.getCidade().getDescricao());
             this.cadastroFornecedor.getjTBairro().setText(enderecoAtual.getBairro().getDescricao());
             this.cadastroFornecedor.getjCUf().addItem(enderecoAtual.getCidade().getUf());
+            this.cadastroFornecedor.getjTlogradouro().setText(enderecoAtual.getLogradouro());
         }
         
         
@@ -150,6 +152,7 @@ public class ControllerCadastroFornecedor implements ActionListener {
                 this.cadastroFornecedor.getjTBairro().setText(fornecedor.getEndereco().getBairro().getDescricao());
                 this.cadastroFornecedor.getjTComplementoEndereco().setText(fornecedor.getComplementoEndereco());
                 this.cadastroFornecedor.getjCUf().setSelectedItem(fornecedor.getEndereco().getCidade().getUf());
+                this.cadastroFornecedor.getjTlogradouro().setText(fornecedor.getEndereco().getLogradouro());
                 
                 this.cadastroFornecedor.getjCheckBoxInativo().setSelected(true);
                 
@@ -185,6 +188,7 @@ public class ControllerCadastroFornecedor implements ActionListener {
                 this.cadastroFornecedor.getjTCidade().setText(endereco.getCidade().getDescricao());
                 this.cadastroFornecedor.getjTBairro().setText(endereco.getBairro().getDescricao());
                 this.cadastroFornecedor.getjCUf().setSelectedItem(endereco.getCidade().getUf());
+                this.cadastroFornecedor.getjTlogradouro().setText(endereco.getLogradouro());
 
                 
                 
